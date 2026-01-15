@@ -4,47 +4,31 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Default to Dark/Black Theme */
   --background: oklch(0 0 0);
-  /* Pure Black */
   --foreground: oklch(0.98 0 0);
-  /* White */
-
   --card: oklch(0.05 0 0);
-  /* Very dark grey for cards */
   --card-foreground: oklch(0.98 0 0);
-
   --popover: oklch(0.05 0 0);
   --popover-foreground: oklch(0.98 0 0);
-
   --primary: oklch(0.98 0 0);
-  /* White for primary actions/text */
   --primary-foreground: oklch(0 0 0);
-
   --secondary: oklch(0.15 0 0);
   --secondary-foreground: oklch(0.98 0 0);
-
   --muted: oklch(0.15 0 0);
   --muted-foreground: oklch(0.6 0 0);
-
   --accent: oklch(0.15 0 0);
   --accent-foreground: oklch(0.98 0 0);
-
   --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
-
-  --border: oklch(0.2 0 0);
-  --input: oklch(0.2 0 0);
+  --border: oklch(0.5 0 0);
+  --input: oklch(0.5 0 0);
   --ring: oklch(0.8 0 0);
-
   --chart-1: oklch(0.5 0.15 250);
   --chart-2: oklch(0.6 0.15 180);
   --chart-3: oklch(0.55 0.15 140);
   --chart-4: oklch(0.65 0.15 45);
   --chart-5: oklch(0.55 0.2 25);
-
   --radius: 0.5rem;
-
   --sidebar: oklch(0.05 0 0);
   --sidebar-foreground: oklch(0.98 0 0);
   --sidebar-primary: oklch(0.98 0 0);
@@ -55,7 +39,6 @@
   --sidebar-ring: oklch(0.8 0 0);
 }
 
-/* Force dark mode variables even if user system preferences differ, since "complete black" is requested */
 .dark {
   --background: oklch(0 0 0);
   --foreground: oklch(0.98 0 0);
@@ -74,7 +57,7 @@
   --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
   --border: oklch(0.2 0 0);
-  --input: oklch(0.2 0 0);
+  --input: oklch(0.5 0 0);
   --ring: oklch(0.8 0 0);
 }
 
@@ -129,9 +112,7 @@
   }
 }
 
-/* Custom animations */
 @keyframes pulse-glow {
-
   0%,
   100% {
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
@@ -143,7 +124,6 @@
 }
 
 @keyframes float {
-
   0%,
   100% {
     transform: translateY(0px);
@@ -162,7 +142,6 @@
   animation: float 6s ease-in-out infinite;
 }
 
-/* AstraQ-style Dot Pattern */
 .dot-pattern {
   background-color: black;
   background-image: radial-gradient(#444 1px, transparent 1px);

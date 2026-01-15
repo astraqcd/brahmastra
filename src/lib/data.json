@@ -1,0 +1,504 @@
+{
+  "tools": [
+    {
+      "type": "AI",
+      "toolName": "Dork GPT",
+      "link": "https://www.dorkgpt.com/",
+      "working": true
+    },
+    {
+      "type": "AI",
+      "toolName": "CHat Gpt",
+      "link": "https://chatgpt.com/",
+      "working": true
+    },
+    {
+      "type": "AI",
+      "toolName": "Gemini",
+      "link": "https://gemini.google.com/app",
+      "working": true
+    },
+    {
+      "type": "AI",
+      "toolName": "Deep Seek",
+      "link": "https://chat.deepseek.com/",
+      "working": true
+    },
+    {
+      "type": "AI",
+      "toolName": "Kali Gpt",
+      "link": "https://chatgpt.com/g/g-uRhIB5ire-kali-gpt",
+      "working": true
+    },
+    {
+      "type": "AI",
+      "toolName": "Perplexity",
+      "link": "https://www.perplexity.ai/",
+      "working": true
+    },
+    {
+      "type": "AI",
+      "toolName": "Claude",
+      "link": "https://claude.ai/new",
+      "working": true
+    },
+    {
+      "type": "AI",
+      "toolName": "Robin AI - Dark Web",
+      "link": "https://github.com/apurvsinghgautam/robin",
+      "working": true
+    },
+    {
+      "type": "Search Engine",
+      "toolName": "Google Advanced Search",
+      "link": "https://www.google.com/advanced_search",
+      "working": true
+    },
+    {
+      "type": "Search Engine",
+      "toolName": "Shodan",
+      "link": "https://www.shodan.io/",
+      "working": true
+    },
+    {
+      "type": "Search Engine",
+      "toolName": "crt.sh",
+      "link": "https://crt.sh/",
+      "working": true
+    },
+    {
+      "type": "Search Engine",
+      "toolName": "Yandex",
+      "link": "https://yandex.com/",
+      "working": true
+    },
+    {
+      "type": "Search Engine",
+      "toolName": "Bing",
+      "link": "https://www.bing.com/",
+      "working": true
+    },
+    {
+      "type": "Search Engine",
+      "toolName": "Duck Duck Go",
+      "link": "https://duckduckgo.com/",
+      "working": true
+    },
+    {
+      "type": "Search Engine",
+      "toolName": "Google Hacking DataBase",
+      "link": "https://www.exploit-db.com/google-hacking-database",
+      "working": true
+    },
+    {
+      "type": "Search Engine",
+      "toolName": "G-Hunt Github",
+      "link": "https://github.com/mxrch/Ghunt",
+      "working": true
+    },
+    {
+      "type": "Search Engine",
+      "toolName": "Epioes",
+      "link": "https://epieos.com/",
+      "working": true
+    },
+    {
+      "type": "Search Engine",
+      "toolName": "Virus Total",
+      "link": "https://www.virustotal.com/",
+      "working": true
+    },
+    {
+      "type": "Search Engine",
+      "toolName": "Web Check",
+      "link": "https://web-check.as93.net/",
+      "working": true
+    },
+    {
+      "type": "Search Engine",
+      "toolName": "Intel Techniques",
+      "link": "https://inteltechniques.com/tools/Domain.html",
+      "working": true
+    },
+    {
+      "type": "Search Engine",
+      "toolName": "Wayback Machine",
+      "link": "https://web.archive.org/",
+      "working": true
+    },
+    {
+      "type": "Search Engine",
+      "toolName": "Bitly",
+      "link": "https://bitly.com/",
+      "working": true
+    },
+    {
+      "type": "Search Engine",
+      "toolName": "Where Goes",
+      "link": "https://wheregoes.com/",
+      "working": true
+    },
+    {
+      "type": "Image Int",
+      "toolName": "Google Lens",
+      "link": "https://lens.google/",
+      "working": true
+    },
+    {
+      "type": "Image Int",
+      "toolName": "Sun Calc",
+      "link": "https://www.suncalc.org/",
+      "working": true
+    },
+    {
+      "type": "Image Int",
+      "toolName": "InVID",
+      "link": "https://www.invid-project.eu/",
+      "working": true
+    },
+    {
+      "type": "Image Int",
+      "toolName": "Photo Forensics",
+      "link": "https://29a.ch/photo-forensics/#forensic-magnifier",
+      "working": true
+    },
+    {
+      "type": "Image Int",
+      "toolName": "Pim Eye",
+      "link": "https://pimeyes.com/en",
+      "working": true
+    },
+    {
+      "type": "Image Int",
+      "toolName": "Tin Eye",
+      "link": "https://tineye.com/",
+      "working": true
+    },
+    {
+      "type": "Image Int",
+      "toolName": "Jimple exif data",
+      "link": "https://jimpl.com/",
+      "working": true
+    },
+    {
+      "type": "Image Int",
+      "toolName": "Geo Spy",
+      "link": "https://geospy.ai/",
+      "working": true
+    },
+    {
+      "type": "Image Int",
+      "toolName": "Yandex image search",
+      "link": "https://yandex.com/images/",
+      "working": true
+    },
+    {
+      "type": "Image Int",
+      "toolName": "Meta data",
+      "link": "https://www.metadata2go.com/",
+      "working": true
+    },
+    {
+      "type": "Image Int",
+      "toolName": "My Heritage Photo ENhancer",
+      "link": "https://www.myheritage.nl/photo-enhancer",
+      "working": true
+    },
+    {
+      "type": "Image Int",
+      "toolName": "Clip Drop",
+      "link": "https://clipdrop.co/cleanup",
+      "working": true
+    },
+    {
+      "type": "Image Int",
+      "toolName": "Search4faces",
+      "link": "https://search4faces.com/",
+      "working": true
+    },
+    {
+      "type": "Image Int",
+      "toolName": "Mattw.io",
+      "link": "https://mattw.io/youtube-metadata/",
+      "working": true
+    },
+    {
+      "type": "E Mail",
+      "toolName": "Haveibeenpwned",
+      "link": "https://haveibeenpwned.com/",
+      "working": true
+    },
+    {
+      "type": "E Mail",
+      "toolName": "Epieos",
+      "link": "https://epieos.com/",
+      "working": true
+    },
+    {
+      "type": "E Mail",
+      "toolName": "hunter.io",
+      "link": "hunter.io",
+      "working": true
+    },
+    {
+      "type": "E Mail",
+      "toolName": "Whatsmyname",
+      "link": "https://whatsmyname.app/",
+      "working": true
+    },
+    {
+      "type": "E Mail",
+      "toolName": "intelx",
+      "link": "https://intelx.io/tools?tab=email",
+      "working": true
+    },
+    {
+      "type": "E Mail",
+      "toolName": "Proofy",
+      "link": "https://proofy.io/",
+      "working": true
+    },
+    {
+      "type": "E Mail",
+      "toolName": "Predicta Search",
+      "link": "https://www.predictasearch.com/",
+      "working": true
+    },
+    {
+      "type": "E Mail",
+      "toolName": "GetProspect",
+      "link": "https://getprospect.com/",
+      "working": true
+    },
+    {
+      "type": "E Mail",
+      "toolName": "Anymailfinder",
+      "link": "https://anymailfinder.com/",
+      "working": true
+    },
+    {
+      "type": "E Mail",
+      "toolName": "Blackbird",
+      "link": "https://p1ngul1n0.gitbook.io/blackbird/",
+      "working": true
+    },
+    {
+      "type": "Geo INT",
+      "toolName": "Google Maps",
+      "link": "https://www.google.com/maps",
+      "working": true
+    },
+    {
+      "type": "Geo INT",
+      "toolName": "Bing Maps",
+      "link": "https://www.bing.com/maps",
+      "working": true
+    },
+    {
+      "type": "Geo INT",
+      "toolName": "Yandex Maps",
+      "link": "https://yandex.com/maps/",
+      "working": true
+    },
+    {
+      "type": "Geo INT",
+      "toolName": "Baidu Maps",
+      "link": "https://map.baidu.com/",
+      "working": true
+    },
+    {
+      "type": "Geo INT",
+      "toolName": "Suncalc",
+      "link": "https://www.suncalc.org/",
+      "working": true
+    },
+    {
+      "type": "Geo INT",
+      "toolName": "Live Conflict Maps",
+      "link": "https://liveuamap.com/",
+      "working": true
+    },
+    {
+      "type": "Geo INT",
+      "toolName": "Satellite Pro",
+      "link": "https://satellites.pro/",
+      "working": true
+    },
+    {
+      "type": "Geo INT",
+      "toolName": "Mapilliary",
+      "link": "https://www.mapillary.com/app/",
+      "working": true
+    },
+    {
+      "type": "Geo INT",
+      "toolName": "NASA Firms",
+      "link": "https://firms.modaps.eosdis.nasa.gov/map/",
+      "working": true
+    },
+    {
+      "type": "Geo INT",
+      "toolName": "Google Earth",
+      "link": "https://earth.google.com/web/",
+      "working": true
+    },
+    {
+      "type": "Geo INT",
+      "toolName": "Flight Radar 24",
+      "link": "https://www.flightradar24.com/",
+      "working": true
+    },
+    {
+      "type": "Geo INT",
+      "toolName": "Marine Traffic",
+      "link": "https://www.marinetraffic.com/en/ais/home/",
+      "working": true
+    },
+    {
+      "type": "Geo INT",
+      "toolName": "Zoom Earth",
+      "link": "https://zoom.earth/maps/satellite/",
+      "working": true
+    },
+    {
+      "type": "Geo INT",
+      "toolName": "Flight Radar 24 - GPS JAMMING",
+      "link": "https://www.flightradar24.com/data/gps-jamming",
+      "working": true
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "Whats My name",
+      "link": "https://whatsmyname.app/",
+      "working": true
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "REdit",
+      "link": "https://www.osintcombine.com/free-osint-tools/reddit-post-analyser",
+      "working": "FALSE"
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "Twitter clone",
+      "link": "https://nitter.net/",
+      "working": true
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "Epios",
+      "link": "https://epieos.com/",
+      "working": true
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "Sherlock",
+      "link": "https://github.com/sherlock-project/sherlock",
+      "working": true
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "Toutatis - Instagram info gatherer",
+      "link": "https://github.com/megadose/toutatis",
+      "working": "FALSE"
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "TWINT",
+      "link": "https://github.com/twintproject/twint",
+      "working": "FALSE"
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "Strava",
+      "link": "https://www.strava.com",
+      "working": "FALSE"
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "X Advanced search",
+      "link": "https://x.com/search-advanced",
+      "working": "FALSE"
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "Youtube location",
+      "link": "https://mattw.io/youtube-geofind/location",
+      "working": "FALSE"
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "Linked in",
+      "link": "https://intelx.io/tools?tab=linkedin",
+      "working": "FALSE"
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "Facebook Video Downloader",
+      "link": "https://fdown.net/",
+      "working": true
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "Facebook Data Breach checker",
+      "link": "https://haveibeenzuckered.com/",
+      "working": true
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "Sow Search",
+      "link": "https://sowsearch.info/",
+      "working": true
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "Instaloader",
+      "link": "https://instaloader.github.io/",
+      "working": true
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "Tiktok Downloader",
+      "link": "https://www.tikvib.com/",
+      "working": true
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "Instagram story saver",
+      "link": "https://www.storysaver.net/en/",
+      "working": true
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "LinkedIn Overlay Remover",
+      "link": "https://addons.mozilla.org/nl/firefox/addon/linkedin-overlay-remover/",
+      "working": true
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "Namechk",
+      "link": "https://namechk.com/",
+      "working": true
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "Open Measures",
+      "link": "https://openmeasures.io/",
+      "working": true
+    },
+    {
+      "type": "Social Media INT",
+      "toolName": "tiktok-hashtag-analysis",
+      "link": "https://github.com/bellingcat/tiktok-hashtag-analysis",
+      "working": true
+    }
+  ],
+  "categories": [
+    "Social Media INT",
+    "Image Int",
+    "Search Engine",
+    "Geo INT",
+    "AI",
+    "E Mail"
+  ]
+}
