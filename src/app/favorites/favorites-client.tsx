@@ -19,7 +19,7 @@ export default function FavoritesClient({ toolsData }: FavoritesClientProps) {
   useEffect(() => {
     const loadFavorites = () => {
       const favoriteUrls = JSON.parse(
-        localStorage.getItem("osint-favorites") || "[]"
+        localStorage.getItem("osint-favorites") || "[]",
       );
       const tools = favoriteUrls
         .map((url: string) => toolsData.tools.find((t) => t.url === url))
@@ -44,7 +44,10 @@ export default function FavoritesClient({ toolsData }: FavoritesClientProps) {
           <div className="flex items-center gap-3 mb-4">
             <Star className="h-8 w-8 text-yellow-500 fill-yellow-500" />
             <h1 className="font-mono text-4xl sm:text-5xl text-foreground tracking-tight">
-              {t("favorites.title")} <span className="text-foreground/60">{t("favorites.titleSuffix")}</span>
+              {t("favorites.title")}{" "}
+              <span className="text-foreground/60">
+                {t("favorites.titleSuffix")}
+              </span>
             </h1>
           </div>
           <p className="text-lg text-muted-foreground max-w-3xl">
@@ -52,7 +55,10 @@ export default function FavoritesClient({ toolsData }: FavoritesClientProps) {
           </p>
           <div className="mt-4">
             <span className="text-sm font-medium text-muted-foreground">
-              {favoriteTools.length} {favoriteTools.length !== 1 ? t("favorites.countPlural") : t("favorites.count")}
+              {favoriteTools.length}{" "}
+              {favoriteTools.length !== 1
+                ? t("favorites.countPlural")
+                : t("favorites.count")}
             </span>
           </div>
         </div>

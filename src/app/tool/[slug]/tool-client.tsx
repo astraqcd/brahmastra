@@ -29,7 +29,10 @@ import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n/context";
 import type { ToolsData } from "@/lib/types";
 
-const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+const categoryIcons: Record<
+  string,
+  React.ComponentType<{ className?: string }>
+> = {
   GEOINT: Satellite,
   IMINT: ImageIcon,
   SOCMINT: Users,
@@ -97,7 +100,7 @@ export default function ToolClient({ slug, toolsData }: ToolClientProps) {
   useEffect(() => {
     if (tool) {
       const favorites = JSON.parse(
-        localStorage.getItem("osint-favorites") || "[]"
+        localStorage.getItem("osint-favorites") || "[]",
       );
       setIsFavorite(favorites.includes(tool.url));
 
@@ -113,12 +116,10 @@ export default function ToolClient({ slug, toolsData }: ToolClientProps) {
   const toggleFavorite = () => {
     if (!tool) return;
     const favorites = JSON.parse(
-      localStorage.getItem("osint-favorites") || "[]"
+      localStorage.getItem("osint-favorites") || "[]",
     );
     if (isFavorite) {
-      const newFavorites = favorites.filter(
-        (url: string) => url !== tool.url
-      );
+      const newFavorites = favorites.filter((url: string) => url !== tool.url);
       localStorage.setItem("osint-favorites", JSON.stringify(newFavorites));
       setIsFavorite(false);
     } else {
@@ -143,7 +144,9 @@ export default function ToolClient({ slug, toolsData }: ToolClientProps) {
           <h1 className="text-3xl font-bold text-foreground mb-4">
             {t("tool.notFound")}
           </h1>
-          <Button onClick={() => router.push("/")}>{t("common.returnHome")}</Button>
+          <Button onClick={() => router.push("/")}>
+            {t("common.returnHome")}
+          </Button>
         </div>
         <Footer />
       </main>
@@ -183,7 +186,9 @@ export default function ToolClient({ slug, toolsData }: ToolClientProps) {
         <div
           className={`w-20 h-20 sm:w-24 sm:h-24 rounded-xl border-2 flex items-center justify-center mb-5 shadow-2xl backdrop-blur-sm bg-gradient-to-br ${categoryColors[tool.category] || "from-foreground/10 to-foreground/5 border-foreground/20"}`}
         >
-          {Icon && <Icon className="h-10 w-10 sm:h-12 sm:w-12 text-foreground/80" />}
+          {Icon && (
+            <Icon className="h-10 w-10 sm:h-12 sm:w-12 text-foreground/80" />
+          )}
         </div>
 
         <Button
@@ -289,7 +294,6 @@ export default function ToolClient({ slug, toolsData }: ToolClientProps) {
           </p>
         </div>
 
-        {/* Health Monitor */}
         <div className="mb-8">
           <HealthMonitor toolUrl={tool.url} toolName={tool.name} />
         </div>

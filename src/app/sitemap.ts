@@ -45,7 +45,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.8,
-    })
+    }),
   );
 
   const toolPages: MetadataRoute.Sitemap = toolsData.tools.map((tool) => ({

@@ -1,7 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowUpRight, Copy, Star, CheckCircle2, AlertCircle } from "lucide-react";
+import {
+  ArrowUpRight,
+  Copy,
+  Star,
+  CheckCircle2,
+  AlertCircle,
+} from "lucide-react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import type { Tool } from "@/lib/types";
@@ -54,16 +60,14 @@ export function ToolCard({ tool }: ToolCardProps) {
   const [logoError, setLogoError] = useState(false);
 
   const domain = getDomain(tool.url);
-  const logoUrl = domain
-    ? `https://logo.clearbit.com/${domain}`
-    : "";
+  const logoUrl = domain ? `https://logo.clearbit.com/${domain}` : "";
   const fallbackLogoUrl = domain
     ? `https://www.google.com/s2/favicons?domain=${domain}&sz=128`
     : "";
 
   useEffect(() => {
     const favorites = JSON.parse(
-      localStorage.getItem("osint-favorites") || "[]"
+      localStorage.getItem("osint-favorites") || "[]",
     );
     setIsFavorite(favorites.includes(tool.url));
   }, [tool.url]);
@@ -73,7 +77,7 @@ export function ToolCard({ tool }: ToolCardProps) {
     e.stopPropagation();
 
     const favorites = JSON.parse(
-      localStorage.getItem("osint-favorites") || "[]"
+      localStorage.getItem("osint-favorites") || "[]",
     );
 
     if (isFavorite) {
@@ -105,23 +109,24 @@ export function ToolCard({ tool }: ToolCardProps) {
     localStorage.setItem("osint-recent", JSON.stringify(newRecent));
   };
 
-  const accent = categoryAccent[tool.category] || "border-border group-hover:border-foreground/30";
-  const badge = categoryBadge[tool.category] || "bg-foreground/5 text-foreground/70 border-foreground/10";
+  const accent =
+    categoryAccent[tool.category] ||
+    "border-border group-hover:border-foreground/30";
+  const badge =
+    categoryBadge[tool.category] ||
+    "bg-foreground/5 text-foreground/70 border-foreground/10";
 
   return (
     <Link
       href={`/tool/${slugify(tool.name)}`}
       className={`group relative flex flex-col h-full rounded-xl border bg-card/60 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-black/10 hover:-translate-y-0.5 overflow-hidden ${accent}`}
     >
-      {/* Top accent line */}
-      <div className="absolute top-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-foreground/10 to-transparent group-hover:via-foreground/20 transition-colors" />
+      <div className="absolute top-0 left-4 right-4 h-px bg-linear-to-r from-transparent via-foreground/10 to-transparent group-hover:via-foreground/20 transition-colors" />
 
       <div className="relative flex flex-col h-full p-5">
-        {/* Header: Logo + Name + Status */}
         <div className="flex items-start gap-3 mb-4">
           {(logoUrl || fallbackLogoUrl) && (
-            <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-foreground/[0.04] border border-foreground/[0.08] flex items-center justify-center overflow-hidden mt-0.5">
-              {/* biome-ignore lint: dynamic external logo */}
+            <div className="shrink-0 w-9 h-9 rounded-lg bg-foreground/4 border border-foreground/8 flex items-center justify-center overflow-hidden mt-0.5">
               <img
                 src={logoError ? fallbackLogoUrl : logoUrl}
                 alt=""
@@ -143,7 +148,9 @@ export function ToolCard({ tool }: ToolCardProps) {
                 <AlertCircle className="h-3.5 w-3.5 text-red-500 flex-shrink-0" />
               )}
             </div>
-            <span className={`inline-flex items-center mt-1.5 px-2 py-0.5 text-[10px] uppercase tracking-wider font-medium rounded-md border ${badge}`}>
+            <span
+              className={`inline-flex items-center mt-1.5 px-2 py-0.5 text-[10px] uppercase tracking-wider font-medium rounded-md border ${badge}`}
+            >
               {tool.category}
             </span>
           </div>
@@ -151,7 +158,9 @@ export function ToolCard({ tool }: ToolCardProps) {
             type="button"
             onClick={toggleFavorite}
             className="flex-shrink-0 p-1.5 -m-1 rounded-lg hover:bg-foreground/5 transition-colors"
-            aria-label={isFavorite ? t("tool.favorited") : t("tool.addFavorite")}
+            aria-label={
+              isFavorite ? t("tool.favorited") : t("tool.addFavorite")
+            }
           >
             <Star
               className={`h-4 w-4 transition-all duration-200 ${
@@ -163,32 +172,29 @@ export function ToolCard({ tool }: ToolCardProps) {
           </button>
         </div>
 
-        {/* Description */}
         <p className="text-[13px] text-muted-foreground/80 leading-relaxed mb-4 flex-1 line-clamp-2">
           {tool.description}
         </p>
 
-        {/* Tags */}
         {tool.tags.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mb-4">
             {tool.tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
-                className="text-[10px] px-2 py-0.5 rounded-md bg-foreground/[0.04] text-foreground/50 border border-foreground/[0.06] font-medium"
+                className="text-[10px] px-2 py-0.5 rounded-md bg-foreground/4 text-foreground/50 border border-foreground/[0.06] font-medium"
               >
                 {tag}
               </span>
             ))}
             {tool.tags.length > 3 && (
-              <span className="text-[10px] px-2 py-0.5 rounded-md bg-foreground/[0.04] text-foreground/40 border border-foreground/[0.06] font-medium">
+              <span className="text-[10px] px-2 py-0.5 rounded-md bg-foreground/4 text-foreground/40 border border-foreground/[0.06] font-medium">
                 +{tool.tags.length - 3}
               </span>
             )}
           </div>
         )}
 
-        {/* Actions */}
-        <div className="flex items-center gap-2 mt-auto pt-1 border-t border-foreground/[0.05]">
+        <div className="flex items-center gap-2 mt-auto pt-1 border-t border-foreground/5">
           <a
             href={tool.url}
             target="_blank"
@@ -197,7 +203,7 @@ export function ToolCard({ tool }: ToolCardProps) {
               e.stopPropagation();
               handleClick();
             }}
-            className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-foreground/[0.04] hover:bg-foreground/[0.08] text-foreground/80 hover:text-foreground border border-foreground/[0.06] hover:border-foreground/[0.12] transition-all text-sm font-medium"
+            className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-foreground/4 hover:bg-foreground/[0.08] text-foreground/80 hover:text-foreground border border-foreground/[0.06] hover:border-foreground/[0.12] transition-all text-sm font-medium"
           >
             {t("tool.visit")}
             <ArrowUpRight className="h-3.5 w-3.5" />

@@ -25,7 +25,6 @@ export function Header({ toolsData }: HeaderProps) {
   };
 
   const closeDropdown = () => {
-    // Small delay so the user can move the cursor from trigger to dropdown
     closeTimeoutRef.current = setTimeout(() => setIsCategoryOpen(false), 150);
   };
 
@@ -55,7 +54,6 @@ export function Header({ toolsData }: HeaderProps) {
             </div>
           </Link>
           <nav className="hidden md:flex items-center gap-6">
-            {/* Category Dropdown — opens on hover */}
             {categories.length > 0 ? (
               <div
                 className="relative"
@@ -67,7 +65,9 @@ export function Header({ toolsData }: HeaderProps) {
                   className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {t("nav.categories")}
-                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${isCategoryOpen ? "rotate-180" : ""}`} />
+                  <ChevronDown
+                    className={`h-3.5 w-3.5 transition-transform duration-200 ${isCategoryOpen ? "rotate-180" : ""}`}
+                  />
                 </Link>
                 {isCategoryOpen && (
                   <div className="absolute left-0 top-full pt-2">
@@ -155,7 +155,6 @@ export function Header({ toolsData }: HeaderProps) {
           />
           <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-lg absolute inset-x-0 shadow-lg">
             <nav className="flex flex-col p-4 gap-4">
-              {/* Mobile category links */}
               {categories.length > 0 ? (
                 <div>
                   <span className="text-sm font-medium text-foreground py-2 block">

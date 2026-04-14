@@ -38,7 +38,9 @@ export function CategoryGrid({ toolsData }: { toolsData: ToolsData }) {
         <div className="text-center mb-16">
           <h2 className="font-mono text-3xl sm:text-4xl text-foreground mb-4 tracking-tight">
             {t("categories.title")}{" "}
-            <span className="text-foreground/60">{t("categories.titleSuffix")}</span>
+            <span className="text-foreground/60">
+              {t("categories.titleSuffix")}
+            </span>
           </h2>
           <p className="text-base text-muted-foreground max-w-2xl mx-auto">
             {t("categories.subtitle")}
@@ -57,7 +59,9 @@ export function CategoryGrid({ toolsData }: { toolsData: ToolsData }) {
                 category={category}
                 Icon={Icon}
                 toolCount={toolCount}
-                toolsLabel={toolCount !== 1 ? t("categories.tools") : t("categories.tool")}
+                toolsLabel={
+                  toolCount !== 1 ? t("categories.tools") : t("categories.tool")
+                }
                 exploreLabel={t("categories.explore")}
               />
             );
@@ -86,25 +90,21 @@ function CategoryCard({
       href={`/category/${category.slug}`}
       className="group relative p-6 rounded-xl border border-border bg-card hover:border-foreground/20 transition-all duration-300 hover:shadow-lg hover:shadow-foreground/5 overflow-hidden min-h-[220px]"
     >
-      <div className="relative z-[3]">
-        {/* Icon */}
+      <div className="relative z-3">
         <div className="w-12 h-12 rounded-lg bg-foreground/5 border border-foreground/10 flex items-center justify-center mb-4 group-hover:bg-white/15 group-hover:border-white/20 transition-colors duration-300">
           {Icon && (
             <Icon className="h-6 w-6 text-foreground/70 group-hover:text-white group-hover:scale-110 transition-all duration-300" />
           )}
         </div>
 
-        {/* Title */}
         <h3 className="font-semibold text-lg text-foreground mb-2 group-hover:text-white transition-colors duration-300">
           {category.title}
         </h3>
 
-        {/* Description */}
         <p className="text-sm text-muted-foreground mb-4 leading-relaxed line-clamp-2 group-hover:text-white/80 transition-colors duration-300">
           {category.description}
         </p>
 
-        {/* Tool Count */}
         <div className="flex items-center justify-between">
           <span className="text-xs font-medium text-muted-foreground group-hover:text-white/70 transition-colors duration-300">
             {toolCount} {toolsLabel}

@@ -11,9 +11,7 @@ export function RecentlyUsed({ toolsData }: { toolsData: ToolsData }) {
   const [recentTools, setRecentTools] = useState<Tool[]>([]);
 
   useEffect(() => {
-    const recentUrls = JSON.parse(
-      localStorage.getItem("osint-recent") || "[]"
-    );
+    const recentUrls = JSON.parse(localStorage.getItem("osint-recent") || "[]");
     const tools = recentUrls
       .map((url: string) => toolsData.tools.find((t) => t.url === url))
       .filter(Boolean);
@@ -30,7 +28,10 @@ export function RecentlyUsed({ toolsData }: { toolsData: ToolsData }) {
         <div className="flex items-center gap-3 mb-10">
           <Clock className="h-6 w-6 text-foreground/70" />
           <h2 className="font-mono text-2xl sm:text-3xl text-foreground tracking-tight">
-            {t("recent.title")} <span className="text-foreground/60">{t("recent.titleSuffix")}</span>
+            {t("recent.title")}{" "}
+            <span className="text-foreground/60">
+              {t("recent.titleSuffix")}
+            </span>
           </h2>
         </div>
 

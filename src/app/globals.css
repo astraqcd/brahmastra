@@ -145,7 +145,6 @@
   background-image: radial-gradient(oklch(0.15 0 0) 1px, transparent 1px);
 }
 
-/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -172,7 +171,6 @@
   background: oklch(0.3 0 0);
 }
 
-/* ── Intro Screen Animations ── */
 
 @keyframes intro-flicker-white {
   0% {
@@ -335,12 +333,16 @@
   8% {
     transform: translate(-3px, 1px);
     opacity: 0.2;
-    text-shadow: 3px 0 rgba(255, 0, 80, 0.7), -3px 0 rgba(0, 255, 200, 0.7);
+    text-shadow:
+      3px 0 rgba(255, 0, 80, 0.7),
+      -3px 0 rgba(0, 255, 200, 0.7);
   }
   12% {
     transform: translate(3px, -1px);
     opacity: 1;
-    text-shadow: -2px 0 rgba(255, 0, 80, 0.5), 2px 0 rgba(0, 255, 200, 0.5);
+    text-shadow:
+      -2px 0 rgba(255, 0, 80, 0.5),
+      2px 0 rgba(0, 255, 200, 0.5);
   }
   16% {
     transform: translate(0);
@@ -355,12 +357,16 @@
   44% {
     transform: translate(2px, 0) skewX(-8deg);
     opacity: 0.15;
-    text-shadow: 4px 0 rgba(255, 0, 80, 0.9), -4px 0 rgba(0, 255, 200, 0.9);
+    text-shadow:
+      4px 0 rgba(255, 0, 80, 0.9),
+      -4px 0 rgba(0, 255, 200, 0.9);
   }
   48% {
     transform: translate(-2px, 1px) skewX(5deg);
     opacity: 0.9;
-    text-shadow: -1px 0 rgba(255, 0, 80, 0.3), 1px 0 rgba(0, 255, 200, 0.3);
+    text-shadow:
+      -1px 0 rgba(255, 0, 80, 0.3),
+      1px 0 rgba(0, 255, 200, 0.3);
   }
   52% {
     transform: translate(0);
@@ -385,8 +391,6 @@
 .intro-glitch:nth-child(3n) {
   animation-delay: 0.12s;
 }
-
-/* ── Header Entrance Animation ── */
 
 @keyframes header-slide-down {
   0% {

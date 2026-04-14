@@ -23,7 +23,10 @@ interface CategoryClientProps {
   toolsData: ToolsData;
 }
 
-export default function CategoryClient({ slug, toolsData }: CategoryClientProps) {
+export default function CategoryClient({
+  slug,
+  toolsData,
+}: CategoryClientProps) {
   const router = useRouter();
   const { t } = useI18n();
   const [searchQuery, setSearchQuery] = useState("");
@@ -39,7 +42,7 @@ export default function CategoryClient({ slug, toolsData }: CategoryClientProps)
         tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         tool.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
         tool.tags.some((tag) =>
-          tag.toLowerCase().includes(searchQuery.toLowerCase())
+          tag.toLowerCase().includes(searchQuery.toLowerCase()),
         );
       const matchesStatus =
         statusFilter === "all" ||
@@ -79,7 +82,9 @@ export default function CategoryClient({ slug, toolsData }: CategoryClientProps)
           <h1 className="text-3xl font-bold text-foreground mb-4">
             {t("category.notFound")}
           </h1>
-          <Button onClick={() => router.push("/")}>{t("common.returnHome")}</Button>
+          <Button onClick={() => router.push("/")}>
+            {t("common.returnHome")}
+          </Button>
         </div>
         <Footer />
       </main>
@@ -109,7 +114,10 @@ export default function CategoryClient({ slug, toolsData }: CategoryClientProps)
           </p>
           <div className="mt-4 flex items-center gap-4">
             <span className="text-sm font-medium text-muted-foreground">
-              {filteredTools.length} {filteredTools.length !== 1 ? t("categories.tools") : t("categories.tool")}{" "}
+              {filteredTools.length}{" "}
+              {filteredTools.length !== 1
+                ? t("categories.tools")
+                : t("categories.tool")}{" "}
               {t("category.available")}
             </span>
           </div>
@@ -138,7 +146,9 @@ export default function CategoryClient({ slug, toolsData }: CategoryClientProps)
             <SelectContent>
               <SelectItem value="all">{t("category.allStatus")}</SelectItem>
               <SelectItem value="working">{t("category.working")}</SelectItem>
-              <SelectItem value="not-working">{t("category.notWorking")}</SelectItem>
+              <SelectItem value="not-working">
+                {t("category.notWorking")}
+              </SelectItem>
             </SelectContent>
           </Select>
 

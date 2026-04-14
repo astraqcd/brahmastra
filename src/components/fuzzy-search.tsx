@@ -2,7 +2,14 @@
 
 import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import Fuse from "fuse.js";
-import { Search, X, ArrowUpRight, Star, CheckCircle2, AlertCircle } from "lucide-react";
+import {
+  Search,
+  X,
+  ArrowUpRight,
+  Star,
+  CheckCircle2,
+  AlertCircle,
+} from "lucide-react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import type { Tool } from "@/lib/types";
@@ -40,7 +47,7 @@ export function FuzzySearch({ tools }: FuzzySearchProps) {
         includeMatches: true,
         minMatchCharLength: 2,
       }),
-    [tools]
+    [tools],
   );
 
   const results = useMemo(() => {
@@ -48,10 +55,13 @@ export function FuzzySearch({ tools }: FuzzySearchProps) {
     return fuse.search(query).slice(0, 8);
   }, [fuse, query]);
 
-  // Keyboard shortcut: "/" to focus search
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "/" && !isOpen && document.activeElement?.tagName !== "INPUT") {
+      if (
+        e.key === "/" &&
+        !isOpen &&
+        document.activeElement?.tagName !== "INPUT"
+      ) {
         e.preventDefault();
         inputRef.current?.focus();
         setIsOpen(true);
@@ -66,7 +76,6 @@ export function FuzzySearch({ tools }: FuzzySearchProps) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen]);
 
-  // Arrow key navigation
   const handleInputKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === "ArrowDown") {
@@ -81,15 +90,13 @@ export function FuzzySearch({ tools }: FuzzySearchProps) {
         window.location.href = `/tool/${slugify(tool.name)}`;
       }
     },
-    [results, selectedIndex]
+    [results, selectedIndex],
   );
 
-  // Reset selected index when results change
   useEffect(() => {
     setSelectedIndex(0);
   }, [results]);
 
-  // Close on click outside
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       if (
@@ -106,7 +113,6 @@ export function FuzzySearch({ tools }: FuzzySearchProps) {
 
   return (
     <div className="relative w-full max-w-2xl mx-auto">
-      {/* Search Input */}
       <div className="relative">
         <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
         <input
@@ -140,7 +146,6 @@ export function FuzzySearch({ tools }: FuzzySearchProps) {
         )}
       </div>
 
-      {/* Results Dropdown */}
       {isOpen && results.length > 0 && (
         <div
           ref={resultsRef}
@@ -148,16 +153,15 @@ export function FuzzySearch({ tools }: FuzzySearchProps) {
         >
           <div className="p-2">
             <div className="px-3 py-1.5 text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
-              {results.length} {results.length !== 1 ? t("search.results") : t("search.result")}
+              {results.length}{" "}
+              {results.length !== 1 ? t("search.results") : t("search.result")}
             </div>
             {results.map((result, index) => (
               <Link
                 key={result.item.url}
                 href={`/tool/${slugify(result.item.name)}`}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
-                  index === selectedIndex
-                    ? "bg-accent"
-                    : "hover:bg-accent/50"
+                  index === selectedIndex ? "bg-accent" : "hover:bg-accent/50"
                 }`}
                 onClick={() => setIsOpen(false)}
               >
@@ -184,17 +188,23 @@ export function FuzzySearch({ tools }: FuzzySearchProps) {
           </div>
           <div className="border-t border-border px-4 py-2 flex items-center justify-between text-[10px] text-muted-foreground">
             <span>
-              <kbd className="px-1 py-0.5 rounded border border-border bg-secondary font-mono">↑↓</kbd> navigate
-              {" "}
-              <kbd className="px-1 py-0.5 rounded border border-border bg-secondary font-mono">↵</kbd> select
-              {" "}
-              <kbd className="px-1 py-0.5 rounded border border-border bg-secondary font-mono">esc</kbd> close
+              <kbd className="px-1 py-0.5 rounded border border-border bg-secondary font-mono">
+                ↑↓
+              </kbd>{" "}
+              navigate{" "}
+              <kbd className="px-1 py-0.5 rounded border border-border bg-secondary font-mono">
+                ↵
+              </kbd>{" "}
+              select{" "}
+              <kbd className="px-1 py-0.5 rounded border border-border bg-secondary font-mono">
+                esc
+              </kbd>{" "}
+              close
             </span>
           </div>
         </div>
       )}
 
-      {/* No results */}
       {isOpen && query.trim() && results.length === 0 && (
         <div
           ref={resultsRef}

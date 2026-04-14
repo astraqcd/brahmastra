@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Github, Twitter, Globe } from "lucide-react";
+import { Globe } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
+import { GithubDark } from "./ui/svgs/githubDark";
+import { XDark } from "./ui/svgs/xDark";
 
 export function Footer() {
   const { t } = useI18n();
@@ -34,7 +36,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
-                <Github className="h-5 w-5" />
+                <GithubDark className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </Link>
               <Link
@@ -43,7 +45,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
-                <Twitter className="h-5 w-5" />
+                <XDark className="h-5 w-5" />
                 <span className="sr-only">Twitter</span>
               </Link>
               <Link
@@ -58,7 +60,9 @@ export function Footer() {
             </div>
           </div>
           <div>
-            <h4 className="font-semibold text-foreground mb-4">{t("footer.categories")}</h4>
+            <h4 className="font-semibold text-foreground mb-4">
+              {t("footer.categories")}
+            </h4>
             <ul className="space-y-3">
               <li>
                 <Link
@@ -95,7 +99,9 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold text-foreground mb-4">{t("footer.quickLinks")}</h4>
+            <h4 className="font-semibold text-foreground mb-4">
+              {t("footer.quickLinks")}
+            </h4>
             <ul className="space-y-3">
               <li>
                 <Link
@@ -134,7 +140,9 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold text-foreground mb-4">{t("footer.company")}</h4>
+            <h4 className="font-semibold text-foreground mb-4">
+              {t("footer.company")}
+            </h4>
             <ul className="space-y-3">
               <li>
                 <Link
@@ -181,10 +189,13 @@ export function Footer() {
         </div>
         <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Brahmastra by AstraQ Cyber Defence. {t("footer.rights")}
+            © {new Date().getFullYear()} Brahmastra by AstraQ Cyber Defence.{" "}
+            {t("footer.rights")}
           </p>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-muted-foreground">{t("footer.builtFor")}</span>
+            <span className="text-xs text-muted-foreground">
+              {t("footer.builtFor")}
+            </span>
           </div>
         </div>
       </div>

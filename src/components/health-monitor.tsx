@@ -27,16 +27,12 @@ export function HealthMonitor({ toolUrl, toolName }: HealthMonitorProps) {
   const checkHealth = async () => {
     setLoading(true);
     try {
-      const res = await fetch(
-        `/api/health?url=${encodeURIComponent(toolUrl)}`
-      );
+      const res = await fetch(`/api/health?url=${encodeURIComponent(toolUrl)}`);
       const data: HealthStatus = await res.json();
       setHealth(data);
 
-      // Store in history (max 10 entries)
       setHistory((prev) => [data, ...prev].slice(0, 10));
 
-      // Persist to localStorage
       const storageKey = `health-${toolUrl}`;
       const stored = JSON.parse(localStorage.getItem(storageKey) || "[]");
       const updated = [data, ...stored].slice(0, 30);
@@ -54,7 +50,6 @@ export function HealthMonitor({ toolUrl, toolName }: HealthMonitorProps) {
     setLoading(false);
   };
 
-  // Load history from localStorage on mount
   useEffect(() => {
     const storageKey = `health-${toolUrl}`;
     const stored = JSON.parse(localStorage.getItem(storageKey) || "[]");
@@ -67,7 +62,7 @@ export function HealthMonitor({ toolUrl, toolName }: HealthMonitorProps) {
   const uptimePercentage =
     history.length > 0
       ? Math.round(
-          (history.filter((h) => h.isUp).length / history.length) * 100
+          (history.filter((h) => h.isUp).length / history.length) * 100,
         )
       : null;
 
@@ -77,7 +72,7 @@ export function HealthMonitor({ toolUrl, toolName }: HealthMonitorProps) {
           history
             .filter((h) => h.isUp)
             .reduce((sum, h) => sum + h.responseTime, 0) /
-            Math.max(history.filter((h) => h.isUp).length, 1)
+            Math.max(history.filter((h) => h.isUp).length, 1),
         )
       : null;
 
@@ -95,16 +90,13 @@ export function HealthMonitor({ toolUrl, toolName }: HealthMonitorProps) {
           disabled={loading}
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-secondary hover:bg-secondary/80 text-secondary-foreground transition-all disabled:opacity-50"
         >
-          <RefreshCw
-            className={`h-3 w-3 ${loading ? "animate-spin" : ""}`}
-          />
+          <RefreshCw className={`h-3 w-3 ${loading ? "animate-spin" : ""}`} />
           {loading ? t("health.checking") : t("health.checkNow")}
         </button>
       </div>
 
       {health ? (
         <div className="space-y-3">
-          {/* Status Indicator */}
           <div className="flex items-center gap-3">
             <div
               className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium ${
@@ -128,7 +120,6 @@ export function HealthMonitor({ toolUrl, toolName }: HealthMonitorProps) {
             )}
           </div>
 
-          {/* Stats */}
           <div className="grid grid-cols-3 gap-3">
             <div className="text-center p-2 rounded-lg bg-secondary/50">
               <div className="text-xs text-muted-foreground">HTTP</div>
@@ -137,20 +128,23 @@ export function HealthMonitor({ toolUrl, toolName }: HealthMonitorProps) {
               </div>
             </div>
             <div className="text-center p-2 rounded-lg bg-secondary/50">
-              <div className="text-xs text-muted-foreground">{t("health.uptime")}</div>
+              <div className="text-xs text-muted-foreground">
+                {t("health.uptime")}
+              </div>
               <div className="font-mono text-sm text-foreground">
                 {uptimePercentage !== null ? `${uptimePercentage}%` : "—"}
               </div>
             </div>
             <div className="text-center p-2 rounded-lg bg-secondary/50">
-              <div className="text-xs text-muted-foreground">{t("health.avgSpeed")}</div>
+              <div className="text-xs text-muted-foreground">
+                {t("health.avgSpeed")}
+              </div>
               <div className="font-mono text-sm text-foreground">
                 {avgResponseTime !== null ? `${avgResponseTime}ms` : "—"}
               </div>
             </div>
           </div>
 
-          {/* Uptime Bar */}
           {history.length > 1 && (
             <div>
               <div className="text-[10px] text-muted-foreground mb-1.5 uppercase tracking-wider">

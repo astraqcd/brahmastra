@@ -1,6 +1,13 @@
 "use client";
 
-import { useState, useEffect, useRef, createContext, useContext, type ReactNode } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  createContext,
+  useContext,
+  type ReactNode,
+} from "react";
 
 type IntroPhase = "typing" | "hold" | "fadeout" | "done";
 
@@ -16,17 +23,15 @@ interface IntroScreenProps {
 
 export function IntroScreen({ children }: IntroScreenProps) {
   const [charIndex, setCharIndex] = useState(0);
-  const [phase, setPhase] = useState<
-    "typing" | "hold" | "fadeout" | "done"
-  >("typing");
+  const [phase, setPhase] = useState<"typing" | "hold" | "fadeout" | "done">(
+    "typing",
+  );
   const [ready, setReady] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [noiseUrl, setNoiseUrl] = useState("");
   const fullText = "SEARCHING FOR 'OSINT TOOLS'";
-  // Indices 15-25 are "OSINT TOOLS" — rendered grey
   const isGrey = (i: number) => i >= 15 && i <= 25;
 
-  // Check sessionStorage on mount — skip intro if already seen this session
   useEffect(() => {
     if (sessionStorage.getItem("intro-seen")) {
       setPhase("done");
@@ -34,7 +39,6 @@ export function IntroScreen({ children }: IntroScreenProps) {
     setReady(true);
   }, []);
 
-  // Generate noise texture once on mount
   useEffect(() => {
     const size = 200;
     const c = document.createElement("canvas");
@@ -54,7 +58,6 @@ export function IntroScreen({ children }: IntroScreenProps) {
     setNoiseUrl(c.toDataURL());
   }, []);
 
-  // Animated dot grid + scanline canvas
   useEffect(() => {
     if (phase === "done") return;
     const canvas = canvasRef.current;
@@ -85,14 +88,12 @@ export function IntroScreen({ children }: IntroScreenProps) {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, w, h);
 
-      // Dark background
       ctx.fillStyle = "#0d0d0d";
       ctx.fillRect(0, 0, w, h);
 
       const cx = w / 2;
       const cy = h / 2;
 
-      // Horizontal scan line
       const scanY = ((time * 55) % (h + 200)) - 100;
       const grad = ctx.createLinearGradient(0, scanY - 50, 0, scanY + 50);
       grad.addColorStop(0, "rgba(255, 255, 255, 0)");
@@ -103,8 +104,14 @@ export function IntroScreen({ children }: IntroScreenProps) {
       ctx.fillStyle = grad;
       ctx.fillRect(0, scanY - 50, w, 100);
 
-      // Subtle center glow
-      const radGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(w, h) * 0.5);
+      const radGrad = ctx.createRadialGradient(
+        cx,
+        cy,
+        0,
+        cx,
+        cy,
+        Math.max(w, h) * 0.5,
+      );
       radGrad.addColorStop(0, "rgba(255, 255, 255, 0.02)");
       radGrad.addColorStop(0.5, "rgba(255, 255, 255, 0.005)");
       radGrad.addColorStop(1, "transparent");
@@ -122,7 +129,6 @@ export function IntroScreen({ children }: IntroScreenProps) {
     };
   }, [phase]);
 
-  // Character-by-character typing effect
   useEffect(() => {
     if (!ready || phase !== "typing") return;
     if (charIndex >= fullText.length) {
@@ -134,14 +140,12 @@ export function IntroScreen({ children }: IntroScreenProps) {
     return () => clearTimeout(timer);
   }, [ready, phase, charIndex, fullText.length]);
 
-  // Hold briefly then trigger fadeout
   useEffect(() => {
     if (phase !== "hold") return;
     const timer = setTimeout(() => setPhase("fadeout"), 1000);
     return () => clearTimeout(timer);
   }, [phase]);
 
-  // Complete fadeout, unmount overlay
   useEffect(() => {
     if (phase !== "fadeout") return;
     const timer = setTimeout(() => {
@@ -155,14 +159,12 @@ export function IntroScreen({ children }: IntroScreenProps) {
     <>
       {phase !== "done" && (
         <div
-          className={`fixed inset-0 z-[100] transition-opacity duration-1000 ${
+          className={`fixed inset-0 z-100 transition-opacity duration-1000 ${
             phase === "fadeout" ? "opacity-0" : "opacity-100"
           }`}
         >
-          {/* Canvas grid background */}
           <canvas ref={canvasRef} className="absolute inset-0" />
 
-          {/* Noise overlay */}
           {noiseUrl && (
             <div
               className="absolute inset-0 pointer-events-none intro-noise-anim intro-noise-layer"
@@ -172,10 +174,8 @@ export function IntroScreen({ children }: IntroScreenProps) {
             />
           )}
 
-          {/* Vignette */}
           <div className="absolute inset-0 pointer-events-none intro-vignette" />
 
-          {/* Center typing text */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="font-mono text-lg sm:text-2xl md:text-3xl lg:text-4xl tracking-[0.15em] sm:tracking-[0.25em] select-none">
               {fullText.split("").map((char, i) => (
@@ -202,15 +202,12 @@ export function IntroScreen({ children }: IntroScreenProps) {
                   {char}
                 </span>
               ))}
-              <span className="intro-blink-cursor text-white/50 ml-0.5">
-                ▌
-              </span>
+              <span className="intro-blink-cursor text-white/50 ml-0.5">▌</span>
             </div>
           </div>
         </div>
       )}
 
-      {/* Main content */}
       <IntroPhaseContext.Provider value={phase}>
         <div
           className={`transition-all duration-1000 ${

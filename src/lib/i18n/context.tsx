@@ -33,7 +33,6 @@ const I18nContext = createContext<I18nContextType>({
   isTranslating: false,
 });
 
-// Build a localStorage cache key per locale
 function cacheKey(locale: Locale) {
   return `brahmastra-i18n-${locale}`;
 }
@@ -43,7 +42,7 @@ function loadCachedTranslations(locale: Locale): Record<string, string> | null {
     const raw = localStorage.getItem(cacheKey(locale));
     if (!raw) return null;
     const parsed = JSON.parse(raw);
-    // Invalidate cache if the English key set changed (new keys added)
+
     if (Object.keys(parsed).length !== Object.keys(en).length) return null;
     return parsed;
   } catch {
@@ -53,24 +52,22 @@ function loadCachedTranslations(locale: Locale): Record<string, string> | null {
 
 function saveCachedTranslations(
   locale: Locale,
-  translations: Record<string, string>
+  translations: Record<string, string>,
 ) {
   try {
     localStorage.setItem(cacheKey(locale), JSON.stringify(translations));
   } catch {
-    // localStorage full or unavailable — ignore
   }
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>("en");
   const [translations, setTranslations] = useState<Record<string, string>>(
-    en as unknown as Record<string, string>
+    en as unknown as Record<string, string>,
   );
   const [isTranslating, setIsTranslating] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
 
-  // On mount, restore saved locale
   useEffect(() => {
     const stored = localStorage.getItem("brahmastra-locale") as Locale | null;
     if (stored && SUPPORTED_LOCALES.includes(stored)) {
@@ -83,21 +80,18 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  // Fetch translations when locale changes
   useEffect(() => {
     if (locale === "en") {
       setTranslations(en as unknown as Record<string, string>);
       return;
     }
 
-    // Check cache first
     const cached = loadCachedTranslations(locale);
     if (cached) {
       setTranslations(cached);
       return;
     }
 
-    // Cancel any in-flight request
     abortRef.current?.abort();
     const controller = new AbortController();
     abortRef.current = controller;
@@ -125,7 +119,6 @@ export function I18nProvider({ children }: { children: ReactNode }) {
       .catch((err) => {
         if (err.name !== "AbortError") {
           console.error("Translation fetch failed:", err);
-          // Fallback to English
           setTranslations(en as unknown as Record<string, string>);
         }
       })
@@ -149,12 +142,11 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     (key: TranslationKey): string => {
       return translations[key] || en[key] || key;
     },
-    [translations]
+    [translations],
   );
 
   const dir = RTL_LOCALES.includes(locale) ? "rtl" : "ltr";
 
-  // Set initial direction
   useEffect(() => {
     document.documentElement.dir = dir;
     document.documentElement.lang = locale;

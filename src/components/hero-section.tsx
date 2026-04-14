@@ -23,13 +23,13 @@ export function HeroSection({ toolsData }: { toolsData: ToolsData }) {
           {t("hero.subtitle")}
         </p>
 
-        {/* Fuzzy Search */}
         <div className="mb-8">
           <FuzzySearch tools={toolsData.tools} />
         </div>
 
         <div className="flex items-center justify-center gap-3 mb-10">
-          <Button size="default"
+          <Button
+            size="default"
             className="rounded-full bg-foreground text-background hover:bg-foreground/90 px-6 text-sm"
             asChild
           >

@@ -42,8 +42,8 @@ export function ToolsSection({ toolsData }: { toolsData: ToolsData }) {
             <span className="text-primary">OSINT</span>
           </h2>
           <p className="text-base text-muted-foreground max-w-2xl mx-auto">
-            Access {Math.floor(toolsData.tools.length / 10) * 10}+ operational intelligence tools.
-            Complete cyber defence capability.
+            Access {Math.floor(toolsData.tools.length / 10) * 10}+ operational
+            intelligence tools. Complete cyber defence capability.
           </p>
         </div>
 

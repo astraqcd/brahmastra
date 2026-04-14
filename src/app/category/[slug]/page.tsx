@@ -19,7 +19,7 @@ export async function generateMetadata({
   }
 
   const toolCount = toolsData.tools.filter(
-    (t) => t.category === category.id
+    (t) => t.category === category.id,
   ).length;
 
   return {
@@ -66,9 +66,7 @@ export default async function CategoryPage({
 
   return (
     <>
-      {category && (
-        <CategoryJsonLd category={category} toolCount={toolCount} />
-      )}
+      {category && <CategoryJsonLd category={category} toolCount={toolCount} />}
       <CategoryClient slug={slug} toolsData={toolsData} />
     </>
   );

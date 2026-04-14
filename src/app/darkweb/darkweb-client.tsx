@@ -25,7 +25,11 @@ import Link from "next/link";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { useI18n } from "@/lib/i18n/context";
-import type { DarkWebData, DarkWebForum, DarkWebCategory } from "@/lib/darkweb-types";
+import type {
+  DarkWebData,
+  DarkWebForum,
+  DarkWebCategory,
+} from "@/lib/darkweb-types";
 import { DARKWEB_CATEGORIES } from "@/lib/darkweb-types";
 
 interface DarkWebClientProps {
@@ -60,7 +64,9 @@ const STATUS_CONFIG = {
   },
 };
 
-const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "1x00000000000000000000AA"; // fallback is Cloudflare's always-pass test key
+// TODO: Use proper keys
+const TURNSTILE_SITE_KEY =
+  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "1x00000000000000000000AA";
 
 export function DarkWebClient({ data }: DarkWebClientProps) {
   const [consented, setConsented] = useState(false);
@@ -69,11 +75,12 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
   const [researchConfirmed, setResearchConfirmed] = useState(false);
   const [captchaVerified, setCaptchaVerified] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<DarkWebCategory | "all">("all");
+  const [selectedCategory, setSelectedCategory] = useState<
+    DarkWebCategory | "all"
+  >("all");
   const [selectedStatus, setSelectedStatus] = useState<string>("all");
   const [copiedUrl, setCopiedUrl] = useState<string | null>(null);
 
-  // Check if consent was previously given this session
   useEffect(() => {
     const hasConsent = sessionStorage.getItem("darkweb-consent");
     if (hasConsent === "true") {
@@ -84,7 +91,12 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
   const { t } = useI18n();
 
   const handleConsent = () => {
-    if (ageConfirmed && legalConfirmed && researchConfirmed && captchaVerified) {
+    if (
+      ageConfirmed &&
+      legalConfirmed &&
+      researchConfirmed &&
+      captchaVerified
+    ) {
       setConsented(true);
       sessionStorage.setItem("darkweb-consent", "true");
     }
@@ -96,7 +108,9 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
         !searchQuery ||
         forum.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         forum.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        forum.tags.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase()));
+        forum.tags.some((t) =>
+          t.toLowerCase().includes(searchQuery.toLowerCase()),
+        );
 
       const matchesCategory =
         selectedCategory === "all" || forum.category === selectedCategory;
@@ -114,7 +128,6 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
     setTimeout(() => setCopiedUrl(null), 2000);
   };
 
-  // CONSENT GATE
   if (!consented) {
     return (
       <main className="min-h-screen bg-background">
@@ -132,16 +145,15 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
             </p>
           </div>
 
-          {/* Warning Box */}
           <div className="p-5 rounded-xl border border-yellow-500/30 bg-yellow-500/5 mb-8">
             <div className="flex items-start gap-3">
-              <AlertTriangle className="h-5 w-5 text-yellow-500 flex-shrink-0 mt-0.5" />
+              <AlertTriangle className="h-5 w-5 text-yellow-500 shrink-0 mt-0.5" />
               <div className="text-sm text-muted-foreground space-y-2">
                 <p>
                   <strong className="text-foreground">Warning:</strong> Some
-                  links may lead to content that is illegal in your jurisdiction.
-                  We are a directory and do not host, endorse, or facilitate
-                  access to illegal materials.
+                  links may lead to content that is illegal in your
+                  jurisdiction. We are a directory and do not host, endorse, or
+                  facilitate access to illegal materials.
                 </p>
                 <p>
                   Accessing these resources without proper authorization may
@@ -151,7 +163,6 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
             </div>
           </div>
 
-          {/* Consent Checkboxes */}
           <div className="space-y-4 mb-8">
             <label className="flex items-start gap-3 p-4 rounded-lg border border-border bg-card cursor-pointer hover:border-foreground/20 transition-colors">
               <input
@@ -190,7 +201,6 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
             </label>
           </div>
 
-          {/* Captcha */}
           <div className="flex justify-center mb-8">
             <Turnstile
               siteKey={TURNSTILE_SITE_KEY}
@@ -201,12 +211,16 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
             />
           </div>
 
-          {/* Action Buttons */}
           <div className="flex items-center gap-3">
             <button
               type="button"
               onClick={handleConsent}
-              disabled={!ageConfirmed || !legalConfirmed || !researchConfirmed || !captchaVerified}
+              disabled={
+                !ageConfirmed ||
+                !legalConfirmed ||
+                !researchConfirmed ||
+                !captchaVerified
+              }
               className="flex-1 px-6 py-3 rounded-xl bg-red-500/90 hover:bg-red-500 text-white font-semibold text-sm transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-red-500/90"
             >
               {t("darkweb.consent.enter")}
@@ -224,13 +238,11 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
     );
   }
 
-  // MAIN DIRECTORY VIEW (after consent)
   return (
     <main className="min-h-screen bg-background">
       <Header />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-        {/* Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 mb-4">
             <EyeOff className="h-4 w-4 text-red-400" />
@@ -248,9 +260,7 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
           </p>
         </div>
 
-        {/* Filters */}
         <div className="mb-8 space-y-4">
-          {/* Search */}
           <div className="relative max-w-xl mx-auto">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <input
@@ -262,7 +272,6 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
             />
           </div>
 
-          {/* Category & Status Filters */}
           <div className="flex flex-wrap items-center justify-center gap-2">
             <button
               type="button"
@@ -303,20 +312,20 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
                     : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
                 }`}
               >
-                {status === "all" ? "All Status" : status.charAt(0).toUpperCase() + status.slice(1)}
+                {status === "all"
+                  ? "All Status"
+                  : status.charAt(0).toUpperCase() + status.slice(1)}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Results Count */}
         <div className="mb-6 text-center">
           <span className="text-sm text-muted-foreground">
             Showing {filteredForums.length} of {data.forums.length} resources
           </span>
         </div>
 
-        {/* Forum Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredForums.map((forum) => (
             <ForumCard
@@ -337,17 +346,17 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
           </div>
         )}
 
-        {/* Disclaimer Footer */}
         <div className="mt-16 p-6 rounded-xl border border-red-500/20 bg-red-500/5">
           <div className="flex items-start gap-3">
-            <AlertTriangle className="h-5 w-5 text-red-400 flex-shrink-0 mt-0.5" />
+            <AlertTriangle className="h-5 w-5 text-red-400 shrink-0 mt-0.5" />
             <div className="text-sm text-muted-foreground space-y-2">
               <p className="font-semibold text-foreground">Disclaimer</p>
               <p>
                 This directory is provided for legitimate security research,
                 academic study, and law enforcement purposes only. We do not
-                host, mirror, or endorse any illegal activity. Links are provided
-                as-is for educational reference. Access at your own risk.
+                host, mirror, or endorse any illegal activity. Links are
+                provided as-is for educational reference. Access at your own
+                risk.
               </p>
               <p>
                 Some listed services may be scams, law enforcement honeypots, or
@@ -378,7 +387,6 @@ function ForumCard({
 
   return (
     <div className="group relative flex flex-col rounded-xl border border-border bg-card hover:border-foreground/20 transition-all duration-200 overflow-hidden">
-      {/* Seized banner */}
       {forum.status === "seized" && (
         <div className="bg-orange-500/20 border-b border-orange-500/30 px-4 py-1.5 flex items-center gap-2">
           <Ban className="h-3 w-3 text-orange-400" />
@@ -398,7 +406,6 @@ function ForumCard({
       )}
 
       <div className="p-5 flex flex-col flex-1">
-        {/* Header */}
         <div className="flex items-start justify-between mb-3">
           <h3 className="font-semibold text-foreground text-base leading-tight">
             {forum.name}
@@ -411,7 +418,6 @@ function ForumCard({
           </div>
         </div>
 
-        {/* Meta */}
         <div className="flex items-center gap-2 mb-3 flex-wrap">
           <span className="text-[10px] px-2 py-0.5 rounded bg-secondary text-secondary-foreground uppercase tracking-wider font-medium">
             {forum.category.replace("-", " ")}
@@ -431,12 +437,10 @@ function ForumCard({
           )}
         </div>
 
-        {/* Description */}
         <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1 line-clamp-2">
           {forum.description}
         </p>
 
-        {/* Tags */}
         {forum.tags.length > 0 && (
           <div className="flex flex-wrap gap-1 mb-4">
             {forum.tags.slice(0, 3).map((tag) => (
@@ -450,17 +454,16 @@ function ForumCard({
           </div>
         )}
 
-        {/* Onion URL */}
         <div className="mt-auto">
           <div className="flex items-center gap-2 p-2.5 rounded-lg bg-secondary/50 border border-border/50">
-            <Globe className="h-3.5 w-3.5 text-muted-foreground flex-shrink-0" />
+            <Globe className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
             <code className="text-[11px] text-muted-foreground truncate flex-1 font-mono">
               {forum.onionUrl}
             </code>
             <button
               type="button"
               onClick={() => onCopy(forum.onionUrl)}
-              className="p-1 rounded hover:bg-accent transition-colors flex-shrink-0"
+              className="p-1 rounded hover:bg-accent transition-colors shrink-0"
               title="Copy .onion URL"
             >
               {copiedUrl === forum.onionUrl ? (

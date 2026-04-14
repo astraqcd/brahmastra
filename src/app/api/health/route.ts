@@ -1,14 +1,5 @@
 import { NextResponse } from "next/server";
 
-/**
- * Tool Health Monitoring API
- *
- * Checks if a given URL is reachable by performing a HEAD request.
- * Used by the client-side health monitor to display real-time tool status.
- *
- * Rate limited to prevent abuse.
- */
-
 const TIMEOUT_MS = 8000;
 
 export async function GET(request: Request) {
@@ -18,19 +9,15 @@ export async function GET(request: Request) {
   if (!toolUrl) {
     return NextResponse.json(
       { error: "Missing url parameter" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
   try {
     const url = new URL(toolUrl);
 
-    // Only allow http/https
     if (!["http:", "https:"].includes(url.protocol)) {
-      return NextResponse.json(
-        { error: "Invalid protocol" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Invalid protocol" }, { status: 400 });
     }
 
     const controller = new AbortController();

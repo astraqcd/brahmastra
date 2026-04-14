@@ -1,6 +1,6 @@
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { Shield, Target, Users, Code, Award, Globe } from "lucide-react";
+import { Shield, Target, Users, Code, Award, Globe, ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -15,7 +15,6 @@ export default function AboutPage() {
       <Header />
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-20">
-        {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 border border-foreground/10 mb-6">
             <Shield className="h-4 w-4 text-foreground/70" />
@@ -34,7 +33,6 @@ export default function AboutPage() {
           </p>
         </div>
 
-        {/* Mission */}
         <section className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <Target className="h-6 w-6 text-foreground/70" />
@@ -57,7 +55,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Categories Explained */}
         <section className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <Globe className="h-6 w-6 text-foreground/70" />
@@ -138,7 +135,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Who We Serve */}
         <section className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <Users className="h-6 w-6 text-foreground/70" />
@@ -153,18 +149,15 @@ export default function AboutPage() {
               },
               {
                 title: "Law Enforcement",
-                description:
-                  "Digital investigators and cybercrime units.",
+                description: "Digital investigators and cybercrime units.",
               },
               {
                 title: "Journalists",
-                description:
-                  "Investigative reporters and fact-checkers.",
+                description: "Investigative reporters and fact-checkers.",
               },
               {
                 title: "Corporate Security",
-                description:
-                  "Brand protection and fraud investigation teams.",
+                description: "Brand protection and fraud investigation teams.",
               },
             ].map((user) => (
               <div
@@ -182,7 +175,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Developed By */}
         <section className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <Award className="h-6 w-6 text-foreground/70" />
@@ -203,12 +195,11 @@ export default function AboutPage() {
               className="inline-flex items-center gap-2 text-foreground hover:text-foreground/70 transition-colors font-medium"
             >
               Visit AstraQ
-              <span>→</span>
+              <ArrowRight className="h-4 w-4" />
             </a>
           </div>
         </section>
 
-        {/* Contribution */}
         <section className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <Code className="h-6 w-6 text-foreground/70" />
@@ -240,13 +231,12 @@ export default function AboutPage() {
                 className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg bg-foreground/5 hover:bg-foreground/10 text-foreground border border-foreground/10 transition-all text-sm font-medium"
               >
                 View on GitHub
-                <span>→</span>
+                <ArrowRight className="h-4 w-4" />
               </a>
             </div>
           </div>
         </section>
 
-        {/* Disclaimer */}
         <section>
           <div className="p-6 rounded-xl border border-yellow-500/20 bg-yellow-500/5">
             <h3 className="font-semibold text-foreground mb-2">

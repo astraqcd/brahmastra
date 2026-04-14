@@ -3,7 +3,11 @@
 import { useState, useRef, useEffect } from "react";
 import { Languages, Loader2 } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
-import { SUPPORTED_LOCALES, LOCALE_NAMES, type Locale } from "@/lib/i18n/translations";
+import {
+  SUPPORTED_LOCALES,
+  LOCALE_NAMES,
+  type Locale,
+} from "@/lib/i18n/translations";
 
 export function LanguageSwitcher() {
   const { locale, setLocale, isTranslating } = useI18n();

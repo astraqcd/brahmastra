@@ -1,7 +1,28 @@
-export type Locale = "en" | "hi" | "ar" | "ru" | "zh" | "es" | "fr" | "de" | "ja" | "ko" | "pt";
+export type Locale =
+  | "en"
+  | "hi"
+  | "ar"
+  | "ru"
+  | "zh"
+  | "es"
+  | "fr"
+  | "de"
+  | "ja"
+  | "ko"
+  | "pt";
 
 export const SUPPORTED_LOCALES: Locale[] = [
-  "en", "hi", "ar", "ru", "zh", "es", "fr", "de", "ja", "ko", "pt",
+  "en",
+  "hi",
+  "ar",
+  "ru",
+  "zh",
+  "es",
+  "fr",
+  "de",
+  "ja",
+  "ko",
+  "pt",
 ];
 
 export const LOCALE_NAMES: Record<Locale, string> = {
@@ -32,7 +53,8 @@ export const translations: Record<string, Record<string, string>> = {
 
     "hero.title": "OSINT",
     "hero.titleSuffix": "Command Center",
-    "hero.subtitle": "Investigate faster with curated tools for web, social, geospatial, malware, and dark web intelligence.",
+    "hero.subtitle":
+      "Investigate faster with curated tools for web, social, geospatial, malware, and dark web intelligence.",
     "hero.explore": "Explore Categories",
     "hero.learnMore": "Learn More",
     "hero.tools": "Tools",
@@ -42,7 +64,8 @@ export const translations: Record<string, Record<string, string>> = {
 
     "search.placeholder": "Search 80+ OSINT tools... (press /)",
     "search.noResults": "No tools found for",
-    "search.tryDifferent": "Try a different search term or browse categories below",
+    "search.tryDifferent":
+      "Try a different search term or browse categories below",
     "search.results": "results",
     "search.result": "result",
 
@@ -71,27 +94,35 @@ export const translations: Record<string, Record<string, string>> = {
     "health.avgSpeed": "Avg Speed",
     "health.recentChecks": "Recent Checks",
     "health.lastChecked": "Last checked",
-    "health.clickToCheck": "Click \"Check Now\" to monitor this tool's availability",
+    "health.clickToCheck":
+      'Click "Check Now" to monitor this tool\'s availability',
 
     "categories.title": "Intelligence",
     "categories.titleSuffix": "Categories",
-    "categories.subtitle": "Select a discipline to explore specialized OSINT tools curated for intelligence gathering and analysis.",
+    "categories.subtitle":
+      "Select a discipline to explore specialized OSINT tools curated for intelligence gathering and analysis.",
     "categories.tools": "tools",
     "categories.tool": "tool",
     "categories.explore": "Explore →",
 
     "darkweb.title": "Dark Web Intelligence",
-    "darkweb.subtitle": "Active and archived dark web forum links for research purposes",
+    "darkweb.subtitle":
+      "Active and archived dark web forum links for research purposes",
     "darkweb.consent.title": "Age Verification & Legal Consent Required",
-    "darkweb.consent.description": "This section contains links to dark web forums and hidden services. This content is intended for legitimate security research, academic study, and law enforcement purposes only.",
+    "darkweb.consent.description":
+      "This section contains links to dark web forums and hidden services. This content is intended for legitimate security research, academic study, and law enforcement purposes only.",
     "darkweb.consent.age": "I confirm I am 18 years of age or older",
-    "darkweb.consent.legal": "I understand that accessing illegal content is prohibited and I take full responsibility for my actions",
-    "darkweb.consent.research": "I will use this information solely for legitimate research, educational, or law enforcement purposes",
+    "darkweb.consent.legal":
+      "I understand that accessing illegal content is prohibited and I take full responsibility for my actions",
+    "darkweb.consent.research":
+      "I will use this information solely for legitimate research, educational, or law enforcement purposes",
     "darkweb.consent.enter": "Enter Dark Web Directory",
     "darkweb.consent.goBack": "Go Back",
-    "darkweb.disclaimer": "For legitimate security research only. We do not host, mirror, or endorse any illegal activity.",
+    "darkweb.disclaimer":
+      "For legitimate security research only. We do not host, mirror, or endorse any illegal activity.",
 
-    "footer.description": "Professional-grade open source intelligence platform. Curated for cybersecurity researchers and investigators.",
+    "footer.description":
+      "Professional-grade open source intelligence platform. Curated for cybersecurity researchers and investigators.",
     "footer.quickLinks": "Quick Links",
     "footer.categories": "Categories",
     "footer.legal": "Legal",
@@ -110,7 +141,7 @@ export const translations: Record<string, Record<string, string>> = {
 
     "category.notFound": "Category Not Found",
     "category.available": "available",
-    "category.searchPlaceholder": "Search tools... (Press \"/\" to focus)",
+    "category.searchPlaceholder": 'Search tools... (Press "/" to focus)',
     "category.allStatus": "All Status",
     "category.working": "Working",
     "category.notWorking": "Not Working",
@@ -121,11 +152,13 @@ export const translations: Record<string, Record<string, string>> = {
 
     "favorites.title": "Your",
     "favorites.titleSuffix": "Favorites",
-    "favorites.subtitle": "Quick access to your bookmarked OSINT tools. Star tools to save them here for faster access.",
+    "favorites.subtitle":
+      "Quick access to your bookmarked OSINT tools. Star tools to save them here for faster access.",
     "favorites.count": "favorite tool",
     "favorites.countPlural": "favorite tools",
     "favorites.empty": "No favorites yet",
-    "favorites.emptyDesc": "Start exploring tools and click the star icon to add them to your favorites for quick access.",
+    "favorites.emptyDesc":
+      "Start exploring tools and click the star icon to add them to your favorites for quick access.",
     "favorites.explore": "Explore Categories",
 
     "recent.title": "Recently",
@@ -146,7 +179,8 @@ export const translations: Record<string, Record<string, string>> = {
 
     "hero.title": "OSINT",
     "hero.titleSuffix": "कमांड सेंटर",
-    "hero.subtitle": "वेब, सोशल, जियोस्पेशियल, मैलवेयर और डार्क वेब इंटेलिजेंस के लिए क्यूरेटेड टूल्स के साथ तेज़ी से जाँच करें।",
+    "hero.subtitle":
+      "वेब, सोशल, जियोस्पेशियल, मैलवेयर और डार्क वेब इंटेलिजेंस के लिए क्यूरेटेड टूल्स के साथ तेज़ी से जाँच करें।",
     "hero.explore": "श्रेणियाँ देखें",
     "hero.learnMore": "और जानें",
     "hero.tools": "उपकरण",
@@ -185,11 +219,12 @@ export const translations: Record<string, Record<string, string>> = {
     "health.avgSpeed": "औसत गति",
     "health.recentChecks": "हाल की जांच",
     "health.lastChecked": "अंतिम जांच",
-    "health.clickToCheck": "उपलब्धता जांचने के लिए \"अभी जांचें\" पर क्लिक करें",
+    "health.clickToCheck": 'उपलब्धता जांचने के लिए "अभी जांचें" पर क्लिक करें',
 
     "categories.title": "इंटेलिजेंस",
     "categories.titleSuffix": "श्रेणियाँ",
-    "categories.subtitle": "खुफिया जानकारी एकत्र करने और विश्लेषण के लिए विशेष OSINT उपकरण खोजने हेतु एक विषय चुनें।",
+    "categories.subtitle":
+      "खुफिया जानकारी एकत्र करने और विश्लेषण के लिए विशेष OSINT उपकरण खोजने हेतु एक विषय चुनें।",
     "categories.tools": "उपकरण",
     "categories.tool": "उपकरण",
     "categories.explore": "देखें →",
@@ -197,15 +232,20 @@ export const translations: Record<string, Record<string, string>> = {
     "darkweb.title": "डार्क वेब इंटेलिजेंस",
     "darkweb.subtitle": "अनुसंधान उद्देश्यों के लिए सक्रिय और संग्रहीत डार्क वेब फोरम लिंक",
     "darkweb.consent.title": "आयु सत्यापन और कानूनी सहमति आवश्यक",
-    "darkweb.consent.description": "इस अनुभाग में डार्क वेब फोरम और छिपी सेवाओं के लिंक हैं। यह सामग्री केवल वैध सुरक्षा अनुसंधान, शैक्षणिक अध्ययन और कानून प्रवर्तन उद्देश्यों के लिए है।",
+    "darkweb.consent.description":
+      "इस अनुभाग में डार्क वेब फोरम और छिपी सेवाओं के लिंक हैं। यह सामग्री केवल वैध सुरक्षा अनुसंधान, शैक्षणिक अध्ययन और कानून प्रवर्तन उद्देश्यों के लिए है।",
     "darkweb.consent.age": "मैं पुष्टि करता/करती हूँ कि मेरी आयु 18 वर्ष या अधिक है",
-    "darkweb.consent.legal": "मैं समझता/समझती हूँ कि अवैध सामग्री तक पहुँच प्रतिबंधित है और मैं अपने कार्यों की पूरी जिम्मेदारी लेता/लेती हूँ",
-    "darkweb.consent.research": "मैं इस जानकारी का उपयोग केवल वैध अनुसंधान, शैक्षणिक या कानून प्रवर्तन उद्देश्यों के लिए करूँगा/करूँगी",
+    "darkweb.consent.legal":
+      "मैं समझता/समझती हूँ कि अवैध सामग्री तक पहुँच प्रतिबंधित है और मैं अपने कार्यों की पूरी जिम्मेदारी लेता/लेती हूँ",
+    "darkweb.consent.research":
+      "मैं इस जानकारी का उपयोग केवल वैध अनुसंधान, शैक्षणिक या कानून प्रवर्तन उद्देश्यों के लिए करूँगा/करूँगी",
     "darkweb.consent.enter": "डार्क वेब डायरेक्टरी में प्रवेश करें",
     "darkweb.consent.goBack": "वापस जाएँ",
-    "darkweb.disclaimer": "केवल वैध सुरक्षा अनुसंधान के लिए। हम किसी भी अवैध गतिविधि को होस्ट, मिरर या समर्थन नहीं करते।",
+    "darkweb.disclaimer":
+      "केवल वैध सुरक्षा अनुसंधान के लिए। हम किसी भी अवैध गतिविधि को होस्ट, मिरर या समर्थन नहीं करते।",
 
-    "footer.description": "साइबर सुरक्षा शोधकर्ताओं और जांचकर्ताओं के लिए पेशेवर ओपन सोर्स इंटेलिजेंस प्लेटफ़ॉर्म।",
+    "footer.description":
+      "साइबर सुरक्षा शोधकर्ताओं और जांचकर्ताओं के लिए पेशेवर ओपन सोर्स इंटेलिजेंस प्लेटफ़ॉर्म।",
     "footer.quickLinks": "त्वरित लिंक",
     "footer.categories": "श्रेणियाँ",
     "footer.legal": "कानूनी",
@@ -224,7 +264,7 @@ export const translations: Record<string, Record<string, string>> = {
 
     "category.notFound": "श्रेणी नहीं मिली",
     "category.available": "उपलब्ध",
-    "category.searchPlaceholder": "उपकरण खोजें... (\"/\" दबाएँ)",
+    "category.searchPlaceholder": 'उपकरण खोजें... ("/" दबाएँ)',
     "category.allStatus": "सभी स्थिति",
     "category.working": "काम कर रहा है",
     "category.notWorking": "काम नहीं कर रहा",
@@ -235,11 +275,13 @@ export const translations: Record<string, Record<string, string>> = {
 
     "favorites.title": "आपके",
     "favorites.titleSuffix": "पसंदीदा",
-    "favorites.subtitle": "अपने बुकमार्क किए गए OSINT उपकरणों तक त्वरित पहुँच। तेज़ पहुँच के लिए उपकरणों को स्टार करें।",
+    "favorites.subtitle":
+      "अपने बुकमार्क किए गए OSINT उपकरणों तक त्वरित पहुँच। तेज़ पहुँच के लिए उपकरणों को स्टार करें।",
     "favorites.count": "पसंदीदा उपकरण",
     "favorites.countPlural": "पसंदीदा उपकरण",
     "favorites.empty": "अभी तक कोई पसंदीदा नहीं",
-    "favorites.emptyDesc": "उपकरण खोजना शुरू करें और त्वरित पहुँच के लिए स्टार आइकन पर क्लिक करें।",
+    "favorites.emptyDesc":
+      "उपकरण खोजना शुरू करें और त्वरित पहुँच के लिए स्टार आइकन पर क्लिक करें।",
     "favorites.explore": "श्रेणियाँ देखें",
 
     "recent.title": "हाल ही में",
@@ -260,7 +302,8 @@ export const translations: Record<string, Record<string, string>> = {
 
     "hero.title": "OSINT",
     "hero.titleSuffix": "مركز القيادة",
-    "hero.subtitle": "تحقيق أسرع مع أدوات منسقة للويب والتواصل الاجتماعي والجغرافي والبرمجيات الخبيثة والويب المظلم.",
+    "hero.subtitle":
+      "تحقيق أسرع مع أدوات منسقة للويب والتواصل الاجتماعي والجغرافي والبرمجيات الخبيثة والويب المظلم.",
     "hero.explore": "استكشف الفئات",
     "hero.learnMore": "اعرف المزيد",
     "hero.tools": "أدوات",
@@ -299,27 +342,34 @@ export const translations: Record<string, Record<string, string>> = {
     "health.avgSpeed": "متوسط السرعة",
     "health.recentChecks": "فحوصات حديثة",
     "health.lastChecked": "آخر فحص",
-    "health.clickToCheck": "انقر \"تحقق الآن\" لمراقبة توفر هذه الأداة",
+    "health.clickToCheck": 'انقر "تحقق الآن" لمراقبة توفر هذه الأداة',
 
     "categories.title": "فئات",
     "categories.titleSuffix": "الاستخبارات",
-    "categories.subtitle": "اختر تخصصاً لاستكشاف أدوات OSINT المتخصصة لجمع وتحليل المعلومات الاستخباراتية.",
+    "categories.subtitle":
+      "اختر تخصصاً لاستكشاف أدوات OSINT المتخصصة لجمع وتحليل المعلومات الاستخباراتية.",
     "categories.tools": "أدوات",
     "categories.tool": "أداة",
     "categories.explore": "← استكشف",
 
     "darkweb.title": "استخبارات الويب المظلم",
-    "darkweb.subtitle": "روابط منتديات الويب المظلم النشطة والمؤرشفة لأغراض البحث",
+    "darkweb.subtitle":
+      "روابط منتديات الويب المظلم النشطة والمؤرشفة لأغراض البحث",
     "darkweb.consent.title": "التحقق من العمر والموافقة القانونية مطلوبة",
-    "darkweb.consent.description": "يحتوي هذا القسم على روابط لمنتديات الويب المظلم والخدمات المخفية. هذا المحتوى مخصص فقط للبحث الأمني المشروع والدراسة الأكاديمية وأغراض إنفاذ القانون.",
+    "darkweb.consent.description":
+      "يحتوي هذا القسم على روابط لمنتديات الويب المظلم والخدمات المخفية. هذا المحتوى مخصص فقط للبحث الأمني المشروع والدراسة الأكاديمية وأغراض إنفاذ القانون.",
     "darkweb.consent.age": "أؤكد أنني أبلغ 18 عاماً أو أكثر",
-    "darkweb.consent.legal": "أفهم أن الوصول إلى المحتوى غير القانوني محظور وأتحمل المسؤولية الكاملة عن أفعالي",
-    "darkweb.consent.research": "سأستخدم هذه المعلومات فقط لأغراض البحث المشروع أو التعليمي أو إنفاذ القانون",
+    "darkweb.consent.legal":
+      "أفهم أن الوصول إلى المحتوى غير القانوني محظور وأتحمل المسؤولية الكاملة عن أفعالي",
+    "darkweb.consent.research":
+      "سأستخدم هذه المعلومات فقط لأغراض البحث المشروع أو التعليمي أو إنفاذ القانون",
     "darkweb.consent.enter": "دخول دليل الويب المظلم",
     "darkweb.consent.goBack": "العودة",
-    "darkweb.disclaimer": "للبحث الأمني المشروع فقط. نحن لا نستضيف أو نعكس أو نؤيد أي نشاط غير قانوني.",
+    "darkweb.disclaimer":
+      "للبحث الأمني المشروع فقط. نحن لا نستضيف أو نعكس أو نؤيد أي نشاط غير قانوني.",
 
-    "footer.description": "منصة استخبارات مفتوحة المصدر احترافية للباحثين في الأمن السيبراني والمحققين.",
+    "footer.description":
+      "منصة استخبارات مفتوحة المصدر احترافية للباحثين في الأمن السيبراني والمحققين.",
     "footer.quickLinks": "روابط سريعة",
     "footer.categories": "الفئات",
     "footer.legal": "قانوني",
@@ -338,7 +388,7 @@ export const translations: Record<string, Record<string, string>> = {
 
     "category.notFound": "الفئة غير موجودة",
     "category.available": "متاح",
-    "category.searchPlaceholder": "ابحث في الأدوات... (اضغط \"/\")",
+    "category.searchPlaceholder": 'ابحث في الأدوات... (اضغط "/")',
     "category.allStatus": "جميع الحالات",
     "category.working": "يعمل",
     "category.notWorking": "لا يعمل",
@@ -349,11 +399,13 @@ export const translations: Record<string, Record<string, string>> = {
 
     "favorites.title": "قائمة",
     "favorites.titleSuffix": "المفضلة",
-    "favorites.subtitle": "وصول سريع لأدوات OSINT المفضلة لديك. انقر على النجمة لحفظها هنا.",
+    "favorites.subtitle":
+      "وصول سريع لأدوات OSINT المفضلة لديك. انقر على النجمة لحفظها هنا.",
     "favorites.count": "أداة مفضلة",
     "favorites.countPlural": "أدوات مفضلة",
     "favorites.empty": "لا توجد مفضلات بعد",
-    "favorites.emptyDesc": "ابدأ باستكشاف الأدوات وانقر على أيقونة النجمة لإضافتها إلى المفضلة.",
+    "favorites.emptyDesc":
+      "ابدأ باستكشاف الأدوات وانقر على أيقونة النجمة لإضافتها إلى المفضلة.",
     "favorites.explore": "استكشف الفئات",
 
     "recent.title": "المستخدمة",
@@ -374,7 +426,8 @@ export const translations: Record<string, Record<string, string>> = {
 
     "hero.title": "OSINT",
     "hero.titleSuffix": "Командный центр",
-    "hero.subtitle": "Расследуйте быстрее с помощью инструментов для веб, социальных сетей, геопространственной, вредоносной и даркнет разведки.",
+    "hero.subtitle":
+      "Расследуйте быстрее с помощью инструментов для веб, социальных сетей, геопространственной, вредоносной и даркнет разведки.",
     "hero.explore": "Обзор категорий",
     "hero.learnMore": "Узнать больше",
     "hero.tools": "Инструменты",
@@ -384,7 +437,8 @@ export const translations: Record<string, Record<string, string>> = {
 
     "search.placeholder": "Поиск 80+ OSINT инструментов... (нажмите /)",
     "search.noResults": "Инструменты не найдены",
-    "search.tryDifferent": "Попробуйте другой запрос или просмотрите категории ниже",
+    "search.tryDifferent":
+      "Попробуйте другой запрос или просмотрите категории ниже",
     "search.results": "результатов",
     "search.result": "результат",
 
@@ -413,27 +467,35 @@ export const translations: Record<string, Record<string, string>> = {
     "health.avgSpeed": "Ср. скорость",
     "health.recentChecks": "Последние проверки",
     "health.lastChecked": "Последняя проверка",
-    "health.clickToCheck": "Нажмите \"Проверить\" для мониторинга доступности",
+    "health.clickToCheck": 'Нажмите "Проверить" для мониторинга доступности',
 
     "categories.title": "Разведывательные",
     "categories.titleSuffix": "Категории",
-    "categories.subtitle": "Выберите дисциплину для изучения специализированных инструментов OSINT для сбора и анализа разведданных.",
+    "categories.subtitle":
+      "Выберите дисциплину для изучения специализированных инструментов OSINT для сбора и анализа разведданных.",
     "categories.tools": "инструментов",
     "categories.tool": "инструмент",
     "categories.explore": "Обзор →",
 
     "darkweb.title": "Разведка даркнета",
-    "darkweb.subtitle": "Активные и архивные ссылки форумов даркнета для исследований",
-    "darkweb.consent.title": "Требуется подтверждение возраста и правовое согласие",
-    "darkweb.consent.description": "Этот раздел содержит ссылки на форумы даркнета и скрытые сервисы. Контент предназначен только для легитимных исследований безопасности, академических целей и правоохранительных органов.",
+    "darkweb.subtitle":
+      "Активные и архивные ссылки форумов даркнета для исследований",
+    "darkweb.consent.title":
+      "Требуется подтверждение возраста и правовое согласие",
+    "darkweb.consent.description":
+      "Этот раздел содержит ссылки на форумы даркнета и скрытые сервисы. Контент предназначен только для легитимных исследований безопасности, академических целей и правоохранительных органов.",
     "darkweb.consent.age": "Подтверждаю, что мне 18 лет или больше",
-    "darkweb.consent.legal": "Я понимаю, что доступ к незаконному контенту запрещён и несу полную ответственность за свои действия",
-    "darkweb.consent.research": "Я буду использовать эту информацию только в легитимных исследовательских, образовательных целях или для правоохранительных органов",
+    "darkweb.consent.legal":
+      "Я понимаю, что доступ к незаконному контенту запрещён и несу полную ответственность за свои действия",
+    "darkweb.consent.research":
+      "Я буду использовать эту информацию только в легитимных исследовательских, образовательных целях или для правоохранительных органов",
     "darkweb.consent.enter": "Войти в каталог даркнета",
     "darkweb.consent.goBack": "Назад",
-    "darkweb.disclaimer": "Только для легитимных исследований. Мы не размещаем, не зеркалируем и не поддерживаем незаконную деятельность.",
+    "darkweb.disclaimer":
+      "Только для легитимных исследований. Мы не размещаем, не зеркалируем и не поддерживаем незаконную деятельность.",
 
-    "footer.description": "Профессиональная платформа разведки с открытым кодом для исследователей кибербезопасности.",
+    "footer.description":
+      "Профессиональная платформа разведки с открытым кодом для исследователей кибербезопасности.",
     "footer.quickLinks": "Быстрые ссылки",
     "footer.categories": "Категории",
     "footer.legal": "Правовая информация",
@@ -458,7 +520,7 @@ export const translations: Record<string, Record<string, string>> = {
 
     "category.notFound": "Категория не найдена",
     "category.available": "доступно",
-    "category.searchPlaceholder": "Поиск инструментов... (нажмите \"/\")",
+    "category.searchPlaceholder": 'Поиск инструментов... (нажмите "/")',
     "category.allStatus": "Все статусы",
     "category.working": "Работает",
     "category.notWorking": "Не работает",
@@ -469,11 +531,13 @@ export const translations: Record<string, Record<string, string>> = {
 
     "favorites.title": "Ваши",
     "favorites.titleSuffix": "Избранные",
-    "favorites.subtitle": "Быстрый доступ к вашим избранным OSINT инструментам.",
+    "favorites.subtitle":
+      "Быстрый доступ к вашим избранным OSINT инструментам.",
     "favorites.count": "избранный инструмент",
     "favorites.countPlural": "избранных инструментов",
     "favorites.empty": "Пока нет избранных",
-    "favorites.emptyDesc": "Исследуйте инструменты и нажмите звездочку, чтобы добавить в избранное.",
+    "favorites.emptyDesc":
+      "Исследуйте инструменты и нажмите звездочку, чтобы добавить в избранное.",
     "favorites.explore": "Обзор категорий",
 
     "recent.title": "Недавно",
@@ -489,7 +553,8 @@ export const translations: Record<string, Record<string, string>> = {
 
     "hero.title": "OSINT",
     "hero.titleSuffix": "指挥中心",
-    "hero.subtitle": "使用精选的网络、社交、地理空间、恶意软件和暗网情报工具更快地进行调查。",
+    "hero.subtitle":
+      "使用精选的网络、社交、地理空间、恶意软件和暗网情报工具更快地进行调查。",
     "hero.explore": "浏览分类",
     "hero.learnMore": "了解更多",
     "hero.tools": "工具",
@@ -528,11 +593,12 @@ export const translations: Record<string, Record<string, string>> = {
     "health.avgSpeed": "平均速度",
     "health.recentChecks": "近期检查",
     "health.lastChecked": "上次检查",
-    "health.clickToCheck": "点击\"立即检查\"监控此工具的可用性",
+    "health.clickToCheck": '点击"立即检查"监控此工具的可用性',
 
     "categories.title": "情报",
     "categories.titleSuffix": "分类",
-    "categories.subtitle": "选择一个学科，探索为情报收集和分析策划的专业OSINT工具。",
+    "categories.subtitle":
+      "选择一个学科，探索为情报收集和分析策划的专业OSINT工具。",
     "categories.tools": "个工具",
     "categories.tool": "个工具",
     "categories.explore": "探索 →",
@@ -540,15 +606,19 @@ export const translations: Record<string, Record<string, string>> = {
     "darkweb.title": "暗网情报",
     "darkweb.subtitle": "用于研究目的的活跃和归档暗网论坛链接",
     "darkweb.consent.title": "需要年龄验证和法律同意",
-    "darkweb.consent.description": "本部分包含暗网论坛和隐藏服务的链接。此内容仅供合法安全研究、学术研究和执法目的使用。",
+    "darkweb.consent.description":
+      "本部分包含暗网论坛和隐藏服务的链接。此内容仅供合法安全研究、学术研究和执法目的使用。",
     "darkweb.consent.age": "我确认我已年满18岁",
-    "darkweb.consent.legal": "我理解访问非法内容是被禁止的，我对自己的行为承担全部责任",
+    "darkweb.consent.legal":
+      "我理解访问非法内容是被禁止的，我对自己的行为承担全部责任",
     "darkweb.consent.research": "我将仅将此信息用于合法研究、教育或执法目的",
     "darkweb.consent.enter": "进入暗网目录",
     "darkweb.consent.goBack": "返回",
-    "darkweb.disclaimer": "仅供合法安全研究使用。我们不托管、镜像或支持任何非法活动。",
+    "darkweb.disclaimer":
+      "仅供合法安全研究使用。我们不托管、镜像或支持任何非法活动。",
 
-    "footer.description": "为网络安全研究人员和调查人员策划的专业开源情报平台。",
+    "footer.description":
+      "为网络安全研究人员和调查人员策划的专业开源情报平台。",
     "footer.quickLinks": "快速链接",
     "footer.categories": "分类",
     "footer.legal": "法律",
@@ -604,7 +674,8 @@ export const translations: Record<string, Record<string, string>> = {
 
     "hero.title": "OSINT",
     "hero.titleSuffix": "Centro de Comando",
-    "hero.subtitle": "Investiga más rápido con herramientas curadas para inteligencia web, social, geoespacial, malware y dark web.",
+    "hero.subtitle":
+      "Investiga más rápido con herramientas curadas para inteligencia web, social, geoespacial, malware y dark web.",
     "hero.explore": "Explorar Categorías",
     "hero.learnMore": "Más Información",
     "hero.tools": "Herramientas",
@@ -643,27 +714,36 @@ export const translations: Record<string, Record<string, string>> = {
     "health.avgSpeed": "Velocidad promedio",
     "health.recentChecks": "Verificaciones recientes",
     "health.lastChecked": "Última verificación",
-    "health.clickToCheck": "Haz clic en \"Verificar Ahora\" para monitorear la disponibilidad",
+    "health.clickToCheck":
+      'Haz clic en "Verificar Ahora" para monitorear la disponibilidad',
 
     "categories.title": "Inteligencia",
     "categories.titleSuffix": "Categorías",
-    "categories.subtitle": "Selecciona una disciplina para explorar herramientas OSINT especializadas para recopilación y análisis de inteligencia.",
+    "categories.subtitle":
+      "Selecciona una disciplina para explorar herramientas OSINT especializadas para recopilación y análisis de inteligencia.",
     "categories.tools": "herramientas",
     "categories.tool": "herramienta",
     "categories.explore": "Explorar →",
 
     "darkweb.title": "Inteligencia Dark Web",
-    "darkweb.subtitle": "Enlaces activos y archivados de foros de la dark web para investigación",
-    "darkweb.consent.title": "Verificación de Edad y Consentimiento Legal Requerido",
-    "darkweb.consent.description": "Esta sección contiene enlaces a foros de la dark web y servicios ocultos. Este contenido es solo para investigación de seguridad legítima, estudio académico y aplicación de la ley.",
+    "darkweb.subtitle":
+      "Enlaces activos y archivados de foros de la dark web para investigación",
+    "darkweb.consent.title":
+      "Verificación de Edad y Consentimiento Legal Requerido",
+    "darkweb.consent.description":
+      "Esta sección contiene enlaces a foros de la dark web y servicios ocultos. Este contenido es solo para investigación de seguridad legítima, estudio académico y aplicación de la ley.",
     "darkweb.consent.age": "Confirmo que tengo 18 años o más",
-    "darkweb.consent.legal": "Entiendo que acceder a contenido ilegal está prohibido y asumo total responsabilidad por mis acciones",
-    "darkweb.consent.research": "Usaré esta información solo para investigación legítima, educativa o aplicación de la ley",
+    "darkweb.consent.legal":
+      "Entiendo que acceder a contenido ilegal está prohibido y asumo total responsabilidad por mis acciones",
+    "darkweb.consent.research":
+      "Usaré esta información solo para investigación legítima, educativa o aplicación de la ley",
     "darkweb.consent.enter": "Entrar al Directorio Dark Web",
     "darkweb.consent.goBack": "Volver",
-    "darkweb.disclaimer": "Solo para investigación de seguridad legítima. No alojamos, reflejamos ni respaldamos actividad ilegal.",
+    "darkweb.disclaimer":
+      "Solo para investigación de seguridad legítima. No alojamos, reflejamos ni respaldamos actividad ilegal.",
 
-    "footer.description": "Plataforma profesional de inteligencia de código abierto para investigadores de ciberseguridad.",
+    "footer.description":
+      "Plataforma profesional de inteligencia de código abierto para investigadores de ciberseguridad.",
     "footer.quickLinks": "Enlaces Rápidos",
     "footer.categories": "Categorías",
     "footer.legal": "Legal",
@@ -688,7 +768,7 @@ export const translations: Record<string, Record<string, string>> = {
 
     "category.notFound": "Categoría no encontrada",
     "category.available": "disponibles",
-    "category.searchPlaceholder": "Buscar herramientas... (presiona \"/\")",
+    "category.searchPlaceholder": 'Buscar herramientas... (presiona "/")',
     "category.allStatus": "Todos los estados",
     "category.working": "Funcionando",
     "category.notWorking": "No funciona",
@@ -703,7 +783,8 @@ export const translations: Record<string, Record<string, string>> = {
     "favorites.count": "herramienta favorita",
     "favorites.countPlural": "herramientas favoritas",
     "favorites.empty": "Sin favoritos aún",
-    "favorites.emptyDesc": "Explora herramientas y haz clic en la estrella para agregarlas a favoritos.",
+    "favorites.emptyDesc":
+      "Explora herramientas y haz clic en la estrella para agregarlas a favoritos.",
     "favorites.explore": "Explorar categorías",
 
     "recent.title": "Usados",
@@ -719,7 +800,8 @@ export const translations: Record<string, Record<string, string>> = {
 
     "hero.title": "OSINT",
     "hero.titleSuffix": "Centre de Commande",
-    "hero.subtitle": "Enquêtez plus vite avec des outils pour le web, les réseaux sociaux, la géolocalisation, les malwares et le dark web.",
+    "hero.subtitle":
+      "Enquêtez plus vite avec des outils pour le web, les réseaux sociaux, la géolocalisation, les malwares et le dark web.",
     "hero.explore": "Explorer les Catégories",
     "hero.learnMore": "En Savoir Plus",
     "hero.tools": "Outils",
@@ -758,27 +840,35 @@ export const translations: Record<string, Record<string, string>> = {
     "health.avgSpeed": "Vitesse moyenne",
     "health.recentChecks": "Vérifications récentes",
     "health.lastChecked": "Dernière vérification",
-    "health.clickToCheck": "Cliquez \"Vérifier\" pour surveiller la disponibilité",
+    "health.clickToCheck":
+      'Cliquez "Vérifier" pour surveiller la disponibilité',
 
     "categories.title": "Renseignement",
     "categories.titleSuffix": "Catégories",
-    "categories.subtitle": "Sélectionnez une discipline pour explorer des outils OSINT spécialisés pour la collecte et l'analyse de renseignements.",
+    "categories.subtitle":
+      "Sélectionnez une discipline pour explorer des outils OSINT spécialisés pour la collecte et l'analyse de renseignements.",
     "categories.tools": "outils",
     "categories.tool": "outil",
     "categories.explore": "Explorer →",
 
     "darkweb.title": "Renseignement Dark Web",
-    "darkweb.subtitle": "Liens actifs et archivés de forums du dark web pour la recherche",
+    "darkweb.subtitle":
+      "Liens actifs et archivés de forums du dark web pour la recherche",
     "darkweb.consent.title": "Vérification d'Âge et Consentement Légal Requis",
-    "darkweb.consent.description": "Cette section contient des liens vers des forums du dark web et des services cachés. Ce contenu est destiné uniquement à la recherche de sécurité légitime, aux études académiques et aux forces de l'ordre.",
+    "darkweb.consent.description":
+      "Cette section contient des liens vers des forums du dark web et des services cachés. Ce contenu est destiné uniquement à la recherche de sécurité légitime, aux études académiques et aux forces de l'ordre.",
     "darkweb.consent.age": "Je confirme avoir 18 ans ou plus",
-    "darkweb.consent.legal": "Je comprends que l'accès au contenu illégal est interdit et j'assume l'entière responsabilité de mes actions",
-    "darkweb.consent.research": "J'utiliserai ces informations uniquement à des fins de recherche légitime, éducative ou d'application de la loi",
+    "darkweb.consent.legal":
+      "Je comprends que l'accès au contenu illégal est interdit et j'assume l'entière responsabilité de mes actions",
+    "darkweb.consent.research":
+      "J'utiliserai ces informations uniquement à des fins de recherche légitime, éducative ou d'application de la loi",
     "darkweb.consent.enter": "Entrer dans le Répertoire Dark Web",
     "darkweb.consent.goBack": "Retour",
-    "darkweb.disclaimer": "Pour la recherche de sécurité légitime uniquement. Nous n'hébergeons, ne reflétons ni ne soutenons aucune activité illégale.",
+    "darkweb.disclaimer":
+      "Pour la recherche de sécurité légitime uniquement. Nous n'hébergeons, ne reflétons ni ne soutenons aucune activité illégale.",
 
-    "footer.description": "Plateforme professionnelle de renseignement open source pour les chercheurs en cybersécurité.",
+    "footer.description":
+      "Plateforme professionnelle de renseignement open source pour les chercheurs en cybersécurité.",
     "footer.quickLinks": "Liens Rapides",
     "footer.categories": "Catégories",
     "footer.legal": "Juridique",
@@ -803,13 +893,14 @@ export const translations: Record<string, Record<string, string>> = {
 
     "category.notFound": "Catégorie introuvable",
     "category.available": "disponibles",
-    "category.searchPlaceholder": "Rechercher des outils... (appuyez sur \"/\")",
+    "category.searchPlaceholder": 'Rechercher des outils... (appuyez sur "/")',
     "category.allStatus": "Tous les statuts",
     "category.working": "Fonctionnel",
     "category.notWorking": "Non fonctionnel",
     "category.sortByName": "Trier par nom",
     "category.noTools": "Aucun outil trouvé",
-    "category.adjustFilters": "Essayez d'ajuster votre recherche ou vos filtres",
+    "category.adjustFilters":
+      "Essayez d'ajuster votre recherche ou vos filtres",
     "category.clearFilters": "Effacer les filtres",
 
     "favorites.title": "Vos",
@@ -818,7 +909,8 @@ export const translations: Record<string, Record<string, string>> = {
     "favorites.count": "outil favori",
     "favorites.countPlural": "outils favoris",
     "favorites.empty": "Pas encore de favoris",
-    "favorites.emptyDesc": "Explorez les outils et cliquez sur l'étoile pour les ajouter aux favoris.",
+    "favorites.emptyDesc":
+      "Explorez les outils et cliquez sur l'étoile pour les ajouter aux favoris.",
     "favorites.explore": "Explorer les catégories",
 
     "recent.title": "Récemment",
@@ -834,7 +926,8 @@ export const translations: Record<string, Record<string, string>> = {
 
     "hero.title": "OSINT",
     "hero.titleSuffix": "Kommandozentrale",
-    "hero.subtitle": "Ermitteln Sie schneller mit kuratierten Tools für Web-, Social-, Geo-, Malware- und Dark-Web-Aufklärung.",
+    "hero.subtitle":
+      "Ermitteln Sie schneller mit kuratierten Tools für Web-, Social-, Geo-, Malware- und Dark-Web-Aufklärung.",
     "hero.explore": "Kategorien erkunden",
     "hero.learnMore": "Mehr erfahren",
     "hero.tools": "Tools",
@@ -844,7 +937,8 @@ export const translations: Record<string, Record<string, string>> = {
 
     "search.placeholder": "80+ OSINT-Tools suchen... (drücke /)",
     "search.noResults": "Keine Tools gefunden für",
-    "search.tryDifferent": "Versuchen Sie einen anderen Suchbegriff oder durchsuchen Sie die Kategorien",
+    "search.tryDifferent":
+      "Versuchen Sie einen anderen Suchbegriff oder durchsuchen Sie die Kategorien",
     "search.results": "Ergebnisse",
     "search.result": "Ergebnis",
 
@@ -873,27 +967,36 @@ export const translations: Record<string, Record<string, string>> = {
     "health.avgSpeed": "Durchschn. Geschwindigkeit",
     "health.recentChecks": "Letzte Prüfungen",
     "health.lastChecked": "Zuletzt geprüft",
-    "health.clickToCheck": "Klicken Sie \"Prüfen\" um die Verfügbarkeit zu überwachen",
+    "health.clickToCheck":
+      'Klicken Sie "Prüfen" um die Verfügbarkeit zu überwachen',
 
     "categories.title": "Aufklärungs",
     "categories.titleSuffix": "Kategorien",
-    "categories.subtitle": "Wählen Sie eine Disziplin, um spezialisierte OSINT-Tools für die Aufklärung zu erkunden.",
+    "categories.subtitle":
+      "Wählen Sie eine Disziplin, um spezialisierte OSINT-Tools für die Aufklärung zu erkunden.",
     "categories.tools": "Tools",
     "categories.tool": "Tool",
     "categories.explore": "Erkunden →",
 
     "darkweb.title": "Dark Web Aufklärung",
-    "darkweb.subtitle": "Aktive und archivierte Dark-Web-Forum-Links für Forschungszwecke",
-    "darkweb.consent.title": "Altersverifikation und rechtliche Zustimmung erforderlich",
-    "darkweb.consent.description": "Dieser Bereich enthält Links zu Dark-Web-Foren und versteckten Diensten. Dieser Inhalt ist nur für legitime Sicherheitsforschung, akademische Studien und Strafverfolgung bestimmt.",
+    "darkweb.subtitle":
+      "Aktive und archivierte Dark-Web-Forum-Links für Forschungszwecke",
+    "darkweb.consent.title":
+      "Altersverifikation und rechtliche Zustimmung erforderlich",
+    "darkweb.consent.description":
+      "Dieser Bereich enthält Links zu Dark-Web-Foren und versteckten Diensten. Dieser Inhalt ist nur für legitime Sicherheitsforschung, akademische Studien und Strafverfolgung bestimmt.",
     "darkweb.consent.age": "Ich bestätige, dass ich 18 Jahre oder älter bin",
-    "darkweb.consent.legal": "Ich verstehe, dass der Zugang zu illegalen Inhalten verboten ist und übernehme die volle Verantwortung",
-    "darkweb.consent.research": "Ich werde diese Informationen nur für legitime Forschungs-, Bildungs- oder Strafverfolgungszwecke verwenden",
+    "darkweb.consent.legal":
+      "Ich verstehe, dass der Zugang zu illegalen Inhalten verboten ist und übernehme die volle Verantwortung",
+    "darkweb.consent.research":
+      "Ich werde diese Informationen nur für legitime Forschungs-, Bildungs- oder Strafverfolgungszwecke verwenden",
     "darkweb.consent.enter": "Dark Web Verzeichnis betreten",
     "darkweb.consent.goBack": "Zurück",
-    "darkweb.disclaimer": "Nur für legitime Sicherheitsforschung. Wir hosten, spiegeln oder unterstützen keine illegalen Aktivitäten.",
+    "darkweb.disclaimer":
+      "Nur für legitime Sicherheitsforschung. Wir hosten, spiegeln oder unterstützen keine illegalen Aktivitäten.",
 
-    "footer.description": "Professionelle Open-Source-Aufklärungsplattform für Cybersicherheitsforscher.",
+    "footer.description":
+      "Professionelle Open-Source-Aufklärungsplattform für Cybersicherheitsforscher.",
     "footer.quickLinks": "Schnelllinks",
     "footer.categories": "Kategorien",
     "footer.legal": "Rechtliches",
@@ -918,7 +1021,7 @@ export const translations: Record<string, Record<string, string>> = {
 
     "category.notFound": "Kategorie nicht gefunden",
     "category.available": "verfügbar",
-    "category.searchPlaceholder": "Tools suchen... (\"/\" drücken)",
+    "category.searchPlaceholder": 'Tools suchen... ("/" drücken)',
     "category.allStatus": "Alle Status",
     "category.working": "Funktioniert",
     "category.notWorking": "Funktioniert nicht",
@@ -933,7 +1036,8 @@ export const translations: Record<string, Record<string, string>> = {
     "favorites.count": "Favorit",
     "favorites.countPlural": "Favoriten",
     "favorites.empty": "Noch keine Favoriten",
-    "favorites.emptyDesc": "Erkunden Sie Tools und klicken Sie auf den Stern, um sie zu Favoriten hinzuzufügen.",
+    "favorites.emptyDesc":
+      "Erkunden Sie Tools und klicken Sie auf den Stern, um sie zu Favoriten hinzuzufügen.",
     "favorites.explore": "Kategorien erkunden",
 
     "recent.title": "Kürzlich",
@@ -949,7 +1053,8 @@ export const translations: Record<string, Record<string, string>> = {
 
     "hero.title": "OSINT",
     "hero.titleSuffix": "コマンドセンター",
-    "hero.subtitle": "ウェブ、ソーシャル、地理空間、マルウェア、ダークウェブインテリジェンスの厳選ツールで迅速に調査。",
+    "hero.subtitle":
+      "ウェブ、ソーシャル、地理空間、マルウェア、ダークウェブインテリジェンスの厳選ツールで迅速に調査。",
     "hero.explore": "カテゴリを探す",
     "hero.learnMore": "詳しく見る",
     "hero.tools": "ツール",
@@ -988,27 +1093,34 @@ export const translations: Record<string, Record<string, string>> = {
     "health.avgSpeed": "平均速度",
     "health.recentChecks": "最近のチェック",
     "health.lastChecked": "最終チェック",
-    "health.clickToCheck": "\"今すぐチェック\"をクリックして可用性を監視",
+    "health.clickToCheck": '"今すぐチェック"をクリックして可用性を監視',
 
     "categories.title": "インテリジェンス",
     "categories.titleSuffix": "カテゴリ",
-    "categories.subtitle": "情報収集と分析のための専門OSINTツールを探す分野を選択してください。",
+    "categories.subtitle":
+      "情報収集と分析のための専門OSINTツールを探す分野を選択してください。",
     "categories.tools": "ツール",
     "categories.tool": "ツール",
     "categories.explore": "探索 →",
 
     "darkweb.title": "ダークウェブインテリジェンス",
-    "darkweb.subtitle": "研究目的のアクティブおよびアーカイブされたダークウェブフォーラムリンク",
+    "darkweb.subtitle":
+      "研究目的のアクティブおよびアーカイブされたダークウェブフォーラムリンク",
     "darkweb.consent.title": "年齢確認と法的同意が必要です",
-    "darkweb.consent.description": "このセクションにはダークウェブフォーラムと隠しサービスへのリンクが含まれています。正当なセキュリティ研究、学術研究、法執行目的にのみ使用してください。",
+    "darkweb.consent.description":
+      "このセクションにはダークウェブフォーラムと隠しサービスへのリンクが含まれています。正当なセキュリティ研究、学術研究、法執行目的にのみ使用してください。",
     "darkweb.consent.age": "18歳以上であることを確認します",
-    "darkweb.consent.legal": "違法コンテンツへのアクセスは禁止されており、自分の行動に全責任を負うことを理解しています",
-    "darkweb.consent.research": "この情報を正当な研究、教育、または法執行目的にのみ使用します",
+    "darkweb.consent.legal":
+      "違法コンテンツへのアクセスは禁止されており、自分の行動に全責任を負うことを理解しています",
+    "darkweb.consent.research":
+      "この情報を正当な研究、教育、または法執行目的にのみ使用します",
     "darkweb.consent.enter": "ダークウェブディレクトリに入る",
     "darkweb.consent.goBack": "戻る",
-    "darkweb.disclaimer": "正当なセキュリティ研究のみ。違法行為のホスティング、ミラーリング、支持は一切行いません。",
+    "darkweb.disclaimer":
+      "正当なセキュリティ研究のみ。違法行為のホスティング、ミラーリング、支持は一切行いません。",
 
-    "footer.description": "サイバーセキュリティ研究者と調査員のためのプロフェッショナルOSINTプラットフォーム。",
+    "footer.description":
+      "サイバーセキュリティ研究者と調査員のためのプロフェッショナルOSINTプラットフォーム。",
     "footer.quickLinks": "クイックリンク",
     "footer.categories": "カテゴリ",
     "footer.legal": "法的情報",
@@ -1033,7 +1145,7 @@ export const translations: Record<string, Record<string, string>> = {
 
     "category.notFound": "カテゴリが見つかりません",
     "category.available": "利用可能",
-    "category.searchPlaceholder": "ツールを検索...（\"/\"を押す）",
+    "category.searchPlaceholder": 'ツールを検索...（"/"を押す）',
     "category.allStatus": "すべてのステータス",
     "category.working": "動作中",
     "category.notWorking": "動作停止",
@@ -1048,7 +1160,8 @@ export const translations: Record<string, Record<string, string>> = {
     "favorites.count": "お気に入りツール",
     "favorites.countPlural": "お気に入りツール",
     "favorites.empty": "お気に入りはまだありません",
-    "favorites.emptyDesc": "ツールを探索し、星アイコンをクリックしてお気に入りに追加してください。",
+    "favorites.emptyDesc":
+      "ツールを探索し、星アイコンをクリックしてお気に入りに追加してください。",
     "favorites.explore": "カテゴリを探索",
 
     "recent.title": "最近",
@@ -1064,7 +1177,8 @@ export const translations: Record<string, Record<string, string>> = {
 
     "hero.title": "OSINT",
     "hero.titleSuffix": "커맨드 센터",
-    "hero.subtitle": "웹, 소셜, 지리공간, 멀웨어, 다크웹 인텔리전스를 위한 엄선된 도구로 빠르게 조사하세요.",
+    "hero.subtitle":
+      "웹, 소셜, 지리공간, 멀웨어, 다크웹 인텔리전스를 위한 엄선된 도구로 빠르게 조사하세요.",
     "hero.explore": "카테고리 탐색",
     "hero.learnMore": "자세히 보기",
     "hero.tools": "도구",
@@ -1103,11 +1217,12 @@ export const translations: Record<string, Record<string, string>> = {
     "health.avgSpeed": "평균 속도",
     "health.recentChecks": "최근 확인",
     "health.lastChecked": "마지막 확인",
-    "health.clickToCheck": "\"지금 확인\"을 클릭하여 가용성을 모니터링하세요",
+    "health.clickToCheck": '"지금 확인"을 클릭하여 가용성을 모니터링하세요',
 
     "categories.title": "인텔리전스",
     "categories.titleSuffix": "카테고리",
-    "categories.subtitle": "정보 수집 및 분석을 위한 전문 OSINT 도구를 탐색할 분야를 선택하세요.",
+    "categories.subtitle":
+      "정보 수집 및 분석을 위한 전문 OSINT 도구를 탐색할 분야를 선택하세요.",
     "categories.tools": "도구",
     "categories.tool": "도구",
     "categories.explore": "탐색 →",
@@ -1115,15 +1230,20 @@ export const translations: Record<string, Record<string, string>> = {
     "darkweb.title": "다크웹 인텔리전스",
     "darkweb.subtitle": "연구 목적의 활성 및 보관된 다크웹 포럼 링크",
     "darkweb.consent.title": "연령 확인 및 법적 동의 필요",
-    "darkweb.consent.description": "이 섹션에는 다크웹 포럼과 숨겨진 서비스 링크가 포함되어 있습니다. 합법적인 보안 연구, 학술 연구 및 법 집행 목적으로만 사용하세요.",
+    "darkweb.consent.description":
+      "이 섹션에는 다크웹 포럼과 숨겨진 서비스 링크가 포함되어 있습니다. 합법적인 보안 연구, 학술 연구 및 법 집행 목적으로만 사용하세요.",
     "darkweb.consent.age": "18세 이상임을 확인합니다",
-    "darkweb.consent.legal": "불법 콘텐츠 접근이 금지되어 있으며 내 행동에 대해 전적으로 책임을 진다는 것을 이해합니다",
-    "darkweb.consent.research": "이 정보를 합법적인 연구, 교육 또는 법 집행 목적으로만 사용하겠습니다",
+    "darkweb.consent.legal":
+      "불법 콘텐츠 접근이 금지되어 있으며 내 행동에 대해 전적으로 책임을 진다는 것을 이해합니다",
+    "darkweb.consent.research":
+      "이 정보를 합법적인 연구, 교육 또는 법 집행 목적으로만 사용하겠습니다",
     "darkweb.consent.enter": "다크웹 디렉토리 입장",
     "darkweb.consent.goBack": "돌아가기",
-    "darkweb.disclaimer": "합법적인 보안 연구 전용. 불법 활동을 호스팅, 미러링 또는 지지하지 않습니다.",
+    "darkweb.disclaimer":
+      "합법적인 보안 연구 전용. 불법 활동을 호스팅, 미러링 또는 지지하지 않습니다.",
 
-    "footer.description": "사이버보안 연구원과 수사관을 위한 전문 오픈소스 인텔리전스 플랫폼.",
+    "footer.description":
+      "사이버보안 연구원과 수사관을 위한 전문 오픈소스 인텔리전스 플랫폼.",
     "footer.quickLinks": "빠른 링크",
     "footer.categories": "카테고리",
     "footer.legal": "법적 정보",
@@ -1148,7 +1268,7 @@ export const translations: Record<string, Record<string, string>> = {
 
     "category.notFound": "카테고리를 찾을 수 없습니다",
     "category.available": "사용 가능",
-    "category.searchPlaceholder": "도구 검색... (\"/\" 누르기)",
+    "category.searchPlaceholder": '도구 검색... ("/" 누르기)',
     "category.allStatus": "모든 상태",
     "category.working": "작동 중",
     "category.notWorking": "작동 안 함",
@@ -1163,7 +1283,8 @@ export const translations: Record<string, Record<string, string>> = {
     "favorites.count": "즐겨찾기 도구",
     "favorites.countPlural": "즐겨찾기 도구",
     "favorites.empty": "아직 즐겨찾기가 없습니다",
-    "favorites.emptyDesc": "도구를 탐색하고 별 아이콘을 클릭하여 즐겨찾기에 추가하세요.",
+    "favorites.emptyDesc":
+      "도구를 탐색하고 별 아이콘을 클릭하여 즐겨찾기에 추가하세요.",
     "favorites.explore": "카테고리 탐색",
 
     "recent.title": "최근",
@@ -1179,7 +1300,8 @@ export const translations: Record<string, Record<string, string>> = {
 
     "hero.title": "OSINT",
     "hero.titleSuffix": "Centro de Comando",
-    "hero.subtitle": "Investigue mais rápido com ferramentas curadas para inteligência web, social, geoespacial, malware e dark web.",
+    "hero.subtitle":
+      "Investigue mais rápido com ferramentas curadas para inteligência web, social, geoespacial, malware e dark web.",
     "hero.explore": "Explorar Categorias",
     "hero.learnMore": "Saiba Mais",
     "hero.tools": "Ferramentas",
@@ -1218,27 +1340,36 @@ export const translations: Record<string, Record<string, string>> = {
     "health.avgSpeed": "Velocidade média",
     "health.recentChecks": "Verificações recentes",
     "health.lastChecked": "Última verificação",
-    "health.clickToCheck": "Clique em \"Verificar Agora\" para monitorar a disponibilidade",
+    "health.clickToCheck":
+      'Clique em "Verificar Agora" para monitorar a disponibilidade',
 
     "categories.title": "Inteligência",
     "categories.titleSuffix": "Categorias",
-    "categories.subtitle": "Selecione uma disciplina para explorar ferramentas OSINT especializadas para coleta e análise de inteligência.",
+    "categories.subtitle":
+      "Selecione uma disciplina para explorar ferramentas OSINT especializadas para coleta e análise de inteligência.",
     "categories.tools": "ferramentas",
     "categories.tool": "ferramenta",
     "categories.explore": "Explorar →",
 
     "darkweb.title": "Inteligência Dark Web",
-    "darkweb.subtitle": "Links ativos e arquivados de fóruns da dark web para pesquisa",
-    "darkweb.consent.title": "Verificação de Idade e Consentimento Legal Necessário",
-    "darkweb.consent.description": "Esta seção contém links para fóruns da dark web e serviços ocultos. Este conteúdo é destinado apenas a pesquisa de segurança legítima, estudo acadêmico e aplicação da lei.",
+    "darkweb.subtitle":
+      "Links ativos e arquivados de fóruns da dark web para pesquisa",
+    "darkweb.consent.title":
+      "Verificação de Idade e Consentimento Legal Necessário",
+    "darkweb.consent.description":
+      "Esta seção contém links para fóruns da dark web e serviços ocultos. Este conteúdo é destinado apenas a pesquisa de segurança legítima, estudo acadêmico e aplicação da lei.",
     "darkweb.consent.age": "Confirmo que tenho 18 anos ou mais",
-    "darkweb.consent.legal": "Entendo que acessar conteúdo ilegal é proibido e assumo total responsabilidade pelas minhas ações",
-    "darkweb.consent.research": "Usarei esta informação apenas para pesquisa legítima, educacional ou aplicação da lei",
+    "darkweb.consent.legal":
+      "Entendo que acessar conteúdo ilegal é proibido e assumo total responsabilidade pelas minhas ações",
+    "darkweb.consent.research":
+      "Usarei esta informação apenas para pesquisa legítima, educacional ou aplicação da lei",
     "darkweb.consent.enter": "Entrar no Diretório Dark Web",
     "darkweb.consent.goBack": "Voltar",
-    "darkweb.disclaimer": "Apenas para pesquisa de segurança legítima. Não hospedamos, espelhamos ou apoiamos atividade ilegal.",
+    "darkweb.disclaimer":
+      "Apenas para pesquisa de segurança legítima. Não hospedamos, espelhamos ou apoiamos atividade ilegal.",
 
-    "footer.description": "Plataforma profissional de inteligência open source para pesquisadores de cibersegurança.",
+    "footer.description":
+      "Plataforma profissional de inteligência open source para pesquisadores de cibersegurança.",
     "footer.quickLinks": "Links Rápidos",
     "footer.categories": "Categorias",
     "footer.legal": "Legal",
@@ -1263,7 +1394,7 @@ export const translations: Record<string, Record<string, string>> = {
 
     "category.notFound": "Categoria não encontrada",
     "category.available": "disponíveis",
-    "category.searchPlaceholder": "Pesquisar ferramentas... (pressione \"/\")",
+    "category.searchPlaceholder": 'Pesquisar ferramentas... (pressione "/")',
     "category.allStatus": "Todos os status",
     "category.working": "Funcionando",
     "category.notWorking": "Não funciona",
@@ -1278,7 +1409,8 @@ export const translations: Record<string, Record<string, string>> = {
     "favorites.count": "ferramenta favorita",
     "favorites.countPlural": "ferramentas favoritas",
     "favorites.empty": "Sem favoritos ainda",
-    "favorites.emptyDesc": "Explore ferramentas e clique no ícone de estrela para adicioná-las aos favoritos.",
+    "favorites.emptyDesc":
+      "Explore ferramentas e clique no ícone de estrela para adicioná-las aos favoritos.",
     "favorites.explore": "Explorar categorias",
 
     "recent.title": "Usados",

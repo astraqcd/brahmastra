@@ -4,9 +4,6 @@ import fallbackData from "./data.json";
 const SHEET_ID = "14S8ykMw3VkkfeAIKH97O-ohvgJu1n2xFSXbNaftIUzE";
 const SHEET_BASE_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`;
 
-/**
- * Each tab in the spreadsheet maps to a category via its GID.
- */
 const SHEET_TABS: { gid: string; categoryId: string }[] = [
   { gid: "275148106", categoryId: "PHONE_EMAIL" },
   { gid: "2138411365", categoryId: "SOCMINT" },
@@ -18,10 +15,6 @@ const SHEET_TABS: { gid: string; categoryId: string }[] = [
   { gid: "1451389906", categoryId: "DARKWEB" },
 ];
 
-/**
- * Map spreadsheet "Type" column values to internal category IDs.
- * Keys are lowercase for case-insensitive matching.
- */
 const TYPE_TO_CATEGORY: Record<string, string> = {
   "geo int": "GEOINT",
   geoint: "GEOINT",
@@ -62,24 +55,15 @@ const TYPE_TO_CATEGORY: Record<string, string> = {
   "malware intelligence": "MALWARE",
 };
 
-/**
- * Static category definitions — these don't change with the sheet.
- */
 const CATEGORIES = fallbackData.categories;
 
-/**
- * Lookup map: tool URL → existing tool data (for descriptions & tags).
- */
 const existingToolsByUrl = new Map(
-  fallbackData.tools.map((t) => [t.url.replace(/\/$/, ""), t])
+  fallbackData.tools.map((t) => [t.url.replace(/\/$/, ""), t]),
 );
 const existingToolsByName = new Map(
-  fallbackData.tools.map((t) => [t.name.toLowerCase(), t])
+  fallbackData.tools.map((t) => [t.name.toLowerCase(), t]),
 );
 
-/**
- * Very small CSV parser that handles quoted fields and newlines within quotes.
- */
 function parseCSV(csv: string): string[][] {
   const rows: string[][] = [];
   let currentRow: string[] = [];
@@ -122,7 +106,6 @@ function parseCSV(csv: string): string[][] {
     }
   }
 
-  // Last field / row
   if (currentField || currentRow.length > 0) {
     currentRow.push(currentField.trim());
     rows.push(currentRow);
@@ -140,7 +123,6 @@ function generateTags(name: string, category: string): string[] {
   const tags: string[] = [];
   const lower = name.toLowerCase();
 
-  // Category-based tags
   const catTags: Record<string, string[]> = {
     GEOINT: ["geolocation", "maps"],
     IMINT: ["image", "analysis"],
@@ -154,7 +136,6 @@ function generateTags(name: string, category: string): string[] {
 
   tags.push(...(catTags[category] || ["osint"]));
 
-  // Name-based hints
   if (lower.includes("map")) tags.push("maps");
   if (lower.includes("search")) tags.push("search");
   if (lower.includes("gpt") || lower.includes("ai")) tags.push("ai");
@@ -170,16 +151,11 @@ function generateDescription(name: string, category: string): string {
   return `${name} — a ${catLabel.toLowerCase()} tool for OSINT research and analysis.`;
 }
 
-/**
- * Fetch tools from all Google Sheet tabs and merge with existing data.
- * Falls back to static data.json if the fetch fails.
- */
 export async function fetchToolsData(): Promise<ToolsData> {
   try {
     const tools: Tool[] = [];
     const seenUrls = new Set<string>();
 
-    // Fetch all tabs in parallel
     const results = await Promise.allSettled(
       SHEET_TABS.map(async ({ gid, categoryId }) => {
         const url = `${SHEET_BASE_URL}&gid=${gid}`;
@@ -189,7 +165,7 @@ export async function fetchToolsData(): Promise<ToolsData> {
         if (!res.ok) return { categoryId, rows: [] as string[][] };
         const csv = await res.text();
         return { categoryId, rows: parseCSV(csv) };
-      })
+      }),
     );
 
     for (const result of results) {
@@ -197,16 +173,15 @@ export async function fetchToolsData(): Promise<ToolsData> {
       const { categoryId, rows } = result.value;
       if (rows.length < 2) continue;
 
-      // Detect column indices from header row
       const header = rows[0].map((h) => h.toLowerCase().trim());
       const toolCol = header.findIndex(
-        (h) => h === "tool" || h === "tool name" || h === "name" || h === "c"
+        (h) => h === "tool" || h === "tool name" || h === "name" || h === "c",
       );
       const linkCol = header.findIndex(
-        (h) => h === "link" || h === "url" || h === "d"
+        (h) => h === "link" || h === "url" || h === "d",
       );
       const workingCol = header.findIndex(
-        (h) => h === "working" || h === "status" || h === "w"
+        (h) => h === "working" || h === "status" || h === "w",
       );
 
       const nCol = toolCol >= 0 ? toolCol : 2;
@@ -219,7 +194,7 @@ export async function fetchToolsData(): Promise<ToolsData> {
         let link = row[lCol]?.trim();
 
         if (!name || !link) continue;
-        // Auto-prepend https:// if protocol is missing
+
         if (!link.startsWith("http")) {
           link = `https://${link}`;
         }
@@ -235,7 +210,8 @@ export async function fetchToolsData(): Promise<ToolsData> {
         let working = true;
         if (wCol >= 0 && row[wCol]) {
           const w = row[wCol].toLowerCase().trim();
-          working = w !== "no" && w !== "false" && w !== "0" && w !== "not working";
+          working =
+            w !== "no" && w !== "false" && w !== "0" && w !== "not working";
         } else if (existing) {
           working = existing.working;
         }
@@ -244,7 +220,8 @@ export async function fetchToolsData(): Promise<ToolsData> {
           name,
           url: link.trim(),
           category: categoryId,
-          description: existing?.description || generateDescription(name, categoryId),
+          description:
+            existing?.description || generateDescription(name, categoryId),
           working,
           tags: existing?.tags || generateTags(name, categoryId),
         });
