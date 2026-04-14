@@ -1,504 +1,766 @@
 {
   "tools": [
     {
-      "type": "AI",
-      "toolName": "Dork GPT",
-      "link": "https://www.dorkgpt.com/",
-      "working": true
+      "name": "Dork GPT",
+      "url": "https://www.dorkgpt.com/",
+      "category": "WEBINT",
+      "description": "AI-powered Google dork generator for advanced search operators and OSINT research.",
+      "working": true,
+      "tags": ["ai", "google-dorks", "search", "automation"]
+    },
+    {
+      "name": "ChatGPT",
+      "url": "https://chatgpt.com/",
+      "category": "WEBINT",
+      "description": "AI assistant for research, data analysis, and intelligence gathering workflows.",
+      "working": true,
+      "tags": ["ai", "research", "analysis"]
+    },
+    {
+      "name": "Gemini",
+      "url": "https://gemini.google.com/app",
+      "category": "WEBINT",
+      "description": "Google's AI model for research, analysis, and multi-modal intelligence processing.",
+      "working": true,
+      "tags": ["ai", "google", "research"]
+    },
+    {
+      "name": "DeepSeek",
+      "url": "https://chat.deepseek.com/",
+      "category": "WEBINT",
+      "description": "Advanced AI model for deep research and analytical intelligence tasks.",
+      "working": true,
+      "tags": ["ai", "research", "deep-analysis"]
+    },
+    {
+      "name": "Kali GPT",
+      "url": "https://chatgpt.com/g/g-uRhIB5ire-kali-gpt",
+      "category": "WEBINT",
+      "description": "Specialized AI for cybersecurity, penetration testing, and security research.",
+      "working": true,
+      "tags": ["ai", "security", "pentesting", "kali-linux"]
+    },
+    {
+      "name": "Perplexity",
+      "url": "https://www.perplexity.ai/",
+      "category": "WEBINT",
+      "description": "AI-powered search engine combining real-time web results with intelligent analysis.",
+      "working": true,
+      "tags": ["ai", "search", "research"]
+    },
+    {
+      "name": "Claude",
+      "url": "https://claude.ai/new",
+      "category": "WEBINT",
+      "description": "Advanced AI assistant for complex research, analysis, and intelligence synthesis.",
+      "working": true,
+      "tags": ["ai", "research", "analysis"]
+    },
+    {
+      "name": "Robin AI - Dark Web",
+      "url": "https://github.com/apurvsinghgautam/robin",
+      "category": "DARKWEB",
+      "description": "AI tool for dark web intelligence gathering and threat monitoring.",
+      "working": true,
+      "tags": ["ai", "dark-web", "threat-intel", "monitoring"]
+    },
+    {
+      "name": "Google Advanced Search",
+      "url": "https://www.google.com/advanced_search",
+      "category": "WEBINT",
+      "description": "Advanced search operators for precise web intelligence gathering and research.",
+      "working": true,
+      "tags": ["search", "google", "dorks"]
+    },
+    {
+      "name": "Shodan",
+      "url": "https://www.shodan.io/",
+      "category": "SIGINT",
+      "description": "Search engine for Internet-connected devices, IoT, and exposed services.",
+      "working": true,
+      "tags": ["iot", "devices", "vulnerabilities", "recon"]
+    },
+    {
+      "name": "crt.sh",
+      "url": "https://crt.sh/",
+      "category": "WEBINT",
+      "description": "Certificate transparency log search for subdomain enumeration and SSL analysis.",
+      "working": true,
+      "tags": ["ssl", "certificates", "subdomains", "recon"]
+    },
+    {
+      "name": "Yandex",
+      "url": "https://yandex.com/",
+      "category": "WEBINT",
+      "description": "Russian search engine excellent for OSINT in Eastern Europe and CIS regions.",
+      "working": true,
+      "tags": ["search", "russia", "regional"]
+    },
+    {
+      "name": "Bing",
+      "url": "https://www.bing.com/",
+      "category": "WEBINT",
+      "description": "Microsoft's search engine with unique indexing and advanced operators for OSINT.",
+      "working": true,
+      "tags": ["search", "microsoft"]
     },
     {
-      "type": "AI",
-      "toolName": "CHat Gpt",
-      "link": "https://chatgpt.com/",
-      "working": true
+      "name": "DuckDuckGo",
+      "url": "https://duckduckgo.com/",
+      "category": "WEBINT",
+      "description": "Privacy-focused search engine for anonymous OSINT research and investigations.",
+      "working": true,
+      "tags": ["search", "privacy", "anonymous"]
     },
     {
-      "type": "AI",
-      "toolName": "Gemini",
-      "link": "https://gemini.google.com/app",
-      "working": true
+      "name": "Google Hacking Database",
+      "url": "https://www.exploit-db.com/google-hacking-database",
+      "category": "WEBINT",
+      "description": "Database of Google dorks for finding exposed information and vulnerabilities.",
+      "working": true,
+      "tags": ["dorks", "vulnerabilities", "recon"]
     },
     {
-      "type": "AI",
-      "toolName": "Deep Seek",
-      "link": "https://chat.deepseek.com/",
-      "working": true
+      "name": "GHunt",
+      "url": "https://github.com/mxrch/Ghunt",
+      "category": "PHONE_EMAIL",
+      "description": "OSINT tool for extracting information from Google accounts and email addresses.",
+      "working": true,
+      "tags": ["google", "email", "recon", "osint"]
     },
     {
-      "type": "AI",
-      "toolName": "Kali Gpt",
-      "link": "https://chatgpt.com/g/g-uRhIB5ire-kali-gpt",
-      "working": true
+      "name": "Epieos",
+      "url": "https://epieos.com/",
+      "category": "PHONE_EMAIL",
+      "description": "Comprehensive email and phone number investigation tool with multi-source lookup.",
+      "working": true,
+      "tags": ["email", "phone", "investigation", "social-media"]
     },
     {
-      "type": "AI",
-      "toolName": "Perplexity",
-      "link": "https://www.perplexity.ai/",
-      "working": true
+      "name": "VirusTotal",
+      "url": "https://www.virustotal.com/",
+      "category": "MALWARE",
+      "description": "Multi-engine malware scanner and threat intelligence aggregation platform.",
+      "working": true,
+      "tags": ["malware", "scanning", "threat-intel", "hashes"]
     },
     {
-      "type": "AI",
-      "toolName": "Claude",
-      "link": "https://claude.ai/new",
-      "working": true
+      "name": "Web-Check",
+      "url": "https://web-check.as93.net/",
+      "category": "WEBINT",
+      "description": "All-in-one website reconnaissance tool for DNS, SSL, headers, and security analysis.",
+      "working": true,
+      "tags": ["recon", "dns", "ssl", "security"]
     },
     {
-      "type": "AI",
-      "toolName": "Robin AI - Dark Web",
-      "link": "https://github.com/apurvsinghgautam/robin",
-      "working": true
+      "name": "IntelTechniques",
+      "url": "https://inteltechniques.com/tools/Domain.html",
+      "category": "WEBINT",
+      "description": "Comprehensive domain intelligence and investigation toolkit by Michael Bazzell.",
+      "working": true,
+      "tags": ["domain", "recon", "investigation"]
     },
     {
-      "type": "Search Engine",
-      "toolName": "Google Advanced Search",
-      "link": "https://www.google.com/advanced_search",
-      "working": true
+      "name": "Wayback Machine",
+      "url": "https://web.archive.org/",
+      "category": "WEBINT",
+      "description": "Internet archive for viewing historical snapshots of websites and web pages.",
+      "working": true,
+      "tags": ["archive", "history", "snapshots"]
     },
     {
-      "type": "Search Engine",
-      "toolName": "Shodan",
-      "link": "https://www.shodan.io/",
-      "working": true
+      "name": "Bitly",
+      "url": "https://bitly.com/",
+      "category": "WEBINT",
+      "description": "URL shortener with link analytics and tracking capabilities for investigations.",
+      "working": true,
+      "tags": ["urls", "tracking", "analytics"]
     },
     {
-      "type": "Search Engine",
-      "toolName": "crt.sh",
-      "link": "https://crt.sh/",
-      "working": true
+      "name": "WhereGoes",
+      "url": "https://wheregoes.com/",
+      "category": "WEBINT",
+      "description": "URL expander and redirect tracer for investigating shortened links.",
+      "working": true,
+      "tags": ["urls", "redirects", "tracking"]
     },
     {
-      "type": "Search Engine",
-      "toolName": "Yandex",
-      "link": "https://yandex.com/",
-      "working": true
+      "name": "Google Lens",
+      "url": "https://lens.google/",
+      "category": "IMINT",
+      "description": "Reverse image search and visual recognition for identifying objects and locations.",
+      "working": true,
+      "tags": ["image", "reverse-search", "recognition"]
     },
     {
-      "type": "Search Engine",
-      "toolName": "Bing",
-      "link": "https://www.bing.com/",
-      "working": true
+      "name": "SunCalc",
+      "url": "https://www.suncalc.org/",
+      "category": "IMINT",
+      "description": "Sun position calculator for geolocating images based on shadows and lighting.",
+      "working": true,
+      "tags": ["geolocation", "shadows", "sun-position"]
     },
     {
-      "type": "Search Engine",
-      "toolName": "Duck Duck Go",
-      "link": "https://duckduckgo.com/",
-      "working": true
+      "name": "InVID",
+      "url": "https://www.invid-project.eu/",
+      "category": "IMINT",
+      "description": "Video verification toolkit for detecting manipulated media and deepfakes.",
+      "working": true,
+      "tags": ["video", "verification", "forensics"]
     },
     {
-      "type": "Search Engine",
-      "toolName": "Google Hacking DataBase",
-      "link": "https://www.exploit-db.com/google-hacking-database",
-      "working": true
+      "name": "FotoForensics",
+      "url": "https://29a.ch/photo-forensics/#forensic-magnifier",
+      "category": "IMINT",
+      "description": "Advanced photo forensics tool for detecting image manipulation and editing.",
+      "working": true,
+      "tags": ["forensics", "manipulation", "analysis"]
     },
     {
-      "type": "Search Engine",
-      "toolName": "G-Hunt Github",
-      "link": "https://github.com/mxrch/Ghunt",
-      "working": true
+      "name": "PimEyes",
+      "url": "https://pimeyes.com/en",
+      "category": "IMINT",
+      "description": "Facial recognition search engine for finding images of people across the web.",
+      "working": true,
+      "tags": ["facial-recognition", "people-search", "reverse-search"]
     },
     {
-      "type": "Search Engine",
-      "toolName": "Epioes",
-      "link": "https://epieos.com/",
-      "working": true
+      "name": "TinEye",
+      "url": "https://tineye.com/",
+      "category": "IMINT",
+      "description": "Reverse image search engine for tracking image origins and usage.",
+      "working": true,
+      "tags": ["reverse-search", "image-tracking"]
     },
     {
-      "type": "Search Engine",
-      "toolName": "Virus Total",
-      "link": "https://www.virustotal.com/",
-      "working": true
+      "name": "Jimpl",
+      "url": "https://jimpl.com/",
+      "category": "IMINT",
+      "description": "EXIF data viewer for extracting metadata from photos including GPS coordinates.",
+      "working": true,
+      "tags": ["exif", "metadata", "gps", "geolocation"]
     },
     {
-      "type": "Search Engine",
-      "toolName": "Web Check",
-      "link": "https://web-check.as93.net/",
-      "working": true
+      "name": "GeoSpy",
+      "url": "https://geospy.ai/",
+      "category": "GEOINT",
+      "description": "AI-powered image geolocation tool for identifying photo locations worldwide.",
+      "working": true,
+      "tags": ["geolocation", "ai", "images"]
     },
     {
-      "type": "Search Engine",
-      "toolName": "Intel Techniques",
-      "link": "https://inteltechniques.com/tools/Domain.html",
-      "working": true
+      "name": "Yandex Images",
+      "url": "https://yandex.com/images/",
+      "category": "IMINT",
+      "description": "Powerful reverse image search, especially effective for Eastern European content.",
+      "working": true,
+      "tags": ["reverse-search", "russia", "regional"]
     },
     {
-      "type": "Search Engine",
-      "toolName": "Wayback Machine",
-      "link": "https://web.archive.org/",
-      "working": true
+      "name": "Metadata2Go",
+      "url": "https://www.metadata2go.com/",
+      "category": "IMINT",
+      "description": "Online tool for viewing and removing metadata from images and documents.",
+      "working": true,
+      "tags": ["metadata", "exif", "privacy"]
     },
     {
-      "type": "Search Engine",
-      "toolName": "Bitly",
-      "link": "https://bitly.com/",
-      "working": true
+      "name": "MyHeritage Photo Enhancer",
+      "url": "https://www.myheritage.nl/photo-enhancer",
+      "category": "IMINT",
+      "description": "AI-powered photo enhancement and restoration for improving old or low-quality images.",
+      "working": true,
+      "tags": ["enhancement", "restoration", "ai"]
     },
     {
-      "type": "Search Engine",
-      "toolName": "Where Goes",
-      "link": "https://wheregoes.com/",
-      "working": true
+      "name": "ClipDrop",
+      "url": "https://clipdrop.co/cleanup",
+      "category": "IMINT",
+      "description": "AI tool for cleaning up images and removing unwanted objects from photos.",
+      "working": true,
+      "tags": ["editing", "cleanup", "ai"]
     },
     {
-      "type": "Image Int",
-      "toolName": "Google Lens",
-      "link": "https://lens.google/",
-      "working": true
+      "name": "Search4Faces",
+      "url": "https://search4faces.com/",
+      "category": "IMINT",
+      "description": "Facial recognition search across social media platforms including VK and Odnoklassniki.",
+      "working": true,
+      "tags": ["facial-recognition", "social-media", "russia"]
     },
     {
-      "type": "Image Int",
-      "toolName": "Sun Calc",
-      "link": "https://www.suncalc.org/",
-      "working": true
+      "name": "YouTube Metadata",
+      "url": "https://mattw.io/youtube-metadata/",
+      "category": "IMINT",
+      "description": "Extract and analyze metadata from YouTube videos for OSINT investigations.",
+      "working": true,
+      "tags": ["youtube", "metadata", "video"]
     },
     {
-      "type": "Image Int",
-      "toolName": "InVID",
-      "link": "https://www.invid-project.eu/",
-      "working": true
+      "name": "Have I Been Pwned",
+      "url": "https://haveibeenpwned.com/",
+      "category": "PHONE_EMAIL",
+      "description": "Check if email addresses or passwords have been compromised in data breaches.",
+      "working": true,
+      "tags": ["breach", "password", "email", "security"]
     },
     {
-      "type": "Image Int",
-      "toolName": "Photo Forensics",
-      "link": "https://29a.ch/photo-forensics/#forensic-magnifier",
-      "working": true
+      "name": "Hunter.io",
+      "url": "https://hunter.io",
+      "category": "PHONE_EMAIL",
+      "description": "Find and verify professional email addresses associated with domains.",
+      "working": true,
+      "tags": ["email", "domain", "verification"]
     },
     {
-      "type": "Image Int",
-      "toolName": "Pim Eye",
-      "link": "https://pimeyes.com/en",
-      "working": true
+      "name": "WhatsMyName",
+      "url": "https://whatsmyname.app/",
+      "category": "SOCMINT",
+      "description": "Username enumeration across 600+ social media and online platforms.",
+      "working": true,
+      "tags": ["username", "social-media", "enumeration"]
     },
     {
-      "type": "Image Int",
-      "toolName": "Tin Eye",
-      "link": "https://tineye.com/",
-      "working": true
+      "name": "Intelligence X",
+      "url": "https://intelx.io/tools?tab=email",
+      "category": "PHONE_EMAIL",
+      "description": "Search engine for data breaches, leaks, and darknet content.",
+      "working": true,
+      "tags": ["breach", "leaks", "darknet", "email"]
     },
     {
-      "type": "Image Int",
-      "toolName": "Jimple exif data",
-      "link": "https://jimpl.com/",
-      "working": true
+      "name": "Proofy",
+      "url": "https://proofy.io/",
+      "category": "PHONE_EMAIL",
+      "description": "Email verification and validation tool for OSINT investigations.",
+      "working": true,
+      "tags": ["email", "verification", "validation"]
     },
     {
-      "type": "Image Int",
-      "toolName": "Geo Spy",
-      "link": "https://geospy.ai/",
-      "working": true
+      "name": "Predicta Search",
+      "url": "https://www.predictasearch.com/",
+      "category": "PHONE_EMAIL",
+      "description": "Email finder and business contact discovery platform.",
+      "working": true,
+      "tags": ["email", "business", "contacts"]
     },
     {
-      "type": "Image Int",
-      "toolName": "Yandex image search",
-      "link": "https://yandex.com/images/",
-      "working": true
+      "name": "GetProspect",
+      "url": "https://getprospect.com/",
+      "category": "PHONE_EMAIL",
+      "description": "Email finder for LinkedIn profiles and company domains.",
+      "working": true,
+      "tags": ["email", "linkedin", "business"]
     },
     {
-      "type": "Image Int",
-      "toolName": "Meta data",
-      "link": "https://www.metadata2go.com/",
-      "working": true
+      "name": "AnyMailFinder",
+      "url": "https://anymailfinder.com/",
+      "category": "PHONE_EMAIL",
+      "description": "Find and verify email addresses for any professional contact.",
+      "working": true,
+      "tags": ["email", "finder", "verification"]
     },
     {
-      "type": "Image Int",
-      "toolName": "My Heritage Photo ENhancer",
-      "link": "https://www.myheritage.nl/photo-enhancer",
-      "working": true
+      "name": "Blackbird",
+      "url": "https://p1ngul1n0.gitbook.io/blackbird/",
+      "category": "SOCMINT",
+      "description": "Username search across 500+ social networks and platforms.",
+      "working": true,
+      "tags": ["username", "social-media", "osint"]
     },
     {
-      "type": "Image Int",
-      "toolName": "Clip Drop",
-      "link": "https://clipdrop.co/cleanup",
-      "working": true
+      "name": "Google Maps",
+      "url": "https://www.google.com/maps",
+      "category": "GEOINT",
+      "description": "Comprehensive mapping platform with street view, satellite imagery, and location data.",
+      "working": true,
+      "tags": ["maps", "geolocation", "street-view"]
     },
     {
-      "type": "Image Int",
-      "toolName": "Search4faces",
-      "link": "https://search4faces.com/",
-      "working": true
+      "name": "Bing Maps",
+      "url": "https://www.bing.com/maps",
+      "category": "GEOINT",
+      "description": "Microsoft's mapping service with unique bird's eye view imagery.",
+      "working": true,
+      "tags": ["maps", "satellite", "aerial"]
     },
     {
-      "type": "Image Int",
-      "toolName": "Mattw.io",
-      "link": "https://mattw.io/youtube-metadata/",
-      "working": true
+      "name": "Yandex Maps",
+      "url": "https://yandex.com/maps/",
+      "category": "GEOINT",
+      "description": "Russian mapping service with excellent coverage of Eastern Europe and Asia.",
+      "working": true,
+      "tags": ["maps", "russia", "regional"]
     },
     {
-      "type": "E Mail",
-      "toolName": "Haveibeenpwned",
-      "link": "https://haveibeenpwned.com/",
-      "working": true
+      "name": "Baidu Maps",
+      "url": "https://map.baidu.com/",
+      "category": "GEOINT",
+      "description": "Chinese mapping platform with detailed coverage of China and Asia.",
+      "working": true,
+      "tags": ["maps", "china", "asia"]
     },
     {
-      "type": "E Mail",
-      "toolName": "Epieos",
-      "link": "https://epieos.com/",
-      "working": true
+      "name": "Live Conflict Maps",
+      "url": "https://liveuamap.com/",
+      "category": "GEOINT",
+      "description": "Real-time conflict and crisis mapping with verified incident reporting.",
+      "working": true,
+      "tags": ["conflict", "crisis", "monitoring", "real-time"]
     },
     {
-      "type": "E Mail",
-      "toolName": "hunter.io",
-      "link": "hunter.io",
-      "working": true
+      "name": "Satellite Pro",
+      "url": "https://satellites.pro/",
+      "category": "GEOINT",
+      "description": "High-resolution satellite imagery viewer with global coverage.",
+      "working": true,
+      "tags": ["satellite", "imagery", "high-resolution"]
     },
     {
-      "type": "E Mail",
-      "toolName": "Whatsmyname",
-      "link": "https://whatsmyname.app/",
-      "working": true
+      "name": "Mapillary",
+      "url": "https://www.mapillary.com/app/",
+      "category": "GEOINT",
+      "description": "Crowdsourced street-level imagery platform for location intelligence.",
+      "working": true,
+      "tags": ["street-view", "crowdsourced", "imagery"]
     },
     {
-      "type": "E Mail",
-      "toolName": "intelx",
-      "link": "https://intelx.io/tools?tab=email",
-      "working": true
+      "name": "NASA FIRMS",
+      "url": "https://firms.modaps.eosdis.nasa.gov/map/",
+      "category": "GEOINT",
+      "description": "Fire detection and monitoring using satellite data from NASA.",
+      "working": true,
+      "tags": ["fire", "satellite", "monitoring", "nasa"]
     },
     {
-      "type": "E Mail",
-      "toolName": "Proofy",
-      "link": "https://proofy.io/",
-      "working": true
+      "name": "Google Earth",
+      "url": "https://earth.google.com/web/",
+      "category": "GEOINT",
+      "description": "3D satellite imagery and historical imagery for geospatial analysis.",
+      "working": true,
+      "tags": ["satellite", "3d", "historical", "imagery"]
     },
     {
-      "type": "E Mail",
-      "toolName": "Predicta Search",
-      "link": "https://www.predictasearch.com/",
-      "working": true
+      "name": "FlightRadar24",
+      "url": "https://www.flightradar24.com/",
+      "category": "GEOINT",
+      "description": "Real-time flight tracking with aircraft details and historical flight data.",
+      "working": true,
+      "tags": ["aviation", "tracking", "real-time"]
     },
     {
-      "type": "E Mail",
-      "toolName": "GetProspect",
-      "link": "https://getprospect.com/",
-      "working": true
+      "name": "MarineTraffic",
+      "url": "https://www.marinetraffic.com/en/ais/home/",
+      "category": "GEOINT",
+      "description": "Real-time vessel tracking using AIS data for maritime intelligence.",
+      "working": true,
+      "tags": ["maritime", "vessels", "tracking", "ais"]
     },
     {
-      "type": "E Mail",
-      "toolName": "Anymailfinder",
-      "link": "https://anymailfinder.com/",
-      "working": true
+      "name": "Zoom Earth",
+      "url": "https://zoom.earth/maps/satellite/",
+      "category": "GEOINT",
+      "description": "Near real-time satellite imagery and weather visualization.",
+      "working": true,
+      "tags": ["satellite", "weather", "real-time"]
     },
     {
-      "type": "E Mail",
-      "toolName": "Blackbird",
-      "link": "https://p1ngul1n0.gitbook.io/blackbird/",
-      "working": true
+      "name": "FlightRadar24 GPS Jamming",
+      "url": "https://www.flightradar24.com/data/gps-jamming",
+      "category": "SIGINT",
+      "description": "Track GPS jamming and interference affecting aircraft worldwide.",
+      "working": true,
+      "tags": ["gps", "jamming", "signals", "aviation"]
     },
     {
-      "type": "Geo INT",
-      "toolName": "Google Maps",
-      "link": "https://www.google.com/maps",
-      "working": true
+      "name": "Reddit Post Analyser",
+      "url": "https://www.osintcombine.com/free-osint-tools/reddit-post-analyser",
+      "category": "SOCMINT",
+      "description": "Analyze Reddit posts and user activity for social media intelligence.",
+      "working": false,
+      "tags": ["reddit", "social-media", "analysis"]
     },
     {
-      "type": "Geo INT",
-      "toolName": "Bing Maps",
-      "link": "https://www.bing.com/maps",
-      "working": true
+      "name": "Nitter",
+      "url": "https://nitter.net/",
+      "category": "SOCMINT",
+      "description": "Privacy-focused Twitter frontend for anonymous social media intelligence.",
+      "working": true,
+      "tags": ["twitter", "privacy", "anonymous"]
     },
     {
-      "type": "Geo INT",
-      "toolName": "Yandex Maps",
-      "link": "https://yandex.com/maps/",
-      "working": true
+      "name": "Sherlock",
+      "url": "https://github.com/sherlock-project/sherlock",
+      "category": "SOCMINT",
+      "description": "Hunt down social media accounts by username across 300+ platforms.",
+      "working": true,
+      "tags": ["username", "social-media", "osint", "cli"]
     },
     {
-      "type": "Geo INT",
-      "toolName": "Baidu Maps",
-      "link": "https://map.baidu.com/",
-      "working": true
+      "name": "Toutatis",
+      "url": "https://github.com/megadose/toutatis",
+      "category": "SOCMINT",
+      "description": "Instagram information gathering tool for profile analysis and OSINT.",
+      "working": false,
+      "tags": ["instagram", "social-media", "recon"]
     },
     {
-      "type": "Geo INT",
-      "toolName": "Suncalc",
-      "link": "https://www.suncalc.org/",
-      "working": true
+      "name": "TWINT",
+      "url": "https://github.com/twintproject/twint",
+      "category": "SOCMINT",
+      "description": "Advanced Twitter scraping tool without using Twitter API.",
+      "working": false,
+      "tags": ["twitter", "scraping", "osint"]
     },
     {
-      "type": "Geo INT",
-      "toolName": "Live Conflict Maps",
-      "link": "https://liveuamap.com/",
-      "working": true
+      "name": "Strava",
+      "url": "https://www.strava.com",
+      "category": "GEOINT",
+      "description": "Athletic activity tracking platform useful for geolocation and pattern analysis.",
+      "working": true,
+      "tags": ["fitness", "tracking", "geolocation"]
     },
     {
-      "type": "Geo INT",
-      "toolName": "Satellite Pro",
-      "link": "https://satellites.pro/",
-      "working": true
+      "name": "X Advanced Search",
+      "url": "https://x.com/search-advanced",
+      "category": "SOCMINT",
+      "description": "Advanced search operators for X (Twitter) intelligence gathering.",
+      "working": true,
+      "tags": ["twitter", "search", "operators"]
     },
     {
-      "type": "Geo INT",
-      "toolName": "Mapilliary",
-      "link": "https://www.mapillary.com/app/",
-      "working": true
+      "name": "YouTube GeoFind",
+      "url": "https://mattw.io/youtube-geofind/location",
+      "category": "GEOINT",
+      "description": "Search YouTube videos by geographic location and radius.",
+      "working": true,
+      "tags": ["youtube", "geolocation", "video"]
     },
     {
-      "type": "Geo INT",
-      "toolName": "NASA Firms",
-      "link": "https://firms.modaps.eosdis.nasa.gov/map/",
-      "working": true
+      "name": "LinkedIn Intelligence X",
+      "url": "https://intelx.io/tools?tab=linkedin",
+      "category": "SOCMINT",
+      "description": "Search LinkedIn data leaks and professional information.",
+      "working": true,
+      "tags": ["linkedin", "professional", "leaks"]
     },
     {
-      "type": "Geo INT",
-      "toolName": "Google Earth",
-      "link": "https://earth.google.com/web/",
-      "working": true
+      "name": "Facebook Video Downloader",
+      "url": "https://fdown.net/",
+      "category": "SOCMINT",
+      "description": "Download Facebook videos for offline analysis and archiving.",
+      "working": true,
+      "tags": ["facebook", "video", "download"]
     },
     {
-      "type": "Geo INT",
-      "toolName": "Flight Radar 24",
-      "link": "https://www.flightradar24.com/",
-      "working": true
+      "name": "Have I Been Zuckered",
+      "url": "https://haveibeenzuckered.com/",
+      "category": "SOCMINT",
+      "description": "Check if your data was exposed in the Cambridge Analytica Facebook breach.",
+      "working": true,
+      "tags": ["facebook", "breach", "privacy"]
     },
     {
-      "type": "Geo INT",
-      "toolName": "Marine Traffic",
-      "link": "https://www.marinetraffic.com/en/ais/home/",
-      "working": true
+      "name": "SowSearch",
+      "url": "https://sowsearch.info/",
+      "category": "SOCMINT",
+      "description": "Social media search engine for finding profiles and content across platforms.",
+      "working": true,
+      "tags": ["social-media", "search", "profiles"]
     },
     {
-      "type": "Geo INT",
-      "toolName": "Zoom Earth",
-      "link": "https://zoom.earth/maps/satellite/",
-      "working": true
+      "name": "Instaloader",
+      "url": "https://instaloader.github.io/",
+      "category": "SOCMINT",
+      "description": "Download Instagram photos, videos, stories, and profile metadata.",
+      "working": true,
+      "tags": ["instagram", "download", "archiving"]
     },
     {
-      "type": "Geo INT",
-      "toolName": "Flight Radar 24 - GPS JAMMING",
-      "link": "https://www.flightradar24.com/data/gps-jamming",
-      "working": true
+      "name": "TikTok Downloader",
+      "url": "https://www.tikvib.com/",
+      "category": "SOCMINT",
+      "description": "Download TikTok videos without watermarks for analysis and archiving.",
+      "working": true,
+      "tags": ["tiktok", "video", "download"]
     },
     {
-      "type": "Social Media INT",
-      "toolName": "Whats My name",
-      "link": "https://whatsmyname.app/",
-      "working": true
+      "name": "Instagram Story Saver",
+      "url": "https://www.storysaver.net/en/",
+      "category": "SOCMINT",
+      "description": "Save Instagram stories and highlights before they disappear.",
+      "working": true,
+      "tags": ["instagram", "stories", "archiving"]
     },
     {
-      "type": "Social Media INT",
-      "toolName": "REdit",
-      "link": "https://www.osintcombine.com/free-osint-tools/reddit-post-analyser",
-      "working": "FALSE"
+      "name": "LinkedIn Overlay Remover",
+      "url": "https://addons.mozilla.org/nl/firefox/addon/linkedin-overlay-remover/",
+      "category": "SOCMINT",
+      "description": "Browser extension to bypass LinkedIn login walls and access profiles.",
+      "working": true,
+      "tags": ["linkedin", "bypass", "extension"]
     },
     {
-      "type": "Social Media INT",
-      "toolName": "Twitter clone",
-      "link": "https://nitter.net/",
-      "working": true
-    },
-    {
-      "type": "Social Media INT",
-      "toolName": "Epios",
-      "link": "https://epieos.com/",
-      "working": true
-    },
-    {
-      "type": "Social Media INT",
-      "toolName": "Sherlock",
-      "link": "https://github.com/sherlock-project/sherlock",
-      "working": true
-    },
-    {
-      "type": "Social Media INT",
-      "toolName": "Toutatis - Instagram info gatherer",
-      "link": "https://github.com/megadose/toutatis",
-      "working": "FALSE"
-    },
-    {
-      "type": "Social Media INT",
-      "toolName": "TWINT",
-      "link": "https://github.com/twintproject/twint",
-      "working": "FALSE"
-    },
-    {
-      "type": "Social Media INT",
-      "toolName": "Strava",
-      "link": "https://www.strava.com",
-      "working": "FALSE"
-    },
-    {
-      "type": "Social Media INT",
-      "toolName": "X Advanced search",
-      "link": "https://x.com/search-advanced",
-      "working": "FALSE"
-    },
-    {
-      "type": "Social Media INT",
-      "toolName": "Youtube location",
-      "link": "https://mattw.io/youtube-geofind/location",
-      "working": "FALSE"
-    },
-    {
-      "type": "Social Media INT",
-      "toolName": "Linked in",
-      "link": "https://intelx.io/tools?tab=linkedin",
-      "working": "FALSE"
-    },
-    {
-      "type": "Social Media INT",
-      "toolName": "Facebook Video Downloader",
-      "link": "https://fdown.net/",
-      "working": true
-    },
-    {
-      "type": "Social Media INT",
-      "toolName": "Facebook Data Breach checker",
-      "link": "https://haveibeenzuckered.com/",
-      "working": true
-    },
-    {
-      "type": "Social Media INT",
-      "toolName": "Sow Search",
-      "link": "https://sowsearch.info/",
-      "working": true
-    },
-    {
-      "type": "Social Media INT",
-      "toolName": "Instaloader",
-      "link": "https://instaloader.github.io/",
-      "working": true
-    },
-    {
-      "type": "Social Media INT",
-      "toolName": "Tiktok Downloader",
-      "link": "https://www.tikvib.com/",
-      "working": true
-    },
-    {
-      "type": "Social Media INT",
-      "toolName": "Instagram story saver",
-      "link": "https://www.storysaver.net/en/",
-      "working": true
-    },
-    {
-      "type": "Social Media INT",
-      "toolName": "LinkedIn Overlay Remover",
-      "link": "https://addons.mozilla.org/nl/firefox/addon/linkedin-overlay-remover/",
-      "working": true
-    },
-    {
-      "type": "Social Media INT",
-      "toolName": "Namechk",
-      "link": "https://namechk.com/",
-      "working": true
-    },
-    {
-      "type": "Social Media INT",
-      "toolName": "Open Measures",
-      "link": "https://openmeasures.io/",
-      "working": true
-    },
-    {
-      "type": "Social Media INT",
-      "toolName": "tiktok-hashtag-analysis",
-      "link": "https://github.com/bellingcat/tiktok-hashtag-analysis",
-      "working": true
+      "name": "Namechk",
+      "url": "https://namechk.com/",
+      "category": "SOCMINT",
+      "description": "Check username availability across 100+ social networks and domains.",
+      "working": true,
+      "tags": ["username", "availability", "social-media"]
+    },
+    {
+      "name": "OpenMeasures",
+      "url": "https://openmeasures.io/",
+      "category": "SOCMINT",
+      "description": "Social media analytics and monitoring platform for audience intelligence.",
+      "working": true,
+      "tags": ["analytics", "monitoring", "social-media"]
+    },
+    {
+      "name": "TikTok Hashtag Analysis",
+      "url": "https://github.com/bellingcat/tiktok-hashtag-analysis",
+      "category": "SOCMINT",
+      "description": "Analyze TikTok hashtags and track viral content by Bellingcat.",
+      "working": true,
+      "tags": ["tiktok", "hashtags", "analysis", "bellingcat"]
+    },
+    {
+      "name": "Ahmia",
+      "url": "https://ahmia.fi/",
+      "category": "DARKWEB",
+      "description": "Search engine for .onion sites, providing access to hidden services on the Tor network.",
+      "working": true,
+      "tags": ["tor", "onion", "search", "hidden-services"]
+    },
+    {
+      "name": "Tor Project",
+      "url": "https://www.torproject.org/",
+      "category": "DARKWEB",
+      "description": "The official Tor browser and network for anonymous dark web access and research.",
+      "working": true,
+      "tags": ["tor", "anonymity", "browser", "privacy"]
+    },
+    {
+      "name": "OnionSearch",
+      "url": "https://github.com/megadose/OnionSearch",
+      "category": "DARKWEB",
+      "description": "Script to scrape URLs from .onion search engines for dark web OSINT.",
+      "working": true,
+      "tags": ["onion", "scraping", "cli", "search"]
+    },
+    {
+      "name": "DarkSearch",
+      "url": "https://darksearch.io/",
+      "category": "DARKWEB",
+      "description": "Free dark web search engine with API access for threat intelligence.",
+      "working": true,
+      "tags": ["search", "api", "threat-intel", "dark-web"]
+    },
+    {
+      "name": "Hunchly",
+      "url": "https://www.hunch.ly/darkweb-osint/",
+      "category": "DARKWEB",
+      "description": "Dark web OSINT tool for capturing and documenting dark web investigations.",
+      "working": true,
+      "tags": ["investigation", "capture", "documentation", "dark-web"]
+    },
+    {
+      "name": "TorBot",
+      "url": "https://github.com/DedSecInside/TorBot",
+      "category": "DARKWEB",
+      "description": "Open source dark web intelligence tool for crawling and analyzing .onion sites.",
+      "working": true,
+      "tags": ["crawler", "onion", "analysis", "osint"]
+    },
+    {
+      "name": "Onion.live",
+      "url": "https://onion.live/",
+      "category": "DARKWEB",
+      "description": "Dark web directory listing verified .onion sites with uptime monitoring.",
+      "working": true,
+      "tags": ["directory", "onion", "monitoring", "dark-web"]
+    },
+    {
+      "name": "Dark Web Map",
+      "url": "https://www.hyperiongray.com/dark-web-map/",
+      "category": "DARKWEB",
+      "description": "Visual map of dark web .onion sites showing interconnections and clusters.",
+      "working": true,
+      "tags": ["visualization", "mapping", "onion", "analysis"]
+    },
+    {
+      "name": "Exonerator",
+      "url": "https://metrics.torproject.org/exonerator.html",
+      "category": "DARKWEB",
+      "description": "Check if an IP address was used as a Tor relay at a given time.",
+      "working": true,
+      "tags": ["tor", "ip-lookup", "relay", "forensics"]
+    },
+    {
+      "name": "OSINT Industries",
+      "url": "https://osint.industries/",
+      "category": "DARKWEB",
+      "description": "Dark web monitoring and intelligence platform for breach data and threat intel.",
+      "working": true,
+      "tags": ["monitoring", "breach", "threat-intel", "dark-web"]
     }
   ],
   "categories": [
-    "Social Media INT",
-    "Image Int",
-    "Search Engine",
-    "Geo INT",
-    "AI",
-    "E Mail"
+    {
+      "id": "GEOINT",
+      "name": "GEOINT",
+      "title": "Geospatial Intelligence",
+      "description": "Maps, satellite imagery, flight tracking, and location-based intelligence gathering.",
+      "slug": "geoint"
+    },
+    {
+      "id": "IMINT",
+      "name": "IMINT",
+      "title": "Imagery Intelligence",
+      "description": "Reverse image search, photo forensics, facial recognition, and visual media analysis.",
+      "slug": "imint"
+    },
+    {
+      "id": "SOCMINT",
+      "name": "SOCMINT",
+      "title": "Social Media Intelligence",
+      "description": "Social network reconnaissance, username enumeration, and profile investigation tools.",
+      "slug": "socmint"
+    },
+    {
+      "id": "WEBINT",
+      "name": "WEBINT",
+      "title": "Web Intelligence",
+      "description": "Search engines, AI assistants, web archives, and general internet reconnaissance.",
+      "slug": "webint"
+    },
+    {
+      "id": "PHONE_EMAIL",
+      "name": "PHONE_EMAIL",
+      "title": "Phone & Email Intelligence",
+      "description": "Email verification, breach checking, phone lookup, and contact intelligence.",
+      "slug": "phone-email"
+    },
+    {
+      "id": "DARKWEB",
+      "name": "DARKWEB",
+      "title": "Dark Web Intelligence",
+      "description": "Tor network tools, .onion search engines, dark web monitoring, and hidden service analysis.",
+      "slug": "darkweb"
+    },
+    {
+      "id": "SIGINT",
+      "name": "SIGINT",
+      "title": "Signals Intelligence",
+      "description": "IoT search, device reconnaissance, signal monitoring, and network intelligence.",
+      "slug": "sigint"
+    },
+    {
+      "id": "MALWARE",
+      "name": "MALWARE",
+      "title": "Malware Intelligence",
+      "description": "Malware analysis, threat hunting, file scanning, and security research tools.",
+      "slug": "malware"
+    }
   ]
 }

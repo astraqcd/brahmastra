@@ -1,149 +1,156 @@
+"use client";
+
 import Link from "next/link";
-import { Github, Twitter } from "lucide-react";
+import { Github, Twitter, Globe } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
 
 export function Footer() {
+  const { t } = useI18n();
+
   return (
     <footer className="border-t border-border bg-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="flex h-8 w-8 items-center justify-center">
-                <svg
-                  viewBox="0 0 32 32"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-8 w-8"
-                >
-                  <path
-                    d="M16 2L4 8v16l12 6 12-6V8L16 2z"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <path
-                    d="M16 2v28M4 8l12 6 12-6M4 24l12-6 12 6"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  />
-                </svg>
+            <Link href="/" className="flex items-center gap-2 mb-4 group">
+              <div className="flex h-16 w-16 items-center justify-center">
+                <img
+                  src="/logo/astraq-brahmastra.png"
+                  alt="Brahmastra"
+                  className="h-16 w-16 object-contain"
+                />
               </div>
               <span className="text-lg font-semibold tracking-tight text-foreground">
                 Brahmastra
               </span>
             </Link>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Free, open-source OSINT toolkit for security researchers and
-              investigators.
+            <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+              {t("footer.description")}
             </p>
-            <div className="flex gap-4 mt-6">
+            <div className="flex gap-4">
               <Link
-                href="https://github.com"
+                href="https://github.com/astraqcd/brahmastra"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <Github className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </Link>
               <Link
-                href="https://twitter.com"
+                href="https://twitter.com/astraqcd"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <Twitter className="h-5 w-5" />
                 <span className="sr-only">Twitter</span>
               </Link>
+              <Link
+                href="https://astraqcyberdefence.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Globe className="h-5 w-5" />
+                <span className="sr-only">Website</span>
+              </Link>
             </div>
           </div>
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Tools</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t("footer.categories")}</h4>
             <ul className="space-y-3">
               <li>
                 <Link
-                  href="#tools"
+                  href="/category/geoint"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  Search Engines
+                  GEOINT
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#tools"
+                  href="/category/imint"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  Social Media
+                  IMINT
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#tools"
+                  href="/category/socmint"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  Domain & IP
+                  SOCMINT
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#tools"
+                  href="/category/webint"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  Data Breaches
+                  WEBINT
                 </Link>
               </li>
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Resources</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t("footer.quickLinks")}</h4>
             <ul className="space-y-3">
               <li>
                 <Link
-                  href="#"
+                  href="/"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  Documentation
+                  {t("nav.home")}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/favorites"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  API Reference
+                  {t("nav.favorites")}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/about"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  Tutorials
+                  {t("nav.about")}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Blog
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold text-foreground mb-4">Company</h4>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  href="#about"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="https://github.com"
+                  href="https://github.com/astraqcd/brahmastra"
                   target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {t("footer.contribute")}
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">{t("footer.company")}</h4>
+            <ul className="space-y-3">
+              <li>
+                <Link
+                  href="https://astraqcyberdefence.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  AstraQ Cyber Defence
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://github.com/astraqcd"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   GitHub
@@ -151,18 +158,22 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="https://github.com/astraqcd/brahmastra/issues"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  Contributing
+                  {t("footer.reportIssue")}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="https://github.com/astraqcd/brahmastra#contributing"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  Contact
+                  {t("footer.contributing")}
                 </Link>
               </li>
             </ul>
@@ -170,22 +181,10 @@ export function Footer() {
         </div>
         <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Brahmastra. Open source under MIT
-            License.
+            © {new Date().getFullYear()} Brahmastra by AstraQ Cyber Defence. {t("footer.rights")}
           </p>
-          <div className="flex gap-6">
-            <Link
-              href="#"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Privacy
-            </Link>
-            <Link
-              href="#"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Terms
-            </Link>
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-muted-foreground">{t("footer.builtFor")}</span>
           </div>
         </div>
       </div>
