@@ -5,9 +5,13 @@ import { Globe } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { GithubDark } from "./ui/svgs/githubDark";
 import { XDark } from "./ui/svgs/xDark";
+import { useTheme } from "next-themes";
+import { GithubLight } from "./ui/svgs/githubLight";
+import { X } from "./ui/svgs/x";
 
 export function Footer() {
   const { t } = useI18n();
+  const { theme } = useTheme();
 
   return (
     <footer className="border-t border-border bg-background">
@@ -36,8 +40,12 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
-                <GithubDark className="h-5 w-5" />
-                <span className="sr-only">GitHub</span>
+                {theme === "dark" ? (
+                  <GithubDark className="h-5 w-5" />
+                ) : (
+                  <GithubLight className="h-5 w-5" />
+                )}
+                <span className="sr-only">{t("footer.github")}</span>
               </Link>
               <Link
                 href="https://twitter.com/astraqcd"
@@ -45,8 +53,12 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
-                <XDark className="h-5 w-5" />
-                <span className="sr-only">Twitter</span>
+                {theme === "dark" ? (
+                  <XDark className="h-5 w-5" />
+                ) : (
+                  <X className="h-5 w-5" />
+                )}
+                <span className="sr-only">{t("footer.twitter")}</span>
               </Link>
               <Link
                 href="https://astraqcyberdefence.com"
@@ -55,7 +67,7 @@ export function Footer() {
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <Globe className="h-5 w-5" />
-                <span className="sr-only">Website</span>
+                <span className="sr-only">{t("footer.website")}</span>
               </Link>
             </div>
           </div>
@@ -151,7 +163,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  AstraQ Cyber Defence
+                  {t("footer.astraq")}
                 </Link>
               </li>
               <li>
@@ -161,7 +173,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  GitHub
+                  {t("footer.github")}
                 </Link>
               </li>
               <li>

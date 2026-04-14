@@ -117,8 +117,7 @@ export function ToolCard({ tool }: ToolCardProps) {
     "bg-foreground/5 text-foreground/70 border-foreground/10";
 
   return (
-    <Link
-      href={`/tool/${slugify(tool.name)}`}
+    <div
       className={`group relative flex flex-col h-full rounded-xl border bg-card/60 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-black/10 hover:-translate-y-0.5 overflow-hidden ${accent}`}
     >
       <div className="absolute top-0 left-4 right-4 h-px bg-linear-to-r from-transparent via-foreground/10 to-transparent group-hover:via-foreground/20 transition-colors" />
@@ -143,9 +142,9 @@ export function ToolCard({ tool }: ToolCardProps) {
                 {tool.name}
               </h3>
               {tool.working ? (
-                <CheckCircle2 className="h-3.5 w-3.5 text-green-500 flex-shrink-0" />
+                <CheckCircle2 className="h-3.5 w-3.5 text-green-500 shrink-0" />
               ) : (
-                <AlertCircle className="h-3.5 w-3.5 text-red-500 flex-shrink-0" />
+                <AlertCircle className="h-3.5 w-3.5 text-red-500 shrink-0" />
               )}
             </div>
             <span
@@ -157,7 +156,7 @@ export function ToolCard({ tool }: ToolCardProps) {
           <button
             type="button"
             onClick={toggleFavorite}
-            className="flex-shrink-0 p-1.5 -m-1 rounded-lg hover:bg-foreground/5 transition-colors"
+            className="shrink-0 p-1.5 -m-1 rounded-lg hover:bg-foreground/5 transition-colors"
             aria-label={
               isFavorite ? t("tool.favorited") : t("tool.addFavorite")
             }
@@ -181,13 +180,13 @@ export function ToolCard({ tool }: ToolCardProps) {
             {tool.tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
-                className="text-[10px] px-2 py-0.5 rounded-md bg-foreground/4 text-foreground/50 border border-foreground/[0.06] font-medium"
+                className="text-[10px] px-2 py-0.5 rounded-md bg-foreground/4 text-foreground/50 border border-foreground/6 font-medium"
               >
                 {tag}
               </span>
             ))}
             {tool.tags.length > 3 && (
-              <span className="text-[10px] px-2 py-0.5 rounded-md bg-foreground/4 text-foreground/40 border border-foreground/[0.06] font-medium">
+              <span className="text-[10px] px-2 py-0.5 rounded-md bg-foreground/4 text-foreground/40 border border-foreground/6 font-medium">
                 +{tool.tags.length - 3}
               </span>
             )}
@@ -203,7 +202,7 @@ export function ToolCard({ tool }: ToolCardProps) {
               e.stopPropagation();
               handleClick();
             }}
-            className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-foreground/4 hover:bg-foreground/[0.08] text-foreground/80 hover:text-foreground border border-foreground/[0.06] hover:border-foreground/[0.12] transition-all text-sm font-medium"
+            className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-foreground/4 hover:bg-foreground/8 text-foreground/80 hover:text-foreground border border-foreground/6 hover:border-foreground/12 transition-all text-sm font-medium"
           >
             {t("tool.visit")}
             <ArrowUpRight className="h-3.5 w-3.5" />
@@ -212,7 +211,7 @@ export function ToolCard({ tool }: ToolCardProps) {
           <button
             type="button"
             onClick={handleCopy}
-            className="px-2.5 py-2 rounded-lg bg-foreground/[0.04] hover:bg-foreground/[0.08] border border-foreground/[0.06] hover:border-foreground/[0.12] text-foreground/50 hover:text-foreground/80 transition-all"
+            className="px-2.5 py-2 rounded-lg bg-foreground/4 hover:bg-foreground/8 border border-foreground/6 hover:border-foreground/12 text-foreground/50 hover:text-foreground/80 transition-all"
             aria-label={t("tool.copyLink")}
           >
             {copied ? (
@@ -223,6 +222,6 @@ export function ToolCard({ tool }: ToolCardProps) {
           </button>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }

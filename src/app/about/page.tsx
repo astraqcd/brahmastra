@@ -1,15 +1,21 @@
+"use client";
+
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { Shield, Target, Users, Code, Award, Globe, ArrowRight } from "lucide-react";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "About",
-  description:
-    "Learn about Brahmastra OSINT and our mission to provide comprehensive intelligence gathering tools for cybersecurity professionals.",
-};
+import {
+  Shield,
+  Target,
+  Users,
+  Code,
+  Award,
+  Globe,
+  ArrowRight,
+} from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
 
 export default function AboutPage() {
+  const { t } = useI18n();
+
   return (
     <main className="min-h-screen bg-background">
       <Header />
@@ -19,38 +25,30 @@ export default function AboutPage() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 border border-foreground/10 mb-6">
             <Shield className="h-4 w-4 text-foreground/70" />
             <span className="text-xs font-medium text-foreground/70">
-              About Brahmastra
+              {t("about.badge")}
             </span>
           </div>
           <h1 className="font-mono text-4xl sm:text-5xl text-foreground mb-6 tracking-tight">
-            Open Source Intelligence
+            {t("about.title")}
             <br />
             <span className="text-foreground/60"></span>
           </h1>
-          <p className="text-lg text-muted-foreground">
-            Professional-grade OSINT toolkit curated for security researchers
-            and investigators worldwide.
-          </p>
+          <p className="text-lg text-muted-foreground">{t("about.subtitle")}</p>
         </div>
 
         <section className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <Target className="h-6 w-6 text-foreground/70" />
-            <h2 className="font-mono text-2xl text-foreground">Our Mission</h2>
+            <h2 className="font-mono text-2xl text-foreground">
+              {t("about.missionTitle")}
+            </h2>
           </div>
           <div className="prose prose-neutral dark:prose-invert max-w-none">
             <p className="text-muted-foreground leading-relaxed">
-              Brahmastra is a comprehensive Open Source Intelligence (OSINT)
-              platform designed to empower cybersecurity professionals,
-              researchers, and investigators with cutting-edge tools for
-              intelligence gathering and analysis.
+              {t("about.missionBody1")}
             </p>
             <p className="text-muted-foreground leading-relaxed mt-4">
-              Our mission is to democratize access to professional OSINT tools,
-              making them freely available to the security community. We curate
-              and organize the best intelligence gathering resources across
-              multiple disciplines, saving investigators valuable time and
-              improving their operational efficiency.
+              {t("about.missionBody2")}
             </p>
           </div>
         </section>
@@ -138,7 +136,9 @@ export default function AboutPage() {
         <section className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <Users className="h-6 w-6 text-foreground/70" />
-            <h2 className="font-mono text-2xl text-foreground">Who We Serve</h2>
+            <h2 className="font-mono text-2xl text-foreground">
+              {t("about.whoWeServeTitle")}
+            </h2>
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
             {[
@@ -178,7 +178,9 @@ export default function AboutPage() {
         <section className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <Award className="h-6 w-6 text-foreground/70" />
-            <h2 className="font-mono text-2xl text-foreground">Developed By</h2>
+            <h2 className="font-mono text-2xl text-foreground">
+              {t("about.developedByTitle")}
+            </h2>
           </div>
           <div className="p-6 rounded-xl border border-border bg-card">
             <h3 className="font-semibold text-lg text-foreground mb-2">
@@ -194,7 +196,7 @@ export default function AboutPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-foreground hover:text-foreground/70 transition-colors font-medium"
             >
-              Visit AstraQ
+              {t("about.visitAstraq")}
               <ArrowRight className="h-4 w-4" />
             </a>
           </div>
@@ -204,7 +206,7 @@ export default function AboutPage() {
           <div className="flex items-center gap-3 mb-6">
             <Code className="h-6 w-6 text-foreground/70" />
             <h2 className="font-mono text-2xl text-foreground">
-              Contribution Guide
+              {t("about.contributionGuideTitle")}
             </h2>
           </div>
           <div className="prose prose-neutral dark:prose-invert max-w-none">
@@ -215,7 +217,7 @@ export default function AboutPage() {
             </p>
             <div className="mt-6 p-6 rounded-xl border border-border bg-secondary/20">
               <h3 className="font-semibold text-foreground mb-3">
-                How to Contribute
+                {t("about.howToContribute")}
               </h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>• Submit new OSINT tools via GitHub pull requests</li>
@@ -230,7 +232,7 @@ export default function AboutPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg bg-foreground/5 hover:bg-foreground/10 text-foreground border border-foreground/10 transition-all text-sm font-medium"
               >
-                View on GitHub
+                {t("about.viewGithub")}
                 <ArrowRight className="h-4 w-4" />
               </a>
             </div>
@@ -240,14 +242,10 @@ export default function AboutPage() {
         <section>
           <div className="p-6 rounded-xl border border-yellow-500/20 bg-yellow-500/5">
             <h3 className="font-semibold text-foreground mb-2">
-              Legal Disclaimer
+              {t("about.legalDisclaimerTitle")}
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              These tools are provided for legitimate security research,
-              investigation, and educational purposes only. Users are
-              responsible for ensuring their activities comply with applicable
-              laws and regulations. Always obtain proper authorization before
-              conducting any investigation or security assessment.
+              {t("about.legalDisclaimerBody")}
             </p>
           </div>
         </section>

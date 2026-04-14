@@ -9,18 +9,16 @@ import {
   Search,
   Globe,
   Lock,
-  Unlock,
   Users,
-  AlertCircle,
   CheckCircle2,
   XCircle,
   Ban,
   HelpCircle,
-  Filter,
   ExternalLink,
   Copy,
   CheckCheck,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -30,39 +28,15 @@ import type {
   DarkWebForum,
   DarkWebCategory,
 } from "@/lib/darkweb-types";
+import type { TranslationKey } from "@/lib/i18n/translations";
 import { DARKWEB_CATEGORIES } from "@/lib/darkweb-types";
 
 interface DarkWebClientProps {
   data: DarkWebData;
 }
 
-const STATUS_CONFIG = {
-  active: {
-    label: "Active",
-    icon: CheckCircle2,
-    color: "text-green-400 bg-green-500/10 border-green-500/20",
-  },
-  inactive: {
-    label: "Inactive",
-    icon: XCircle,
-    color: "text-red-400 bg-red-500/10 border-red-500/20",
-  },
-  seized: {
-    label: "Seized",
-    icon: Ban,
-    color: "text-orange-400 bg-orange-500/10 border-orange-500/20",
-  },
-  scam: {
-    label: "Scam",
-    icon: AlertTriangle,
-    color: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20",
-  },
-  unknown: {
-    label: "Unknown",
-    icon: HelpCircle,
-    color: "text-gray-400 bg-gray-500/10 border-gray-500/20",
-  },
-};
+type DarkwebStatusFilter = "all" | "active" | "inactive" | "seized" | "scam";
+type StatusConfig = { label: string; icon: LucideIcon; color: string };
 
 // TODO: Use proper keys
 const TURNSTILE_SITE_KEY =
@@ -78,7 +52,8 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
   const [selectedCategory, setSelectedCategory] = useState<
     DarkWebCategory | "all"
   >("all");
-  const [selectedStatus, setSelectedStatus] = useState<string>("all");
+  const [selectedStatus, setSelectedStatus] =
+    useState<DarkwebStatusFilter>("all");
   const [copiedUrl, setCopiedUrl] = useState<string | null>(null);
 
   useEffect(() => {
@@ -89,6 +64,33 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
   }, []);
 
   const { t } = useI18n();
+  const statusConfigMap: Record<DarkWebForum["status"], StatusConfig> = {
+    active: {
+      label: t("darkweb.status.active"),
+      icon: CheckCircle2,
+      color: "text-green-400 bg-green-500/10 border-green-500/20",
+    },
+    inactive: {
+      label: t("darkweb.status.inactive"),
+      icon: XCircle,
+      color: "text-red-400 bg-red-500/10 border-red-500/20",
+    },
+    seized: {
+      label: t("darkweb.status.seized"),
+      icon: Ban,
+      color: "text-orange-400 bg-orange-500/10 border-orange-500/20",
+    },
+    scam: {
+      label: t("darkweb.status.scam"),
+      icon: AlertTriangle,
+      color: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20",
+    },
+    unknown: {
+      label: t("darkweb.status.unknown"),
+      icon: HelpCircle,
+      color: "text-gray-400 bg-gray-500/10 border-gray-500/20",
+    },
+  };
 
   const handleConsent = () => {
     if (
@@ -150,15 +152,12 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
               <AlertTriangle className="h-5 w-5 text-yellow-500 shrink-0 mt-0.5" />
               <div className="text-sm text-muted-foreground space-y-2">
                 <p>
-                  <strong className="text-foreground">Warning:</strong> Some
-                  links may lead to content that is illegal in your
-                  jurisdiction. We are a directory and do not host, endorse, or
-                  facilitate access to illegal materials.
+                  <strong className="text-foreground">
+                    {t("darkweb.warning.title")}
+                  </strong>{" "}
+                  {t("darkweb.warning.body1")}
                 </p>
-                <p>
-                  Accessing these resources without proper authorization may
-                  violate local, national, or international law.
-                </p>
+                <p>{t("darkweb.warning.body2")}</p>
               </div>
             </div>
           </div>
@@ -247,16 +246,15 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 mb-4">
             <EyeOff className="h-4 w-4 text-red-400" />
             <span className="text-xs font-medium text-red-400">
-              18+ Research Only
+              {t("darkweb.researchOnly")}
             </span>
           </div>
           <h1 className="font-mono text-3xl sm:text-4xl text-foreground mb-3 tracking-tight">
             {t("darkweb.title")}
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Directory of {data.forums.length} dark web resources including
-            forums, search engines, and hidden services. For OSINT research
-            purposes only.
+            {t("darkweb.directoryPrefix")} {data.forums.length}{" "}
+            {t("darkweb.directorySuffix")}
           </p>
         </div>
 
@@ -267,7 +265,7 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search forums, services, tools..."
+              placeholder={t("darkweb.searchPlaceholder")}
               className="w-full pl-11 pr-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500/30 transition-all text-sm"
             />
           </div>
@@ -282,7 +280,7 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
                   : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
               }`}
             >
-              All Categories
+              {t("darkweb.allCategories")}
             </button>
             {DARKWEB_CATEGORIES.map((cat) => (
               <button
@@ -301,7 +299,15 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-2">
-            {["all", "active", "inactive", "seized", "scam"].map((status) => (
+            {(
+              [
+                "all",
+                "active",
+                "inactive",
+                "seized",
+                "scam",
+              ] as DarkwebStatusFilter[]
+            ).map((status) => (
               <button
                 key={status}
                 type="button"
@@ -313,8 +319,8 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
                 }`}
               >
                 {status === "all"
-                  ? "All Status"
-                  : status.charAt(0).toUpperCase() + status.slice(1)}
+                  ? t("darkweb.allStatus")
+                  : statusConfigMap[status].label}
               </button>
             ))}
           </div>
@@ -322,7 +328,8 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
 
         <div className="mb-6 text-center">
           <span className="text-sm text-muted-foreground">
-            Showing {filteredForums.length} of {data.forums.length} resources
+            {t("darkweb.showingPrefix")} {filteredForums.length}{" "}
+            {t("darkweb.of")} {data.forums.length} {t("darkweb.resources")}
           </span>
         </div>
 
@@ -333,6 +340,8 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
               forum={forum}
               onCopy={handleCopy}
               copiedUrl={copiedUrl}
+              statusConfigMap={statusConfigMap}
+              t={t}
             />
           ))}
         </div>
@@ -340,9 +349,7 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
         {filteredForums.length === 0 && (
           <div className="text-center py-16">
             <EyeOff className="h-12 w-12 text-muted-foreground/30 mx-auto mb-4" />
-            <p className="text-muted-foreground">
-              No resources match your filters.
-            </p>
+            <p className="text-muted-foreground">{t("darkweb.noResults")}</p>
           </div>
         )}
 
@@ -350,19 +357,11 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
           <div className="flex items-start gap-3">
             <AlertTriangle className="h-5 w-5 text-red-400 shrink-0 mt-0.5" />
             <div className="text-sm text-muted-foreground space-y-2">
-              <p className="font-semibold text-foreground">Disclaimer</p>
-              <p>
-                This directory is provided for legitimate security research,
-                academic study, and law enforcement purposes only. We do not
-                host, mirror, or endorse any illegal activity. Links are
-                provided as-is for educational reference. Access at your own
-                risk.
+              <p className="font-semibold text-foreground">
+                {t("darkweb.disclaimerTitle")}
               </p>
-              <p>
-                Some listed services may be scams, law enforcement honeypots, or
-                phishing sites. Always verify through multiple sources before
-                trusting any dark web resource.
-              </p>
+              <p>{t("darkweb.disclaimerBody1")}</p>
+              <p>{t("darkweb.disclaimerBody2")}</p>
             </div>
           </div>
         </div>
@@ -377,12 +376,16 @@ function ForumCard({
   forum,
   onCopy,
   copiedUrl,
+  statusConfigMap,
+  t,
 }: {
   forum: DarkWebForum;
   onCopy: (url: string) => void;
   copiedUrl: string | null;
+  statusConfigMap: Record<DarkWebForum["status"], StatusConfig>;
+  t: (key: TranslationKey) => string;
 }) {
-  const statusConfig = STATUS_CONFIG[forum.status];
+  const statusConfig = statusConfigMap[forum.status];
   const StatusIcon = statusConfig.icon;
 
   return (
@@ -391,7 +394,8 @@ function ForumCard({
         <div className="bg-orange-500/20 border-b border-orange-500/30 px-4 py-1.5 flex items-center gap-2">
           <Ban className="h-3 w-3 text-orange-400" />
           <span className="text-[10px] font-semibold text-orange-400 uppercase tracking-wider">
-            Seized {forum.seizedBy ? `by ${forum.seizedBy}` : ""}
+            {t("darkweb.seized")}{" "}
+            {forum.seizedBy ? `${t("darkweb.by")} ${forum.seizedBy}` : ""}
           </span>
         </div>
       )}
@@ -400,7 +404,7 @@ function ForumCard({
         <div className="bg-yellow-500/20 border-b border-yellow-500/30 px-4 py-1.5 flex items-center gap-2">
           <AlertTriangle className="h-3 w-3 text-yellow-400" />
           <span className="text-[10px] font-semibold text-yellow-400 uppercase tracking-wider">
-            Reported Scam
+            {t("darkweb.reportedScam")}
           </span>
         </div>
       )}
@@ -427,12 +431,12 @@ function ForumCard({
           </span>
           {forum.registrationRequired && (
             <span className="inline-flex items-center gap-0.5 text-[10px] text-muted-foreground">
-              <Lock className="h-2.5 w-2.5" /> Reg Required
+              <Lock className="h-2.5 w-2.5" /> {t("darkweb.regRequired")}
             </span>
           )}
           {forum.inviteOnly && (
             <span className="inline-flex items-center gap-0.5 text-[10px] text-amber-400">
-              <Users className="h-2.5 w-2.5" /> Invite Only
+              <Users className="h-2.5 w-2.5" /> {t("darkweb.inviteOnly")}
             </span>
           )}
         </div>
@@ -464,7 +468,7 @@ function ForumCard({
               type="button"
               onClick={() => onCopy(forum.onionUrl)}
               className="p-1 rounded hover:bg-accent transition-colors shrink-0"
-              title="Copy .onion URL"
+              title={t("darkweb.copyOnionUrl")}
             >
               {copiedUrl === forum.onionUrl ? (
                 <CheckCheck className="h-3.5 w-3.5 text-green-400" />
@@ -475,9 +479,9 @@ function ForumCard({
           </div>
           {forum.mirrorUrl && (
             <div className="flex items-center gap-2 mt-2 p-2 rounded-lg bg-secondary/30">
-              <ExternalLink className="h-3 w-3 text-muted-foreground flex-shrink-0" />
+              <ExternalLink className="h-3 w-3 text-muted-foreground shrink-0" />
               <span className="text-[10px] text-muted-foreground">
-                Mirror: {forum.mirrorUrl}
+                {t("darkweb.mirror")}: {forum.mirrorUrl}
               </span>
             </div>
           )}

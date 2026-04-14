@@ -158,9 +158,9 @@ export default function ToolClient({ slug, toolsData }: ToolClientProps) {
       <Header />
 
       <div className="relative w-full h-48 sm:h-64 md:h-72 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-slate-900 to-background" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center_top,_rgba(56,189,248,0.08)_0%,_transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_50%,_rgba(99,102,241,0.06)_0%,_transparent_50%)]" />
+        <div className="absolute inset-0 bg-linear-to-b from-black via-slate-900 to-background" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center_top,rgba(56,189,248,0.08)_0%,transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_50%,rgba(99,102,241,0.06)_0%,transparent_50%)]" />
 
         <div className="absolute inset-0 opacity-40">
           <div className="absolute top-[15%] left-[10%] w-1 h-1 bg-white rounded-full" />
@@ -176,15 +176,15 @@ export default function ToolClient({ slug, toolsData }: ToolClientProps) {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 h-24">
-          <div className="absolute bottom-0 left-0 right-0 h-full bg-gradient-to-t from-background via-background/80 to-transparent" />
-          <div className="absolute bottom-12 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sky-500/20 to-transparent" />
-          <div className="absolute bottom-14 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/10 to-transparent blur-sm" />
+          <div className="absolute bottom-0 left-0 right-0 h-full bg-linear-to-t from-background via-background/80 to-transparent" />
+          <div className="absolute bottom-12 left-0 right-0 h-px bg-linear-to-r from-transparent via-sky-500/20 to-transparent" />
+          <div className="absolute bottom-14 left-0 right-0 h-px bg-linear-to-r from-transparent via-emerald-500/10 to-transparent blur-sm" />
         </div>
       </div>
 
       <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 -mt-20">
         <div
-          className={`w-20 h-20 sm:w-24 sm:h-24 rounded-xl border-2 flex items-center justify-center mb-5 shadow-2xl backdrop-blur-sm bg-gradient-to-br ${categoryColors[tool.category] || "from-foreground/10 to-foreground/5 border-foreground/20"}`}
+          className={`w-20 h-20 sm:w-24 sm:h-24 rounded-xl border-2 flex items-center justify-center mb-5 shadow-2xl backdrop-blur-sm bg-linear-to-br ${categoryColors[tool.category] || "from-foreground/10 to-foreground/5 border-foreground/20"}`}
         >
           {Icon && (
             <Icon className="h-10 w-10 sm:h-12 sm:w-12 text-foreground/80" />
@@ -207,7 +207,7 @@ export default function ToolClient({ slug, toolsData }: ToolClientProps) {
 
         <div className="mt-6 border-t border-border/50 pt-6 space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-sm text-muted-foreground w-28 flex-shrink-0 flex items-center gap-2">
+            <span className="text-sm text-muted-foreground w-28 shrink-0 flex items-center gap-2">
               <Layers className="h-4 w-4" />
               {t("tool.category")}
             </span>
@@ -221,7 +221,7 @@ export default function ToolClient({ slug, toolsData }: ToolClientProps) {
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-sm text-muted-foreground w-28 flex-shrink-0 flex items-center gap-2">
+            <span className="text-sm text-muted-foreground w-28 shrink-0 flex items-center gap-2">
               {tool.working ? (
                 <CheckCircle2 className="h-4 w-4" />
               ) : (
@@ -251,7 +251,7 @@ export default function ToolClient({ slug, toolsData }: ToolClientProps) {
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-sm text-muted-foreground w-28 flex-shrink-0 flex items-center gap-2">
+            <span className="text-sm text-muted-foreground w-28 shrink-0 flex items-center gap-2">
               <Globe className="h-4 w-4" />
               {t("tool.url")}
             </span>
@@ -266,7 +266,7 @@ export default function ToolClient({ slug, toolsData }: ToolClientProps) {
           </div>
 
           <div className="flex items-start gap-3">
-            <span className="text-sm text-muted-foreground w-28 flex-shrink-0 flex items-center gap-2 pt-1">
+            <span className="text-sm text-muted-foreground w-28 shrink-0 flex items-center gap-2 pt-1">
               <Tag className="h-4 w-4" />
               {t("tool.tags")}
             </span>
@@ -356,7 +356,7 @@ export default function ToolClient({ slug, toolsData }: ToolClientProps) {
                     className="group flex items-start gap-4 p-4 rounded-xl border border-border/50 bg-card/50 hover:bg-card hover:border-foreground/20 transition-all duration-200"
                   >
                     <div
-                      className={`w-10 h-10 rounded-lg border flex items-center justify-center flex-shrink-0 ${categoryIconBg[related.category] || "bg-foreground/5 text-foreground/70 border-foreground/10"}`}
+                      className={`w-10 h-10 rounded-lg border flex items-center justify-center shrink-0 ${categoryIconBg[related.category] || "bg-foreground/5 text-foreground/70 border-foreground/10"}`}
                     >
                       {RelatedIcon && <RelatedIcon className="h-5 w-5" />}
                     </div>
@@ -365,7 +365,7 @@ export default function ToolClient({ slug, toolsData }: ToolClientProps) {
                         <h3 className="font-medium text-foreground text-sm group-hover:text-foreground/80 transition-colors truncate">
                           {related.name}
                         </h3>
-                        <ExternalLink className="h-3 w-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                        <ExternalLink className="h-3 w-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                       </div>
                       <p className="text-xs text-muted-foreground mt-1 line-clamp-1">
                         {related.description}

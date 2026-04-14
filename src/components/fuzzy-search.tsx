@@ -171,16 +171,16 @@ export function FuzzySearch({ tools }: FuzzySearchProps) {
                       {result.item.name}
                     </span>
                     {result.item.working ? (
-                      <CheckCircle2 className="h-3 w-3 text-green-500 flex-shrink-0" />
+                      <CheckCircle2 className="h-3 w-3 text-green-500 shrink-0" />
                     ) : (
-                      <AlertCircle className="h-3 w-3 text-red-500 flex-shrink-0" />
+                      <AlertCircle className="h-3 w-3 text-red-500 shrink-0" />
                     )}
                   </div>
                   <p className="text-xs text-muted-foreground truncate mt-0.5">
                     {result.item.description}
                   </p>
                 </div>
-                <span className="text-[10px] px-2 py-0.5 rounded bg-secondary text-secondary-foreground flex-shrink-0">
+                <span className="text-[10px] px-2 py-0.5 rounded bg-secondary text-secondary-foreground shrink-0">
                   {result.item.category}
                 </span>
               </Link>

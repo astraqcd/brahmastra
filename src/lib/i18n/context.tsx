@@ -6,12 +6,12 @@ import {
   useState,
   useEffect,
   useCallback,
-  useRef,
   type ReactNode,
 } from "react";
 import {
   type Locale,
   type TranslationKey,
+  translations,
   en,
   SUPPORTED_LOCALES,
   RTL_LOCALES,
@@ -33,40 +33,10 @@ const I18nContext = createContext<I18nContextType>({
   isTranslating: false,
 });
 
-function cacheKey(locale: Locale) {
-  return `brahmastra-i18n-${locale}`;
-}
-
-function loadCachedTranslations(locale: Locale): Record<string, string> | null {
-  try {
-    const raw = localStorage.getItem(cacheKey(locale));
-    if (!raw) return null;
-    const parsed = JSON.parse(raw);
-
-    if (Object.keys(parsed).length !== Object.keys(en).length) return null;
-    return parsed;
-  } catch {
-    return null;
-  }
-}
-
-function saveCachedTranslations(
-  locale: Locale,
-  translations: Record<string, string>,
-) {
-  try {
-    localStorage.setItem(cacheKey(locale), JSON.stringify(translations));
-  } catch {
-  }
-}
-
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>("en");
-  const [translations, setTranslations] = useState<Record<string, string>>(
-    en as unknown as Record<string, string>,
-  );
-  const [isTranslating, setIsTranslating] = useState(false);
-  const abortRef = useRef<AbortController | null>(null);
+  const [dict, setDict] = useState(en);
+  const [isTranslating] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem("brahmastra-locale") as Locale | null;
@@ -81,52 +51,8 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    if (locale === "en") {
-      setTranslations(en as unknown as Record<string, string>);
-      return;
-    }
-
-    const cached = loadCachedTranslations(locale);
-    if (cached) {
-      setTranslations(cached);
-      return;
-    }
-
-    abortRef.current?.abort();
-    const controller = new AbortController();
-    abortRef.current = controller;
-
-    const keys = Object.keys(en) as TranslationKey[];
-    const values = keys.map((k) => en[k]);
-
-    setIsTranslating(true);
-
-    fetch("/api/translate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ texts: values, targetLang: locale }),
-      signal: controller.signal,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        const translated: Record<string, string> = {};
-        keys.forEach((key, i) => {
-          translated[key] = data.translations?.[i] || en[key];
-        });
-        setTranslations(translated);
-        saveCachedTranslations(locale, translated);
-      })
-      .catch((err) => {
-        if (err.name !== "AbortError") {
-          console.error("Translation fetch failed:", err);
-          setTranslations(en as unknown as Record<string, string>);
-        }
-      })
-      .finally(() => {
-        setIsTranslating(false);
-      });
-
-    return () => controller.abort();
+    const localeDictionary = translations[locale] ?? translations.en;
+    setDict(localeDictionary);
   }, [locale]);
 
   const setLocale = useCallback((newLocale: Locale) => {
@@ -140,9 +66,9 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
   const t = useCallback(
     (key: TranslationKey): string => {
-      return translations[key] || en[key] || key;
+      return dict[key] || en[key] || key;
     },
-    [translations],
+    [dict],
   );
 
   const dir = RTL_LOCALES.includes(locale) ? "rtl" : "ltr";
