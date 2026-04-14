@@ -1,22 +1,16 @@
 import type { Metadata } from "next";
-import { fetchToolsData } from "@/lib/google-sheets";
+import { notFound } from "next/navigation";
 import { ToolJsonLd } from "@/components/json-ld";
+import { fetchToolsData } from "@/lib/google-sheets";
+import { slugify } from "@/lib/utils";
 import ToolClient from "./tool-client";
 
-export const revalidate = 60;
-
-function slugify(name: string): string {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-}
+export const revalidate = 3600;
+export const dynamicParams = false;
 
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
+}: PageProps<"/tool/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const toolsData = await fetchToolsData();
   const tool = toolsData.tools.find((t) => slugify(t.name) === slug);
@@ -64,17 +58,25 @@ export async function generateStaticParams() {
 
 export default async function ToolDetailPage({
   params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+}: PageProps<"/tool/[slug]">) {
   const { slug } = await params;
   const toolsData = await fetchToolsData();
   const tool = toolsData.tools.find((t) => slugify(t.name) === slug);
+  if (!tool) {
+    notFound();
+  }
+  const category =
+    toolsData.categories.find((c) => c.id === tool.category) ?? null;
+  const relatedTools = toolsData.tools
+    .filter(
+      (item) => item.category === tool.category && item.name !== tool.name,
+    )
+    .slice(0, 4);
 
   return (
     <>
-      {tool && <ToolJsonLd tool={tool} />}
-      <ToolClient slug={slug} toolsData={toolsData} />
+      <ToolJsonLd tool={tool} />
+      <ToolClient tool={tool} category={category} relatedTools={relatedTools} />
     </>
   );
 }

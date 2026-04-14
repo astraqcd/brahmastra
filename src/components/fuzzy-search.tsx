@@ -1,25 +1,20 @@
 "use client";
 
-import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import Fuse from "fuse.js";
-import {
-  Search,
-  X,
-  ArrowUpRight,
-  Star,
-  CheckCircle2,
-  AlertCircle,
-} from "lucide-react";
+import { AlertCircle, CheckCircle2, Search, X } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import {
+  useCallback,
+  useDeferredValue,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Tool } from "@/lib/types";
-
-function slugify(name: string): string {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-}
+import { slugify } from "@/lib/utils";
 
 interface FuzzySearchProps {
   tools: Tool[];
@@ -27,7 +22,9 @@ interface FuzzySearchProps {
 
 export function FuzzySearch({ tools }: FuzzySearchProps) {
   const { t } = useI18n();
+  const router = useRouter();
   const [query, setQuery] = useState("");
+  const deferredQuery = useDeferredValue(query);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -43,17 +40,15 @@ export function FuzzySearch({ tools }: FuzzySearchProps) {
           { name: "category", weight: 0.15 },
         ],
         threshold: 0.4,
-        includeScore: true,
-        includeMatches: true,
         minMatchCharLength: 2,
       }),
     [tools],
   );
 
   const results = useMemo(() => {
-    if (!query.trim()) return [];
-    return fuse.search(query).slice(0, 8);
-  }, [fuse, query]);
+    if (!deferredQuery.trim()) return [];
+    return fuse.search(deferredQuery).slice(0, 8);
+  }, [deferredQuery, fuse]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -87,15 +82,12 @@ export function FuzzySearch({ tools }: FuzzySearchProps) {
       } else if (e.key === "Enter" && results[selectedIndex]) {
         e.preventDefault();
         const tool = results[selectedIndex].item;
-        window.location.href = `/tool/${slugify(tool.name)}`;
+        router.push(`/tool/${slugify(tool.name)}`);
+        setIsOpen(false);
       }
     },
-    [results, selectedIndex],
+    [results, router, selectedIndex],
   );
-
-  useEffect(() => {
-    setSelectedIndex(0);
-  }, [results]);
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -121,6 +113,7 @@ export function FuzzySearch({ tools }: FuzzySearchProps) {
           value={query}
           onChange={(e) => {
             setQuery(e.target.value);
+            setSelectedIndex(0);
             setIsOpen(true);
           }}
           onFocus={() => setIsOpen(true)}

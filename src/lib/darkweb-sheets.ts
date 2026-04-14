@@ -1,8 +1,9 @@
-import type { DarkWebForum, DarkWebData } from "./darkweb-types";
+import type { DarkWebData, DarkWebForum } from "./darkweb-types";
 
 const DARKWEB_SHEET_ID = "14S8ykMw3VkkfeAIKH97O-ohvgJu1n2xFSXbNaftIUzE";
 const DARKWEB_GID = "1451389906";
 const SHEET_BASE_URL = `https://docs.google.com/spreadsheets/d/${DARKWEB_SHEET_ID}/gviz/tq?tqx=out:csv`;
+const DARKWEB_REVALIDATE_SECONDS = 3600;
 
 function parseCSV(csv: string): string[][] {
   const rows: string[][] = [];
@@ -376,7 +377,9 @@ const ENRICHMENT_DATA: Record<string, Partial<Enrichment>> = {
 export async function fetchDarkWebData(): Promise<DarkWebData> {
   try {
     const url = `${SHEET_BASE_URL}&gid=${DARKWEB_GID}`;
-    const res = await fetch(url, { next: { revalidate: 300 } });
+    const res = await fetch(url, {
+      next: { revalidate: DARKWEB_REVALIDATE_SECONDS },
+    });
 
     if (!res.ok) {
       throw new Error(`Sheet fetch failed: ${res.status}`);
@@ -389,7 +392,11 @@ export async function fetchDarkWebData(): Promise<DarkWebData> {
       throw new Error("Sheet has no data rows");
     }
 
-    const header = rows[0].map((h) => h.toLowerCase().trim());
+    const headerRow = rows[0];
+    if (!headerRow) {
+      throw new Error("Sheet header row missing");
+    }
+    const header = headerRow.map((h) => h.toLowerCase().trim());
     const nameCol = header.findIndex(
       (h) =>
         h === "name" || h === "tool" || h === "tool name" || h === "forum name",
@@ -406,6 +413,7 @@ export async function fetchDarkWebData(): Promise<DarkWebData> {
 
     for (let i = 1; i < rows.length; i++) {
       const row = rows[i];
+      if (!row) continue;
       const rawName = row[nCol]?.trim();
       const rawLink = row[lCol]?.trim();
 

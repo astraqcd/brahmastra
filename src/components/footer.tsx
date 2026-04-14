@@ -1,17 +1,16 @@
 "use client";
 
-import Link from "next/link";
 import { Globe } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 import { GithubDark } from "./ui/svgs/githubDark";
-import { XDark } from "./ui/svgs/xDark";
-import { useTheme } from "next-themes";
 import { GithubLight } from "./ui/svgs/githubLight";
 import { X } from "./ui/svgs/x";
+import { XDark } from "./ui/svgs/xDark";
 
 export function Footer() {
   const { t } = useI18n();
-  const { theme } = useTheme();
 
   return (
     <footer className="border-t border-border bg-background">
@@ -20,10 +19,12 @@ export function Footer() {
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4 group">
               <div className="flex h-16 w-16 items-center justify-center">
-                <img
+                <Image
                   src="/logo/astraq-brahmastra.png"
                   alt="Brahmastra"
                   className="h-16 w-16 object-contain"
+                  width={64}
+                  height={64}
                 />
               </div>
               <span className="text-lg font-semibold tracking-tight text-foreground">
@@ -40,11 +41,8 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
-                {theme === "dark" ? (
-                  <GithubDark className="h-5 w-5" />
-                ) : (
-                  <GithubLight className="h-5 w-5" />
-                )}
+                <GithubDark className="h-5 w-5 hidden dark:block" />
+                <GithubLight className="h-5 w-5 block dark:hidden" />
                 <span className="sr-only">{t("footer.github")}</span>
               </Link>
               <Link
@@ -53,11 +51,8 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
-                {theme === "dark" ? (
-                  <XDark className="h-5 w-5" />
-                ) : (
-                  <X className="h-5 w-5" />
-                )}
+                <XDark className="h-5 w-5 hidden dark:block" />
+                <X className="h-5 w-5 block dark:hidden" />
                 <span className="sr-only">{t("footer.twitter")}</span>
               </Link>
               <Link

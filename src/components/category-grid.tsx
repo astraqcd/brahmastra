@@ -1,15 +1,16 @@
 "use client";
-import Link from "next/link";
 import {
-  Satellite,
-  Image,
-  Users,
-  Globe,
-  Mail,
-  EyeOff,
-  Radio,
   Bug,
+  EyeOff,
+  Globe,
+  Image,
+  Mail,
+  Radio,
+  Satellite,
+  Users,
 } from "lucide-react";
+import Link from "next/link";
+import { useMemo } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import type { ToolsData } from "@/lib/types";
 
@@ -27,10 +28,13 @@ const categoryIcons = {
 export function CategoryGrid({ toolsData }: { toolsData: ToolsData }) {
   const { t } = useI18n();
 
-  const getCategoryToolCount = (categoryId: string) => {
-    return toolsData.tools.filter((tool) => tool.category === categoryId)
-      .length;
-  };
+  const toolsByCategory = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const tool of toolsData.tools) {
+      counts.set(tool.category, (counts.get(tool.category) ?? 0) + 1);
+    }
+    return counts;
+  }, [toolsData.tools]);
 
   return (
     <section id="categories" className="py-20 scroll-mt-20">
@@ -51,7 +55,7 @@ export function CategoryGrid({ toolsData }: { toolsData: ToolsData }) {
           {toolsData.categories.map((category) => {
             const Icon =
               categoryIcons[category.id as keyof typeof categoryIcons];
-            const toolCount = getCategoryToolCount(category.id);
+            const toolCount = toolsByCategory.get(category.id) ?? 0;
 
             return (
               <CategoryCard

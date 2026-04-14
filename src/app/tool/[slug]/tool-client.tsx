@@ -1,33 +1,35 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
 import {
+  AlertCircle,
   ArrowLeft,
   ArrowUpRight,
-  Star,
-  Copy,
-  CheckCircle2,
-  AlertCircle,
-  Globe,
-  Tag,
-  Layers,
-  ExternalLink,
-  Satellite,
-  Image as ImageIcon,
-  Users,
-  Mail,
-  EyeOff,
-  Radio,
   Bug,
+  CheckCircle2,
+  Copy,
+  ExternalLink,
+  EyeOff,
+  Globe,
+  Image as ImageIcon,
+  Layers,
+  Mail,
+  Radio,
+  Satellite,
+  Star,
+  Tag,
+  Users,
 } from "lucide-react";
-import { Header } from "@/components/header";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
 import { HealthMonitor } from "@/components/health-monitor";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n/context";
-import type { ToolsData } from "@/lib/types";
+import type { Category, Tool } from "@/lib/types";
+import { slugify } from "@/lib/utils";
 
 const categoryIcons: Record<
   string,
@@ -65,56 +67,53 @@ const categoryIconBg: Record<string, string> = {
   MALWARE: "bg-orange-500/10 text-orange-400 border-orange-500/20",
 };
 
-function slugify(name: string): string {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-}
-
 interface ToolClientProps {
-  slug: string;
-  toolsData: ToolsData;
+  tool: Tool;
+  category: Category | null;
+  relatedTools: Tool[];
 }
 
-export default function ToolClient({ slug, toolsData }: ToolClientProps) {
+function getDomain(url: string): string {
+  try {
+    return new URL(url).hostname;
+  } catch {
+    return "";
+  }
+}
+
+export default function ToolClient({
+  tool,
+  category,
+  relatedTools,
+}: ToolClientProps) {
   const router = useRouter();
   const { t } = useI18n();
 
   const [isFavorite, setIsFavorite] = useState(false);
   const [copied, setCopied] = useState(false);
-
-  const tool = toolsData.tools.find((t) => slugify(t.name) === slug);
-  const category = tool
-    ? toolsData.categories.find((c) => c.id === tool.category)
-    : null;
-
-  const Icon = tool ? categoryIcons[tool.category] : null;
-
-  const relatedTools = tool
-    ? toolsData.tools
-        .filter((t) => t.category === tool.category && t.name !== tool.name)
-        .slice(0, 4)
-    : [];
+  const [logoError, setLogoError] = useState(false);
+  const Icon = categoryIcons[tool.category];
+  const domain = getDomain(tool.url);
+  const logoUrl = domain ? `https://logo.clearbit.com/${domain}` : "";
+  const fallbackLogoUrl = domain
+    ? `https://www.google.com/s2/favicons?domain=${domain}&sz=128`
+    : "";
 
   useEffect(() => {
-    if (tool) {
-      const favorites = JSON.parse(
-        localStorage.getItem("osint-favorites") || "[]",
-      );
-      setIsFavorite(favorites.includes(tool.url));
+    const favorites = JSON.parse(
+      localStorage.getItem("osint-favorites") || "[]",
+    );
+    setIsFavorite(favorites.includes(tool.url));
 
-      const recent = JSON.parse(localStorage.getItem("osint-recent") || "[]");
-      const newRecent = [
-        tool.url,
-        ...recent.filter((url: string) => url !== tool.url),
-      ].slice(0, 5);
-      localStorage.setItem("osint-recent", JSON.stringify(newRecent));
-    }
+    const recent = JSON.parse(localStorage.getItem("osint-recent") || "[]");
+    const newRecent = [
+      tool.url,
+      ...recent.filter((url: string) => url !== tool.url),
+    ].slice(0, 5);
+    localStorage.setItem("osint-recent", JSON.stringify(newRecent));
   }, [tool]);
 
   const toggleFavorite = () => {
-    if (!tool) return;
     const favorites = JSON.parse(
       localStorage.getItem("osint-favorites") || "[]",
     );
@@ -130,28 +129,10 @@ export default function ToolClient({ slug, toolsData }: ToolClientProps) {
   };
 
   const handleCopy = () => {
-    if (!tool) return;
     navigator.clipboard.writeText(tool.url);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
-
-  if (!tool) {
-    return (
-      <main className="min-h-screen bg-background">
-        <Header />
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 text-center">
-          <h1 className="text-3xl font-bold text-foreground mb-4">
-            {t("tool.notFound")}
-          </h1>
-          <Button onClick={() => router.push("/")}>
-            {t("common.returnHome")}
-          </Button>
-        </div>
-        <Footer />
-      </main>
-    );
-  }
 
   return (
     <main className="min-h-screen bg-background">
@@ -186,8 +167,24 @@ export default function ToolClient({ slug, toolsData }: ToolClientProps) {
         <div
           className={`w-20 h-20 sm:w-24 sm:h-24 rounded-xl border-2 flex items-center justify-center mb-5 shadow-2xl backdrop-blur-sm bg-linear-to-br ${categoryColors[tool.category] || "from-foreground/10 to-foreground/5 border-foreground/20"}`}
         >
-          {Icon && (
-            <Icon className="h-10 w-10 sm:h-12 sm:w-12 text-foreground/80" />
+          {(logoUrl || fallbackLogoUrl) && !(!fallbackLogoUrl && logoError) ? (
+            <Image
+              src={logoError ? fallbackLogoUrl : logoUrl}
+              alt={`${tool.name} logo`}
+              className="size-10 sm:size-12 object-contain"
+              width={48}
+              height={48}
+              unoptimized
+              loading="lazy"
+              decoding="async"
+              onError={() => {
+                if (!logoError) setLogoError(true);
+              }}
+            />
+          ) : (
+            Icon && (
+              <Icon className="h-10 w-10 sm:h-12 sm:w-12 text-foreground/80" />
+            )
           )}
         </div>
 
@@ -295,7 +292,7 @@ export default function ToolClient({ slug, toolsData }: ToolClientProps) {
         </div>
 
         <div className="mb-8">
-          <HealthMonitor toolUrl={tool.url} toolName={tool.name} />
+          <HealthMonitor toolUrl={tool.url} />
         </div>
 
         <div className="flex flex-wrap items-center gap-3 mb-12">

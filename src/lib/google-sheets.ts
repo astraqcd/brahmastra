@@ -1,8 +1,9 @@
-import type { Tool, ToolsData } from "./types";
 import fallbackData from "./data.json";
+import type { Tool, ToolsData } from "./types";
 
 const SHEET_ID = "14S8ykMw3VkkfeAIKH97O-ohvgJu1n2xFSXbNaftIUzE";
 const SHEET_BASE_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`;
+const TOOLS_REVALIDATE_SECONDS = 3600;
 
 const SHEET_TABS: { gid: string; categoryId: string }[] = [
   { gid: "275148106", categoryId: "PHONE_EMAIL" },
@@ -14,46 +15,6 @@ const SHEET_TABS: { gid: string; categoryId: string }[] = [
   { gid: "1936794883", categoryId: "SIGINT" },
   { gid: "1451389906", categoryId: "DARKWEB" },
 ];
-
-const TYPE_TO_CATEGORY: Record<string, string> = {
-  "geo int": "GEOINT",
-  geoint: "GEOINT",
-  geospatial: "GEOINT",
-  "geo spatial": "GEOINT",
-  "geospatial intelligence": "GEOINT",
-  image: "IMINT",
-  "image int": "IMINT",
-  imint: "IMINT",
-  imagery: "IMINT",
-  "imagery intelligence": "IMINT",
-  "social media int": "SOCMINT",
-  socmint: "SOCMINT",
-  "social media": "SOCMINT",
-  "social media intelligence": "SOCMINT",
-  website: "WEBINT",
-  webint: "WEBINT",
-  web: "WEBINT",
-  "web intelligence": "WEBINT",
-  ai: "WEBINT",
-  "search engine": "WEBINT",
-  "e mail and phone": "PHONE_EMAIL",
-  "email and phone": "PHONE_EMAIL",
-  "e-mail and phone": "PHONE_EMAIL",
-  "e mail": "PHONE_EMAIL",
-  email: "PHONE_EMAIL",
-  phone_email: "PHONE_EMAIL",
-  "phone email": "PHONE_EMAIL",
-  "phone & email": "PHONE_EMAIL",
-  "phone & email intelligence": "PHONE_EMAIL",
-  "dark web": "DARKWEB",
-  darkweb: "DARKWEB",
-  "dark web intelligence": "DARKWEB",
-  sigint: "SIGINT",
-  signals: "SIGINT",
-  "signals intelligence": "SIGINT",
-  malware: "MALWARE",
-  "malware intelligence": "MALWARE",
-};
 
 const CATEGORIES = fallbackData.categories;
 
@@ -114,11 +75,6 @@ function parseCSV(csv: string): string[][] {
   return rows;
 }
 
-function resolveCategory(raw: string): string {
-  const key = raw.toLowerCase().trim();
-  return TYPE_TO_CATEGORY[key] || "WEBINT";
-}
-
 function generateTags(name: string, category: string): string[] {
   const tags: string[] = [];
   const lower = name.toLowerCase();
@@ -160,7 +116,7 @@ export async function fetchToolsData(): Promise<ToolsData> {
       SHEET_TABS.map(async ({ gid, categoryId }) => {
         const url = `${SHEET_BASE_URL}&gid=${gid}`;
         const res = await fetch(url, {
-          next: { revalidate: 60 },
+          next: { revalidate: TOOLS_REVALIDATE_SECONDS },
         });
         if (!res.ok) return { categoryId, rows: [] as string[][] };
         const csv = await res.text();
@@ -173,7 +129,9 @@ export async function fetchToolsData(): Promise<ToolsData> {
       const { categoryId, rows } = result.value;
       if (rows.length < 2) continue;
 
-      const header = rows[0].map((h) => h.toLowerCase().trim());
+      const headerRow = rows[0];
+      if (!headerRow) continue;
+      const header = headerRow.map((h) => h.toLowerCase().trim());
       const toolCol = header.findIndex(
         (h) => h === "tool" || h === "tool name" || h === "name" || h === "c",
       );
@@ -190,6 +148,7 @@ export async function fetchToolsData(): Promise<ToolsData> {
 
       for (let i = 1; i < rows.length; i++) {
         const row = rows[i];
+        if (!row) continue;
         const name = row[nCol]?.trim();
         let link = row[lCol]?.trim();
 

@@ -380,6 +380,7 @@
 }
 
 .intro-glitch {
+  /* biome-ignore lint/complexity/noImportantStyles: It is a fix for the animation */
   animation: intro-glitch 0.8s ease-in-out infinite !important;
 }
 

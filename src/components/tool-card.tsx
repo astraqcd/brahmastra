@@ -1,23 +1,18 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import {
+  AlertCircle,
   ArrowUpRight,
+  CheckCircle2,
   Copy,
   Star,
-  CheckCircle2,
-  AlertCircle,
 } from "lucide-react";
-import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Tool } from "@/lib/types";
-
-function slugify(name: string): string {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-}
+import { slugify } from "@/lib/utils";
 
 function getDomain(url: string): string {
   try {
@@ -51,13 +46,23 @@ const categoryBadge: Record<string, string> = {
 
 interface ToolCardProps {
   tool: Tool;
+  isFavorite?: boolean;
+  onToggleFavorite?: (toolUrl: string) => void;
+  onOpen?: (toolUrl: string) => void;
 }
 
-export function ToolCard({ tool }: ToolCardProps) {
+export function ToolCard({
+  tool,
+  isFavorite: externalIsFavorite,
+  onToggleFavorite,
+  onOpen,
+}: ToolCardProps) {
+  const router = useRouter();
   const { t } = useI18n();
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [internalIsFavorite, setInternalIsFavorite] = useState(false);
   const [copied, setCopied] = useState(false);
   const [logoError, setLogoError] = useState(false);
+  const isFavorite = externalIsFavorite ?? internalIsFavorite;
 
   const domain = getDomain(tool.url);
   const logoUrl = domain ? `https://logo.clearbit.com/${domain}` : "";
@@ -66,28 +71,35 @@ export function ToolCard({ tool }: ToolCardProps) {
     : "";
 
   useEffect(() => {
+    if (externalIsFavorite !== undefined) {
+      return;
+    }
     const favorites = JSON.parse(
       localStorage.getItem("osint-favorites") || "[]",
     );
-    setIsFavorite(favorites.includes(tool.url));
-  }, [tool.url]);
+    setInternalIsFavorite(favorites.includes(tool.url));
+  }, [externalIsFavorite, tool.url]);
 
   const toggleFavorite = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
+    if (onToggleFavorite) {
+      onToggleFavorite(tool.url);
+      return;
+    }
+
     const favorites = JSON.parse(
       localStorage.getItem("osint-favorites") || "[]",
     );
-
-    if (isFavorite) {
-      const newFavorites = favorites.filter((url: string) => url !== tool.url);
-      localStorage.setItem("osint-favorites", JSON.stringify(newFavorites));
-      setIsFavorite(false);
+    if (internalIsFavorite) {
+      const nextFavorites = favorites.filter((url: string) => url !== tool.url);
+      localStorage.setItem("osint-favorites", JSON.stringify(nextFavorites));
+      setInternalIsFavorite(false);
     } else {
       favorites.push(tool.url);
       localStorage.setItem("osint-favorites", JSON.stringify(favorites));
-      setIsFavorite(true);
+      setInternalIsFavorite(true);
     }
   };
 
@@ -101,12 +113,21 @@ export function ToolCard({ tool }: ToolCardProps) {
   };
 
   const handleClick = () => {
+    if (onOpen) {
+      onOpen(tool.url);
+      return;
+    }
     const recent = JSON.parse(localStorage.getItem("osint-recent") || "[]");
-    const newRecent = [
+    const nextRecent = [
       tool.url,
       ...recent.filter((url: string) => url !== tool.url),
     ].slice(0, 5);
-    localStorage.setItem("osint-recent", JSON.stringify(newRecent));
+    localStorage.setItem("osint-recent", JSON.stringify(nextRecent));
+  };
+
+  const handleCardNavigate = () => {
+    handleClick();
+    router.push(`/tool/${slugify(tool.name)}`);
   };
 
   const accent =
@@ -117,7 +138,22 @@ export function ToolCard({ tool }: ToolCardProps) {
     "bg-foreground/5 text-foreground/70 border-foreground/10";
 
   return (
-    <div
+    <article
+      role="link"
+      tabIndex={0}
+      onClick={(e) => {
+        const target = e.target as HTMLElement;
+        if (target.closest("[data-no-card-nav='true']")) return;
+        handleCardNavigate();
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          const target = e.target as HTMLElement;
+          if (target.closest("[data-no-card-nav='true']")) return;
+          e.preventDefault();
+          handleCardNavigate();
+        }
+      }}
       className={`group relative flex flex-col h-full rounded-xl border bg-card/60 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-black/10 hover:-translate-y-0.5 overflow-hidden ${accent}`}
     >
       <div className="absolute top-0 left-4 right-4 h-px bg-linear-to-r from-transparent via-foreground/10 to-transparent group-hover:via-foreground/20 transition-colors" />
@@ -126,10 +162,15 @@ export function ToolCard({ tool }: ToolCardProps) {
         <div className="flex items-start gap-3 mb-4">
           {(logoUrl || fallbackLogoUrl) && (
             <div className="shrink-0 w-9 h-9 rounded-lg bg-foreground/4 border border-foreground/8 flex items-center justify-center overflow-hidden mt-0.5">
-              <img
+              <Image
                 src={logoError ? fallbackLogoUrl : logoUrl}
                 alt=""
                 className="w-5 h-5 object-contain"
+                width={20}
+                height={20}
+                unoptimized
+                loading="lazy"
+                decoding="async"
                 onError={() => {
                   if (!logoError) setLogoError(true);
                 }}
@@ -156,6 +197,7 @@ export function ToolCard({ tool }: ToolCardProps) {
           <button
             type="button"
             onClick={toggleFavorite}
+            data-no-card-nav="true"
             className="shrink-0 p-1.5 -m-1 rounded-lg hover:bg-foreground/5 transition-colors"
             aria-label={
               isFavorite ? t("tool.favorited") : t("tool.addFavorite")
@@ -198,10 +240,8 @@ export function ToolCard({ tool }: ToolCardProps) {
             href={tool.url}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={(e) => {
-              e.stopPropagation();
-              handleClick();
-            }}
+            onClick={handleClick}
+            data-no-card-nav="true"
             className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-foreground/4 hover:bg-foreground/8 text-foreground/80 hover:text-foreground border border-foreground/6 hover:border-foreground/12 transition-all text-sm font-medium"
           >
             {t("tool.visit")}
@@ -211,6 +251,7 @@ export function ToolCard({ tool }: ToolCardProps) {
           <button
             type="button"
             onClick={handleCopy}
+            data-no-card-nav="true"
             className="px-2.5 py-2 rounded-lg bg-foreground/4 hover:bg-foreground/8 border border-foreground/6 hover:border-foreground/12 text-foreground/50 hover:text-foreground/80 transition-all"
             aria-label={t("tool.copyLink")}
           >
@@ -222,6 +263,6 @@ export function ToolCard({ tool }: ToolCardProps) {
           </button>
         </div>
       </div>
-    </div>
+    </article>
   );
 }

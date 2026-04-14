@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Activity, Wifi, WifiOff, Clock, RefreshCw } from "lucide-react";
+import { Activity, Clock, RefreshCw, Wifi, WifiOff } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 
 interface HealthStatus {
@@ -15,10 +15,9 @@ interface HealthStatus {
 
 interface HealthMonitorProps {
   toolUrl: string;
-  toolName: string;
 }
 
-export function HealthMonitor({ toolUrl, toolName }: HealthMonitorProps) {
+export function HealthMonitor({ toolUrl }: HealthMonitorProps) {
   const { t } = useI18n();
   const [health, setHealth] = useState<HealthStatus | null>(null);
   const [loading, setLoading] = useState(false);
@@ -154,9 +153,9 @@ export function HealthMonitor({ toolUrl, toolName }: HealthMonitorProps) {
                 {history
                   .slice(0, 10)
                   .reverse()
-                  .map((h, i) => (
+                  .map((h) => (
                     <div
-                      key={`${h.checkedAt}-${i}`}
+                      key={`${h.checkedAt}-${h.status}-${h.responseTime}`}
                       className={`flex-1 h-5 rounded-sm ${
                         h.isUp ? "bg-green-500/60" : "bg-red-500/60"
                       }`}

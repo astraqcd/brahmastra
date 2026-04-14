@@ -2,19 +2,19 @@
 
 import {
   createContext,
-  useContext,
-  useState,
-  useEffect,
-  useCallback,
   type ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
 } from "react";
 import {
+  en,
   type Locale,
+  RTL_LOCALES,
+  SUPPORTED_LOCALES,
   type TranslationKey,
   translations,
-  en,
-  SUPPORTED_LOCALES,
-  RTL_LOCALES,
 } from "./translations";
 
 interface I18nContextType {

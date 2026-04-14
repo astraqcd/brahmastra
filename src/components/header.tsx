@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { ChevronDown, EyeOff, Menu, Star, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { useRef, useState } from "react";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n/context";
-import { Menu, X, Star, EyeOff, ChevronDown } from "lucide-react";
 import type { ToolsData } from "@/lib/types";
 
 interface HeaderProps {
@@ -38,10 +39,12 @@ export function Header({ toolsData }: HeaderProps) {
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2 group">
             <div className="flex h-10 w-10 items-center justify-center">
-              <img
+              <Image
                 src="/logo/astraq-brahmastra.png"
                 alt="Brahmastra"
                 className="h-10 w-10 object-contain"
+                width={40}
+                height={40}
               />
             </div>
             <div className="flex flex-col">

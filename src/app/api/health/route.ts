@@ -47,6 +47,7 @@ export async function GET(request: Request) {
       checkedAt: new Date().toISOString(),
     });
   } catch (error) {
+    console.error("Health check error:", error);
     return NextResponse.json({
       url: toolUrl,
       status: 0,

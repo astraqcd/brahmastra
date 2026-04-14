@@ -1,16 +1,16 @@
 "use client";
 
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 import {
+  ArrowRight,
+  Award,
+  Code,
+  Globe,
   Shield,
   Target,
   Users,
-  Code,
-  Award,
-  Globe,
-  ArrowRight,
 } from "lucide-react";
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
 import { useI18n } from "@/lib/i18n/context";
 
 export default function AboutPage() {

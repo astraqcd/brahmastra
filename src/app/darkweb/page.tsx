@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { fetchDarkWebData } from "@/lib/darkweb-sheets";
 import { DarkWebClient } from "./darkweb-client";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Dark Web Intelligence Directory - Forums & Hidden Services",

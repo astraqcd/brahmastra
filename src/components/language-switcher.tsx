@@ -1,13 +1,9 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
 import { Languages, Loader2 } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
-import {
-  SUPPORTED_LOCALES,
-  LOCALE_NAMES,
-  type Locale,
-} from "@/lib/i18n/translations";
+import { LOCALE_NAMES, SUPPORTED_LOCALES } from "@/lib/i18n/translations";
 
 export function LanguageSwitcher() {
   const { locale, setLocale, isTranslating } = useI18n();

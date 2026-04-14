@@ -1,11 +1,5 @@
-import type { Tool, Category } from "@/lib/types";
-
-function slugify(name: string): string {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-}
+import type { Category, Tool } from "@/lib/types";
+import { slugify } from "@/lib/utils";
 
 const BASE_URL = "https://brahmastra-osint.vercel.app";
 
@@ -36,6 +30,7 @@ export function WebsiteJsonLd() {
   return (
     <script
       type="application/ld+json"
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: It is safe
       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
     />
   );
@@ -97,10 +92,12 @@ export function ToolJsonLd({ tool }: { tool: Tool }) {
     <>
       <script
         type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: It is safe
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <script
         type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: It is safe
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
     </>
@@ -148,6 +145,7 @@ export function CategoryJsonLd({
   return (
     <script
       type="application/ld+json"
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: It is safe
       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
     />
   );
@@ -196,6 +194,7 @@ export function FAQJsonLd() {
   return (
     <script
       type="application/ld+json"
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: It is safe
       dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }}
     />
   );

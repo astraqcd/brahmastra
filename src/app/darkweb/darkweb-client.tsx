@@ -1,35 +1,42 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
 import { Turnstile } from "@marsidev/react-turnstile";
-import {
-  Shield,
-  AlertTriangle,
-  EyeOff,
-  Search,
-  Globe,
-  Lock,
-  Users,
-  CheckCircle2,
-  XCircle,
-  Ban,
-  HelpCircle,
-  ExternalLink,
-  Copy,
-  CheckCheck,
-} from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import {
+  AlertTriangle,
+  Ban,
+  CheckCheck,
+  CheckCircle2,
+  Copy,
+  ExternalLink,
+  EyeOff,
+  Globe,
+  HelpCircle,
+  Lock,
+  Search,
+  Shield,
+  Users,
+  XCircle,
+} from "lucide-react";
 import Link from "next/link";
-import { Header } from "@/components/header";
+import {
+  useCallback,
+  useDeferredValue,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { Footer } from "@/components/footer";
-import { useI18n } from "@/lib/i18n/context";
+import { Header } from "@/components/header";
+import { env } from "@/env";
 import type {
+  DarkWebCategory,
   DarkWebData,
   DarkWebForum,
-  DarkWebCategory,
 } from "@/lib/darkweb-types";
-import type { TranslationKey } from "@/lib/i18n/translations";
 import { DARKWEB_CATEGORIES } from "@/lib/darkweb-types";
+import { useI18n } from "@/lib/i18n/context";
+import type { TranslationKey } from "@/lib/i18n/translations";
 
 interface DarkWebClientProps {
   data: DarkWebData;
@@ -38,10 +45,6 @@ interface DarkWebClientProps {
 type DarkwebStatusFilter = "all" | "active" | "inactive" | "seized" | "scam";
 type StatusConfig = { label: string; icon: LucideIcon; color: string };
 
-// TODO: Use proper keys
-const TURNSTILE_SITE_KEY =
-  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "1x00000000000000000000AA";
-
 export function DarkWebClient({ data }: DarkWebClientProps) {
   const [consented, setConsented] = useState(false);
   const [ageConfirmed, setAgeConfirmed] = useState(false);
@@ -49,6 +52,7 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
   const [researchConfirmed, setResearchConfirmed] = useState(false);
   const [captchaVerified, setCaptchaVerified] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const deferredSearchQuery = useDeferredValue(searchQuery);
   const [selectedCategory, setSelectedCategory] = useState<
     DarkWebCategory | "all"
   >("all");
@@ -64,33 +68,36 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
   }, []);
 
   const { t } = useI18n();
-  const statusConfigMap: Record<DarkWebForum["status"], StatusConfig> = {
-    active: {
-      label: t("darkweb.status.active"),
-      icon: CheckCircle2,
-      color: "text-green-400 bg-green-500/10 border-green-500/20",
-    },
-    inactive: {
-      label: t("darkweb.status.inactive"),
-      icon: XCircle,
-      color: "text-red-400 bg-red-500/10 border-red-500/20",
-    },
-    seized: {
-      label: t("darkweb.status.seized"),
-      icon: Ban,
-      color: "text-orange-400 bg-orange-500/10 border-orange-500/20",
-    },
-    scam: {
-      label: t("darkweb.status.scam"),
-      icon: AlertTriangle,
-      color: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20",
-    },
-    unknown: {
-      label: t("darkweb.status.unknown"),
-      icon: HelpCircle,
-      color: "text-gray-400 bg-gray-500/10 border-gray-500/20",
-    },
-  };
+  const statusConfigMap: Record<DarkWebForum["status"], StatusConfig> = useMemo(
+    () => ({
+      active: {
+        label: t("darkweb.status.active"),
+        icon: CheckCircle2,
+        color: "text-green-400 bg-green-500/10 border-green-500/20",
+      },
+      inactive: {
+        label: t("darkweb.status.inactive"),
+        icon: XCircle,
+        color: "text-red-400 bg-red-500/10 border-red-500/20",
+      },
+      seized: {
+        label: t("darkweb.status.seized"),
+        icon: Ban,
+        color: "text-orange-400 bg-orange-500/10 border-orange-500/20",
+      },
+      scam: {
+        label: t("darkweb.status.scam"),
+        icon: AlertTriangle,
+        color: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20",
+      },
+      unknown: {
+        label: t("darkweb.status.unknown"),
+        icon: HelpCircle,
+        color: "text-gray-400 bg-gray-500/10 border-gray-500/20",
+      },
+    }),
+    [t],
+  );
 
   const handleConsent = () => {
     if (
@@ -107,11 +114,13 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
   const filteredForums = useMemo(() => {
     return data.forums.filter((forum) => {
       const matchesSearch =
-        !searchQuery ||
-        forum.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        forum.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        !deferredSearchQuery ||
+        forum.name.toLowerCase().includes(deferredSearchQuery.toLowerCase()) ||
+        forum.description
+          .toLowerCase()
+          .includes(deferredSearchQuery.toLowerCase()) ||
         forum.tags.some((t) =>
-          t.toLowerCase().includes(searchQuery.toLowerCase()),
+          t.toLowerCase().includes(deferredSearchQuery.toLowerCase()),
         );
 
       const matchesCategory =
@@ -122,13 +131,13 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
 
       return matchesSearch && matchesCategory && matchesStatus;
     });
-  }, [data.forums, searchQuery, selectedCategory, selectedStatus]);
+  }, [data.forums, deferredSearchQuery, selectedCategory, selectedStatus]);
 
-  const handleCopy = (url: string) => {
+  const handleCopy = useCallback((url: string) => {
     navigator.clipboard.writeText(url);
     setCopiedUrl(url);
     setTimeout(() => setCopiedUrl(null), 2000);
-  };
+  }, []);
 
   if (!consented) {
     return (
@@ -202,7 +211,7 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
 
           <div className="flex justify-center mb-8">
             <Turnstile
-              siteKey={TURNSTILE_SITE_KEY}
+              siteKey={env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
               onSuccess={() => setCaptchaVerified(true)}
               onExpire={() => setCaptchaVerified(false)}
               onError={() => setCaptchaVerified(false)}

@@ -1,14 +1,13 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { ArrowLeft, Filter, Search, SortAsc } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { Search, ArrowLeft, Filter, SortAsc } from "lucide-react";
-import { Header } from "@/components/header";
+import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
 import { ToolCard } from "@/components/tool-card";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useI18n } from "@/lib/i18n/context";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -16,50 +15,57 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import type { ToolsData } from "@/lib/types";
+import { useI18n } from "@/lib/i18n/context";
+import type { Category, Tool } from "@/lib/types";
 
 interface CategoryClientProps {
-  slug: string;
-  toolsData: ToolsData;
+  category: Category;
+  tools: Tool[];
 }
 
 export default function CategoryClient({
-  slug,
-  toolsData,
+  category,
+  tools,
 }: CategoryClientProps) {
   const router = useRouter();
   const { t } = useI18n();
   const [searchQuery, setSearchQuery] = useState("");
+  const deferredSearchQuery = useDeferredValue(searchQuery);
   const [statusFilter, setStatusFilter] = useState("all");
   const [sortOrder, setSortOrder] = useState("name");
-
-  const category = toolsData.categories.find((cat) => cat.slug === slug);
+  const [favoriteUrls, setFavoriteUrls] = useState<string[]>([]);
 
   const filteredTools = useMemo(() => {
-    let tools = toolsData.tools.filter((tool) => {
-      const matchesCategory = category && tool.category === category.id;
+    const normalizedQuery = deferredSearchQuery.trim().toLowerCase();
+    const filtered = tools.filter((tool) => {
       const matchesSearch =
-        tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        tool.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        tool.tags.some((tag) =>
-          tag.toLowerCase().includes(searchQuery.toLowerCase()),
-        );
+        normalizedQuery.length === 0 ||
+        tool.name.toLowerCase().includes(normalizedQuery) ||
+        tool.description.toLowerCase().includes(normalizedQuery) ||
+        tool.tags.some((tag) => tag.toLowerCase().includes(normalizedQuery));
       const matchesStatus =
         statusFilter === "all" ||
         (statusFilter === "working" && tool.working) ||
         (statusFilter === "not-working" && !tool.working);
 
-      return matchesCategory && matchesSearch && matchesStatus;
+      return matchesSearch && matchesStatus;
     });
 
     if (sortOrder === "name") {
-      tools.sort((a, b) => a.name.localeCompare(b.name));
+      filtered.sort((a, b) => a.name.localeCompare(b.name));
     }
 
-    return tools;
-  }, [searchQuery, statusFilter, sortOrder, category, toolsData.tools]);
+    return filtered;
+  }, [deferredSearchQuery, statusFilter, sortOrder, tools]);
 
   useEffect(() => {
+    const loadFavorites = () => {
+      setFavoriteUrls(
+        JSON.parse(localStorage.getItem("osint-favorites") || "[]"),
+      );
+    };
+
+    loadFavorites();
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "/" && !e.ctrlKey && !e.metaKey) {
         e.preventDefault();
@@ -70,26 +76,33 @@ export default function CategoryClient({
       }
     };
 
+    const handleStorage = () => loadFavorites();
+    window.addEventListener("storage", handleStorage);
     document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
   }, []);
 
-  if (!category) {
-    return (
-      <main className="min-h-screen bg-background">
-        <Header />
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 text-center">
-          <h1 className="text-3xl font-bold text-foreground mb-4">
-            {t("category.notFound")}
-          </h1>
-          <Button onClick={() => router.push("/")}>
-            {t("common.returnHome")}
-          </Button>
-        </div>
-        <Footer />
-      </main>
-    );
-  }
+  const toggleFavorite = (toolUrl: string) => {
+    const current = JSON.parse(localStorage.getItem("osint-favorites") || "[]");
+    const exists = current.includes(toolUrl);
+    const next = exists
+      ? current.filter((url: string) => url !== toolUrl)
+      : [...current, toolUrl];
+    localStorage.setItem("osint-favorites", JSON.stringify(next));
+    setFavoriteUrls(next);
+  };
+
+  const trackRecent = (toolUrl: string) => {
+    const recent = JSON.parse(localStorage.getItem("osint-recent") || "[]");
+    const next = [
+      toolUrl,
+      ...recent.filter((url: string) => url !== toolUrl),
+    ].slice(0, 5);
+    localStorage.setItem("osint-recent", JSON.stringify(next));
+  };
 
   return (
     <main className="min-h-screen bg-background">
@@ -167,8 +180,14 @@ export default function CategoryClient({
 
         {filteredTools.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredTools.map((tool, index) => (
-              <ToolCard key={`${tool.name}-${index}`} tool={tool} />
+            {filteredTools.map((tool) => (
+              <ToolCard
+                key={tool.url}
+                tool={tool}
+                isFavorite={favoriteUrls.includes(tool.url)}
+                onToggleFavorite={toggleFavorite}
+                onOpen={trackRecent}
+              />
             ))}
           </div>
         ) : (

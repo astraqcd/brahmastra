@@ -1,13 +1,13 @@
+import type { Metadata } from "next";
+import { CategoryGrid } from "@/components/category-grid";
+import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { HeroSection } from "@/components/hero-section";
-import { CategoryGrid } from "@/components/category-grid";
+import { FAQJsonLd, WebsiteJsonLd } from "@/components/json-ld";
 import { RecentlyUsed } from "@/components/recently-used";
-import { Footer } from "@/components/footer";
-import { WebsiteJsonLd, FAQJsonLd } from "@/components/json-ld";
 import { fetchToolsData } from "@/lib/google-sheets";
-import type { Metadata } from "next";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Free OSINT Tools Directory",
