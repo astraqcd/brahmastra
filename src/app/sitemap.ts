@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
+import { env } from "@/env";
 import { fetchToolsData } from "@/lib/google-sheets";
 import { slugify } from "@/lib/utils";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://brahmastra-osint.vercel.app";
+  const baseUrl = env.NEXT_PUBLIC_SITE_URL;
   const toolsData = await fetchToolsData();
   const lastModified = new Date();
 

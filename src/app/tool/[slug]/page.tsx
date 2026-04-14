@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ToolJsonLd } from "@/components/json-ld";
+import { env } from "@/env";
 import { fetchToolsData } from "@/lib/google-sheets";
 import { slugify } from "@/lib/utils";
 import ToolClient from "./tool-client";
@@ -35,7 +36,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${tool.name} - Free ${category?.title || "OSINT"} Tool | Brahmastra`,
       description: tool.description,
-      url: `https://brahmastra-osint.vercel.app/tool/${slug}`,
+      url: `${env.NEXT_PUBLIC_SITE_URL}/tool/${slug}`,
       type: "article",
     },
     twitter: {
@@ -44,7 +45,7 @@ export async function generateMetadata({
       description: tool.description,
     },
     alternates: {
-      canonical: `https://brahmastra-osint.vercel.app/tool/${slug}`,
+      canonical: `${env.NEXT_PUBLIC_SITE_URL}/tool/${slug}`,
     },
   };
 }

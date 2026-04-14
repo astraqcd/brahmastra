@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
+import { env } from "@/env";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "https://brahmastra-osint.vercel.app";
+  const baseUrl = env.NEXT_PUBLIC_SITE_URL;
 
   return {
     rules: [

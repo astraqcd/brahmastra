@@ -1,7 +1,8 @@
+import { env } from "@/env";
 import type { Category, Tool } from "@/lib/types";
 import { slugify } from "@/lib/utils";
 
-const BASE_URL = "https://brahmastra-osint.vercel.app";
+const BASE_URL = env.NEXT_PUBLIC_SITE_URL;
 
 export function WebsiteJsonLd() {
   const jsonLd = {

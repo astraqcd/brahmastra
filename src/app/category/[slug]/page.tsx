@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CategoryJsonLd } from "@/components/json-ld";
+import { env } from "@/env";
 import { fetchToolsData } from "@/lib/google-sheets";
 import CategoryClient from "./category-client";
 
@@ -36,11 +37,11 @@ export async function generateMetadata({
     openGraph: {
       title: `${category.title} - ${toolCount}+ Free OSINT Tools | Brahmastra`,
       description: category.description,
-      url: `https://brahmastra-osint.vercel.app/category/${slug}`,
+      url: `${env.NEXT_PUBLIC_SITE_URL}/category/${slug}`,
       type: "website",
     },
     alternates: {
-      canonical: `https://brahmastra-osint.vercel.app/category/${slug}`,
+      canonical: `${env.NEXT_PUBLIC_SITE_URL}/category/${slug}`,
     },
   };
 }

@@ -1,7 +1,8 @@
+import { env } from "@/env";
 import type { DarkWebData, DarkWebForum } from "./darkweb-types";
 
-const DARKWEB_SHEET_ID = "14S8ykMw3VkkfeAIKH97O-ohvgJu1n2xFSXbNaftIUzE";
-const DARKWEB_GID = "1451389906";
+const DARKWEB_SHEET_ID = env.TOOLS_SHEET_ID;
+const DARKWEB_GID = env.DARKWEB_SHEET_GID;
 const SHEET_BASE_URL = `https://docs.google.com/spreadsheets/d/${DARKWEB_SHEET_ID}/gviz/tq?tqx=out:csv`;
 const DARKWEB_REVALIDATE_SECONDS = 3600;
 

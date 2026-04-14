@@ -5,6 +5,7 @@ import { Header } from "@/components/header";
 import { HeroSection } from "@/components/hero-section";
 import { FAQJsonLd, WebsiteJsonLd } from "@/components/json-ld";
 import { RecentlyUsed } from "@/components/recently-used";
+import { env } from "@/env";
 import { fetchToolsData } from "@/lib/google-sheets";
 
 export const revalidate = 3600;
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     "cyber threat intelligence",
   ],
   alternates: {
-    canonical: "https://brahmastra-osint.vercel.app",
+    canonical: env.NEXT_PUBLIC_SITE_URL,
   },
 };
 

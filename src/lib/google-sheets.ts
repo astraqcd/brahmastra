@@ -1,19 +1,20 @@
+import { env } from "@/env";
 import fallbackData from "./data.json";
 import type { Tool, ToolsData } from "./types";
 
-const SHEET_ID = "14S8ykMw3VkkfeAIKH97O-ohvgJu1n2xFSXbNaftIUzE";
+const SHEET_ID = env.TOOLS_SHEET_ID;
 const SHEET_BASE_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`;
 const TOOLS_REVALIDATE_SECONDS = 3600;
 
 const SHEET_TABS: { gid: string; categoryId: string }[] = [
-  { gid: "275148106", categoryId: "PHONE_EMAIL" },
-  { gid: "2138411365", categoryId: "SOCMINT" },
-  { gid: "1568434324", categoryId: "MALWARE" },
-  { gid: "764635392", categoryId: "GEOINT" },
-  { gid: "312278353", categoryId: "WEBINT" },
-  { gid: "1537751684", categoryId: "IMINT" },
-  { gid: "1936794883", categoryId: "SIGINT" },
-  { gid: "1451389906", categoryId: "DARKWEB" },
+  { gid: env.PHONE_EMAIL_SHEET_GID, categoryId: "PHONE_EMAIL" },
+  { gid: env.SOCMINT_SHEET_GID, categoryId: "SOCMINT" },
+  { gid: env.MALWARE_SHEET_GID, categoryId: "MALWARE" },
+  { gid: env.GEOINT_SHEET_GID, categoryId: "GEOINT" },
+  { gid: env.WEBINT_SHEET_GID, categoryId: "WEBINT" },
+  { gid: env.IMINT_SHEET_GID, categoryId: "IMINT" },
+  { gid: env.SIGINT_SHEET_GID, categoryId: "SIGINT" },
+  { gid: env.DARKWEB_SHEET_GID, categoryId: "DARKWEB" },
 ];
 
 const CATEGORIES = fallbackData.categories;

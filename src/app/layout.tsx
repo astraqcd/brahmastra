@@ -1,7 +1,7 @@
-import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { env } from "@/env";
 import { I18nProvider } from "@/lib/i18n/context";
 import "./globals.css";
 
@@ -11,9 +11,10 @@ const spaceMono = Space_Mono({
   subsets: ["latin"],
   variable: "--font-space-mono",
 });
+const siteUrl = env.NEXT_PUBLIC_SITE_URL;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://brahmastra-osint.vercel.app"),
+  metadataBase: new URL(siteUrl),
   title: {
     default:
       "Brahmastra OSINT Platform | 80+ Curated OSINT Tools for Investigations",
@@ -56,7 +57,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://brahmastra-osint.vercel.app",
+    url: siteUrl,
     title:
       "Brahmastra OSINT Platform | 80+ Curated OSINT Tools for Investigations",
     description:
@@ -91,17 +92,17 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://brahmastra-osint.vercel.app",
+    canonical: siteUrl,
     languages: {
-      "en-US": "https://brahmastra-osint.vercel.app",
-      "hi-IN": "https://brahmastra-osint.vercel.app/hi",
-      "ar-SA": "https://brahmastra-osint.vercel.app/ar",
-      "ru-RU": "https://brahmastra-osint.vercel.app/ru",
-      "zh-CN": "https://brahmastra-osint.vercel.app/zh",
+      "en-US": siteUrl,
+      "hi-IN": `${siteUrl}/hi`,
+      "ar-SA": `${siteUrl}/ar`,
+      "ru-RU": `${siteUrl}/ru`,
+      "zh-CN": `${siteUrl}/zh`,
     },
   },
   verification: {
-    google: "your-google-verification-code",
+    google: env.GOOGLE_SITE_VERIFICATION,
   },
 };
 
@@ -127,7 +128,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <I18nProvider>
             <div className="dot-pattern" />
             {children}
-            <Analytics />
           </I18nProvider>
         </ThemeProvider>
       </body>
