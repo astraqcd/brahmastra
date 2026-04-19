@@ -36,7 +36,8 @@ import type {
 } from "@/lib/darkweb-types";
 import { DARKWEB_CATEGORIES } from "@/lib/darkweb-types";
 import { useI18n } from "@/lib/i18n/context";
-import type { TranslationKey } from "@/lib/i18n/translations";
+import type { Locale, TranslationKey } from "@/lib/i18n/translations";
+import { getLocalizedDescription } from "@/lib/utils";
 
 interface DarkWebClientProps {
   data: DarkWebData;
@@ -67,7 +68,7 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
     }
   }, []);
 
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const statusConfigMap: Record<DarkWebForum["status"], StatusConfig> = useMemo(
     () => ({
       active: {
@@ -351,6 +352,7 @@ export function DarkWebClient({ data }: DarkWebClientProps) {
               copiedUrl={copiedUrl}
               statusConfigMap={statusConfigMap}
               t={t}
+              locale={locale}
             />
           ))}
         </div>
@@ -387,12 +389,14 @@ function ForumCard({
   copiedUrl,
   statusConfigMap,
   t,
+  locale,
 }: {
   forum: DarkWebForum;
   onCopy: (url: string) => void;
   copiedUrl: string | null;
   statusConfigMap: Record<DarkWebForum["status"], StatusConfig>;
   t: (key: TranslationKey) => string;
+  locale: Locale;
 }) {
   const statusConfig = statusConfigMap[forum.status];
   const StatusIcon = statusConfig.icon;
@@ -451,7 +455,7 @@ function ForumCard({
         </div>
 
         <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1 line-clamp-2">
-          {forum.description}
+          {getLocalizedDescription(forum, locale)}
         </p>
 
         {forum.tags.length > 0 && (

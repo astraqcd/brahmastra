@@ -6,6 +6,7 @@ export interface DarkWebForum {
   status: "active" | "inactive" | "seized" | "scam" | "unknown";
   language: string;
   description: string;
+  descriptions?: Record<string, string>;
   registrationRequired: boolean;
   inviteOnly: boolean;
   lastChecked?: string;

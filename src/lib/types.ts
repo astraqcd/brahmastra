@@ -3,6 +3,7 @@ export interface Tool {
   url: string;
   category: string;
   description: string;
+  descriptions?: Record<string, string>;
   working: boolean;
   tags: string[];
 }

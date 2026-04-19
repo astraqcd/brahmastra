@@ -406,6 +406,14 @@ export async function fetchDarkWebData(): Promise<DarkWebData> {
       (h) => h === "link" || h === "url" || h === "onion url",
     );
 
+    const descriptionCols: { locale: string; col: number }[] = [];
+    header.forEach((h, idx) => {
+      const match = h.match(/^description[-_](.+)$/);
+      if (match?.[1]) {
+        descriptionCols.push({ locale: match[1].trim(), col: idx });
+      }
+    });
+
     const nCol = nameCol >= 0 ? nameCol : 2;
     const lCol = linkCol >= 0 ? linkCol : 3;
 
@@ -428,6 +436,18 @@ export async function fetchDarkWebData(): Promise<DarkWebData> {
 
       const enrichment = ENRICHMENT_DATA[normalized] ?? {};
 
+      const descriptions: Record<string, string> = {};
+      for (const { locale, col } of descriptionCols) {
+        const value = row[col]?.trim();
+        if (value) descriptions[locale] = value;
+      }
+
+      const description =
+        descriptions.en ||
+        Object.values(descriptions)[0] ||
+        enrichment.description ||
+        `${name} — dark web resource.`;
+
       forums.push({
         name,
         onionUrl: normalized,
@@ -435,7 +455,9 @@ export async function fetchDarkWebData(): Promise<DarkWebData> {
         category: enrichment.category ?? guessCategory(name),
         status: enrichment.status ?? "unknown",
         language: enrichment.language ?? "English",
-        description: enrichment.description ?? `${name} — dark web resource.`,
+        description,
+        descriptions:
+          Object.keys(descriptions).length > 0 ? descriptions : undefined,
         registrationRequired: enrichment.registrationRequired ?? false,
         inviteOnly: enrichment.inviteOnly ?? false,
         tags: enrichment.tags ?? [],

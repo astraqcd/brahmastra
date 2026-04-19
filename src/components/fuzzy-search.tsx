@@ -14,14 +14,14 @@ import {
 } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Tool } from "@/lib/types";
-import { slugify } from "@/lib/utils";
+import { getToolDescription, slugify } from "@/lib/utils";
 
 interface FuzzySearchProps {
   tools: Tool[];
 }
 
 export function FuzzySearch({ tools }: FuzzySearchProps) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const router = useRouter();
   const [query, setQuery] = useState("");
   const deferredQuery = useDeferredValue(query);
@@ -170,7 +170,7 @@ export function FuzzySearch({ tools }: FuzzySearchProps) {
                     )}
                   </div>
                   <p className="text-xs text-muted-foreground truncate mt-0.5">
-                    {result.item.description}
+                    {getToolDescription(result.item, locale)}
                   </p>
                 </div>
                 <span className="text-[10px] px-2 py-0.5 rounded bg-secondary text-secondary-foreground shrink-0">

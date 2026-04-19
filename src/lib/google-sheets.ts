@@ -102,12 +102,6 @@ function generateTags(name: string, category: string): string[] {
   return [...new Set(tags)].slice(0, 4);
 }
 
-function generateDescription(name: string, category: string): string {
-  const catLabel =
-    CATEGORIES.find((c) => c.id === category)?.title || "Intelligence";
-  return `${name} — a ${catLabel.toLowerCase()} tool for OSINT research and analysis.`;
-}
-
 export async function fetchToolsData(): Promise<ToolsData> {
   try {
     const tools: Tool[] = [];
@@ -143,6 +137,14 @@ export async function fetchToolsData(): Promise<ToolsData> {
         (h) => h === "working" || h === "status" || h === "w",
       );
 
+      const descriptionCols: { locale: string; col: number }[] = [];
+      header.forEach((h, idx) => {
+        const match = h.match(/^description[-_](.+)$/);
+        if (match?.[1]) {
+          descriptionCols.push({ locale: match[1].trim(), col: idx });
+        }
+      });
+
       const nCol = toolCol >= 0 ? toolCol : 2;
       const lCol = linkCol >= 0 ? linkCol : 3;
       const wCol = workingCol >= 0 ? workingCol : -1;
@@ -176,12 +178,22 @@ export async function fetchToolsData(): Promise<ToolsData> {
           working = existing.working;
         }
 
+        const descriptions: Record<string, string> = {};
+        for (const { locale, col } of descriptionCols) {
+          const value = row[col]?.trim();
+          if (value) descriptions[locale] = value;
+        }
+
+        const description =
+          descriptions.en || Object.values(descriptions)[0] || "";
+
         tools.push({
           name,
           url: link.trim(),
           category: categoryId,
-          description:
-            existing?.description || generateDescription(name, categoryId),
+          description,
+          descriptions:
+            Object.keys(descriptions).length > 0 ? descriptions : undefined,
           working,
           tags: existing?.tags || generateTags(name, categoryId),
         });

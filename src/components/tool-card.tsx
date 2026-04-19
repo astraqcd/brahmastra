@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Tool } from "@/lib/types";
-import { slugify } from "@/lib/utils";
+import { getToolDescription, slugify } from "@/lib/utils";
 
 function getDomain(url: string): string {
   try {
@@ -58,7 +58,7 @@ export function ToolCard({
   onOpen,
 }: ToolCardProps) {
   const router = useRouter();
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const [internalIsFavorite, setInternalIsFavorite] = useState(false);
   const [copied, setCopied] = useState(false);
   const [logoError, setLogoError] = useState(false);
@@ -214,7 +214,7 @@ export function ToolCard({
         </div>
 
         <p className="text-[13px] text-muted-foreground/80 leading-relaxed mb-4 flex-1 line-clamp-2">
-          {tool.description}
+          {getToolDescription(tool, locale)}
         </p>
 
         {tool.tags.length > 0 && (

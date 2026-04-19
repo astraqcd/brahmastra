@@ -29,7 +29,7 @@ import { HealthMonitor } from "@/components/health-monitor";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n/context";
 import type { Category, Tool } from "@/lib/types";
-import { slugify } from "@/lib/utils";
+import { getToolDescription, slugify } from "@/lib/utils";
 
 const categoryIcons: Record<
   string,
@@ -87,7 +87,7 @@ export default function ToolClient({
   relatedTools,
 }: ToolClientProps) {
   const router = useRouter();
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
 
   const [isFavorite, setIsFavorite] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -287,7 +287,7 @@ export default function ToolClient({
             {t("tool.description")}
           </h2>
           <p className="text-muted-foreground leading-relaxed text-base">
-            {tool.description}
+            {getToolDescription(tool, locale)}
           </p>
         </div>
 
@@ -365,7 +365,7 @@ export default function ToolClient({
                         <ExternalLink className="h-3 w-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                       </div>
                       <p className="text-xs text-muted-foreground mt-1 line-clamp-1">
-                        {related.description}
+                        {getToolDescription(related, locale)}
                       </p>
                     </div>
                   </Link>
